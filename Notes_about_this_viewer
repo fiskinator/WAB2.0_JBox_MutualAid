@@ -1,0 +1,185 @@
+Notes for changes to this viewer configuration file to follow the vUSA sharing Model:
+
+
+----------------------------------------------------------------------------------------------------------------------------
+Migrated existing NISC widgets  to version 2.0 of the Esri Web AppBuilder for ArcGIS Developer's Edition:
+
+https://developers.arcgis.com/web-appbuilder/
+
+Prior to existing as a widget, the About capability and the vUSA webmap capability were developed to exist within the Mutual Aid Prototype.
+Developing the IOC requires Refining Mutual Aid Prototype such that it is based on modular design elements and will be more sustainable for future deployments. 
+
+Benefits of sri Web AppBuilder for ArcGIS 2.0 include additional modular capabilities useful for extending Mutual Aid Planning app.
+
+3D widgets can be created with WAB. These widgets use the 4.0 "online branch" of the Javascript API
+
+2D widgets for the march 2016 version of WAB 2.0 are based on JSAPI version 3.16. 
+
+Currently 2D an 3D widgets can not exist concurrently in the same viewer.  That will come in a future release.
+
+----------------------------------------------------------------------------------------------------------------------------
+BasemapGallery config.json:
+
+Change basemap gallery thumbnail url from "ghis.maps.arcgis.com" TO: "arcgis,com" for all thumbnails
+
+
+CONFIG.JSON for this viewer:
+	Expanded size of header from "top": 40 to "top": 70 to accomodate custom theme of that size.
+	Did this for both mobile and non-mobile sections of the config:  
+
+	  "map": {
+    		"3D": false,
+    		"2D": true,
+    		"position": {
+      		"left": 0,
+      		"top": 70,
+      		"right": 0,
+      		"bottom": 0
+    		},
+    		"itemId": "5fe10ce2cd39417cbfd274a4f9768dba",
+    		"mapOptions": {},
+    		"id": "map",
+    		"portalUrl": "http://www.arcgis.com"
+  }, 
+
+----------------------------------------------------------------------------------------------------------------------------
+USING NEW vUSA Widget that makes it possible to find Geoforms, dashboards, and apps in a group.
+
+Issues:  widget does not sense if you have already logged into the app at startup.
+
+Tips for using it:
+
+1) You have to click the “login” button at the bottom of the widget in order to see items from the  SCC org.   
+
+2) The Geoforms that show up, do so because they are an app with “geoform” in the name.   If you want additional geoforms to appear, you have to use “geoform” somewhere in the title of the app.
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Updated the NISC "About Widget" to include thumbnail of current webmap.  
+		Modularity enhancement - already important usecase present in Mutual Aid App
+
+----------------------------------------------------------------------------------------------------------------------------
+PORTAL URL:
+
+Notice that vUSA widget requires that the viewer configuration.json be set to  "portalUrl": "http://www.arcgis.com" in two places:
+
+1) Changing FROM "portalUrl": "ghis.maps.arcgis.com" TO "http://www.arcgis.com" near the top of the congig.json
+
+
+  "portalUrl": "http://www.arcgis.com",
+  "appId": "",
+  "authorizedCrossOriginDomains": [],
+  "title": "Mutual Aid Resource Planning",
+  "subtitle": "... a mission partner environment",
+  "keepAppState": true,
+  "logo": "images/MutualAid_3People50x.png",
+  "geometryService": "http://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
+  "links": [{
+        "label": "vUSA",
+        "url": "http://www.nisconsortium.org/"
+    }],
+
+
+2) AND PortalURL found in the "map": section of the config.json like so:
+
+  "map": {
+    "3D": false,
+    "2D": true,
+    "position": {
+      "left": 0,
+      "top": 70,
+      "right": 0,
+      "bottom": 0
+    },
+    "itemId": "5fe10ce2cd39417cbfd274a4f9768dba",
+    "mapOptions": {},
+    "id": "map",
+    "portalUrl": "http://www.arcgis.com"
+  },
+
+----------------------------------------------------------------------------------------------------------------------------
+
+ALL NEW WIDGETS:
+New widgets must have a destory function like so, so that switching maps can re-create the widget without error: 
+
+If not, an error stating duplicate widgetId exists will be reported in a debug error.
+    	destroy: function()
+
+    		this.inherited(arguments);
+
+    	},
+----------------------------------------------------------------------------------------------------------------------------
+Changed "shortcut.iso" in the viewer /images folder to a custom icon depicting 3 people working together.
+Created the .iso file here:  http://www.online-convert.com/result/658f062debef59bf4430d4a9b9407e68
+----------------------------------------------------------------------------------------------------------------------------
+Changed the default padding for all widgets in jimu.js/css/jimu.css to 3px rather than 14px. as shown below:
+
+		/* 
+		JF changed to fix Margin of Widgets.  
+  		WAS padding: 14px 14px 14px 14px;
+		*/ 
+			.jimu-widget-frame.jimu-container{
+  			overflow-x: auto;
+  			overflow-y: auto;
+  			position: relative;
+  			padding: 3px 3px 3px 3px;
+  			background-color: white;
+		}
+		.jimu-widget-frame>.jimu-container{
+  			position: relative;
+  			overflow-x: hidden;
+  			overflow-y: auto;
+  			padding: 3px 3px 3px 3px;
+  			background-color: white;
+		}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
+Created CUSTOM FONT COLLECTION from https://icomoon.io/
+	Inserted this in the style.css folder of the mutualAid widget.
+	Access icons via a font referene in style.CSS
+	contains 100+ scalable vector icons to reduce need for bitmap images
+----------------------------------------------------------------------------------------------------------------------------
+	
+CREATED CUSTOM THEME called:  "JewelryBoxThemeLabels2"
+
+Developing a custom theme was required to orient the user to a mutual aid app, rather than to a multi-function GIS viewer.  This viewer framework, called The Web Application Builder(WAB) is designed to be a modular, transitionalble platform for javascript application developement.  This new theme was specifically modeled after the mutual Aid prototype for users primarily indending to do mutual aid planning.  As proven during the prototype phase, mutual aid planning requires collaboration with map content from multiple content providers(multiple webmaps (AKA vUSA Widget), as well the abiltity to create, edit, and share plans with other jurisdictions. 
+
+Future users will always have the need to expand the capabilities of their planning environment in unforeseen ways.  With this "planning biased" viewer, we are now able to inherit the widget based archetecture and can bring in existing widgets or develop additional tools in a modular fashion, which can in turn be used with WAB viewers that are not necessarily mutual aid focused.
+
+
+  ADDITIONAL THEME DETAILS
+
+	This theme allows a panel on right side to persist and contain mutualAid Widget.
+	vUSA widget can exist as a modular wigdet simultaneously
+	changed header controller widget in the following ways:
+
+		+ made the view branding logo larger(50px)
+		+ made the head controller icons larger (30px)
+		+ added css class for a title underneath the widget icons
+		+ recentered the icon to allow for widget name that takes up 2 lines
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+DEVELOPING MUTUAL AID WIDGET FOR USE WITH NEW THEME
+
+Once a theme was developed we could begin developing a widget based on the mutual aid prototype.
+
++ Widget was styled to look similar to the prototype and contain similar funtionality.
++ use the same data sets and groups.
++ Decouple from vVUSA capabilities that were hardwired into prototype.
++ Enhance vUSA widget and About Widget to contain capabilities that were previously hardwired into prototype.
++ Develop full-screen display architecture that can reside within the WAB to accomodate full screen tabular reporting as used by prototype
+
+Continnued migration of mutual Aid prototype to a modular Web Applicatin Builder architecture. 
+
+
+
+
+Feature Density is an issue since data model is based on stacking polygons on top of other polygons.   Max Allowable offset is 
+
+
+
+

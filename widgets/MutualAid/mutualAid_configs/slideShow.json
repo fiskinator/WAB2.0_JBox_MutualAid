@@ -1,0 +1,409 @@
+[
+
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "Has your jurisdiction ever completed a THIRA?",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/slide7_background_no_thira.png",
+        "optional_link" :"<a target='_blank' href='http://www.fema.gov/media-library-data/8ca0a9e54dc8b037a55b402b2a269e94/CPG201_htirag_2nd_edition.pdf'>(THIRA)</a>"
+      
+    }, 
+
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Resource planning during CAPSTONE 2014",
+        "subtitle" : "Around a catastrophic earthquake scenario",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/raw_workshop_slide.png",
+        "optional_link" :"<a target='_blank' href='http://www.cusec.org/plans-a-programs/capstone14/187'>(CUSEC-RAW)</a>"
+    }, 
+
+
+
+     {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Resource Planning Challenges",
+        "subtitle" : "Not enough resources to go around!",
+        "bullet2" : "Plans are constantly impacted by change",
+        "bullet3" : "Plans are often siloed and lack visual context",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/table7_nat_prep_report.png",
+        "optional_link" :""
+    }, 
+
+     {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "",
+        "subtitle" : "Better Planning = Better Mitigation and Emergency Response",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/hypothesis_1.png",
+        "optional_link" :""
+    }, 
+
+
+     {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Build on processes that exist.",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/hypothesis_2.png",
+        "optional_link" :""
+    }, 
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Introducing a web app for resource planning!",
+        "subtitle" : "Share your capability requirements with partner jurisdictions.",
+        "bullet2" : "Create resource plans that are responsive to change!",
+        "bullet3" : "Use your GIS platform with a first of it's kind collaborative ",       
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/AppBackground.png",
+        "optional_link" :""
+    }, 
+    
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Step 1:   Understand your community's hazards",
+        "subtitle" : "Identify key data layers (demographics / hazards / historical)",
+        "bullet2" : "Invite members to develop new data layers if necessary",
+        "bullet3" : "Create / find useful webmaps and bring them in",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/Step1_UnderstandHazards.png",
+        "optional_link" :""
+      
+    }, 
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Step 2:   Develop your capability plan",
+        "subtitle" : "Enter capability targets for your jurisdiction",
+        "bullet2" : "Define required resources for each capabiliity",
+        "bullet3" : "Identify partners able to provide those resources",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/Step2_DefineCapabilities.png",
+        "optional_link" :""
+    }, 
+
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Step 3:  Refine what you see and who should see it",
+        "subtitle" : "See new maps and plans when they are shared (or unshared!)",
+        "bullet2" : "Invite individuals from other jurisdictions to the mutual aid group",
+        "bullet3" : "Invited members can contribute their own map layers!",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/Step3_ControlTheApp.png",  
+        "optional_link" :""
+    }, 
+
+
+
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/all_steps_rightsize_black.png",  
+        "optional_link" :"<a target='_blank' href='https://www.youtube.com/embed/Vii_2xPA6KI'>Video Demonstration</a>"
+      
+    }, 
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "Why use an information sharing platform?",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/agol_sharing_platform.png",
+        "optional_link" :""
+    },
+
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "What do I need to transition this to my jurisdiction?",
+        "subtitle" : "ArcGIS Online Cloud Platform subcription",
+        "bullet2" : "A THIRA data template (available from the NISC",
+        "bullet3" : "A hosted THIRA app template (available from the NISC)",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/AppBackground.png",
+        "optional_link" :""
+    },
+
+    {
+        "pagetype": "image",
+        "chapter": "overview",
+        "title": "What is the NISC?",
+        "subtitle" : "National Information Sharing Consortium",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/nisc_home_slide.png",
+        "optional_link" :"<a target='_blank' href='http://www.nisconsortium.org/'>NISC</a>"
+    }, 
+
+
+
+
+
+
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "This is a place holder for demonstration",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/AppBackground.png",
+        "optional_link" :"<a target='_blank' href='http://www.nisconsortium.org/'>NISC</a>"
+      
+    },
+
+
+
+
+    {
+        "pagetype": "image",
+        "chapter": "deploy",
+        "title": "Transition this template to your organization",
+        "subtitle" : "You control access to the app and the data",
+        "bullet2" : "Your capability plan is hosted in a cloud you control",
+        "bullet3" : "You grant access to individuals who understand the planning process",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/AppBackground.png",
+        "optional_link" :""
+    }, 
+
+
+    {
+        "pagetype": "image",
+        "chapter": "deploy",
+        "title": "Does this template require a GIS server?",
+        "subtitle" : "No.  This template uses ArcGIS Online Cloud Platform",
+        "bullet2" : "Try it out using the NISC org, or transition it to your own!",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/mythira_details.png",
+        "optional_link" :"<a target='_blank' href='http://www.nisconsortium.org/'>NISC</a>"
+      
+    },
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "What do I need to run this template?",
+        "subtitle" : "ArcGIS cloud platform subscription",
+        "bullet2" : "A THIRA data template (available from the NISC",
+        "bullet3" : "A hosted THIRA app template (available from the NISC)",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/mythira_details.png",
+        "optional_link" :""
+      
+    },
+
+    {
+        "pagetype": "image",
+        "chapter": "deploy",
+        "title": "Follow these instructions . . .",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/images/slideShow/mythira_details.png",
+        "optional_link" :""
+    },
+
+
+    {
+        "pagetype": "image",
+        "chapter": "deploy",
+        "title": "Or use the NISC easy button!",
+        "subtitle" : " ",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/nisc_home_slide.png",
+        "optional_link" :"<a target='_blank' href='http://www.nisconsortium.org/portal/madeploy'>Transition the template to my org!</a>"
+    }, 
+
+
+   {
+        "pagetype": "website",
+        "chapter": "deploy",
+        "title": "A peak behind the scenes into a sharing group",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ul",
+        "slide" : "widgets/mutualAid/http://vusa.maps.arcgis.com/home/group.html?id=cdbc676652d44883a642edfcb0c10e27",
+        "optional_link" :""
+    },
+
+
+
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "What is the NISC?",
+        "subtitle" : "National Information Sharing Consortium",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/nisc_home_slide.png",
+        "optional_link" :"<a target='_blank' href='http://www.nisconsortium.org/'>NISC</a>"
+    }, 
+
+
+
+
+    {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "Creating a Mutual Aid Sharing Group",
+        "subtitle" : "",
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "https://www.youtube.com/embed/cktnio2XdXM",
+        "optional_link" :""
+      
+    },
+  
+
+    {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "Registering the Custom App Template Group",
+        "subtitle" : "",
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "https://www.youtube.com/embed/C5JwOtNgch4",
+        "optional_link" :""
+      
+    },
+
+      {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "Transition the Data Template to your Organization",
+        "subtitle" : "",
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "https://www.youtube.com/embed/vqc8oEGE4hk",
+        "optional_link" :""
+      
+    },
+
+
+    {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "Part 4:  Name of part 4",
+        "subtitle" : "",
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "https://www.youtube.com/embed/QoPBPyse1vs",
+        "optional_link" :"<a target='_blank' href='http://vusa.maps.arcgis.com/home/item.html?id=431fccd1a01c4a0181f66541e2b46dda'>ReadMe</a>"
+      
+    },
+
+
+
+    {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "South Carolina Flooding Geoframework Journal",
+        "subtitle" : "FEMA Flood Journal",
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "http://arcgis.com/apps/MapJournal/index.html?appid=8aa3d4afc3e14c9bbd3b79881664c37e",
+        "optional_link" :"<a target='_blank' href='http://fema.maps.arcgis.com/'>FEMA GIS</a>" 
+    },
+
+    {
+        "pagetype": "website",
+        "chapter": "hidden",
+        "title": "Texas Flooding Geoframework Journal",
+        "subtitle" : "FEMA Flood Journal", 
+        "bullet2" : "", 
+        "bullet3" : "", 
+        "html_list_type_ul_ol": "ul",
+        "slide" : "http://fema.maps.arcgis.com/apps/MapJournal/index.html?appid=37cf3eacd9e04fd08a7455c0151e82bc",
+        "optional_link" :"<a target='_blank' href='http://fema.maps.arcgis.com/'>FEMA GIS</a>" 
+    },
+
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "What does it take to manage once I transition it?",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/AppBackground.png",
+        "optional_link" :""
+    }, 
+
+    {
+        "pagetype": "image",
+        "chapter": "hidden",
+        "title": "Why does this template use an information sharing platform?",
+        "subtitle" : "",
+        "bullet2" : "",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/agol_thumbnails_thira.png",
+        "optional_link" :""
+    },
+
+
+
+    {
+        "pagetype": "image",
+        "chapter": "feedback",
+        "title": "We need your feedback!",
+        "subtitle" : "Help us understand how this model impacts your preparedness",
+        "bullet2" : "Thank you!",
+        "bullet3" : "",
+        "html_list_type_ul_ol": "ol",
+        "slide" : "widgets/mutualAid/images/slideShow/agol_sharing_platform.png",
+        "optional_link" :"<a target='_blank' href='http://goo.gl/forms/BvPMru5kBv'>Feedback</a>"
+    },
+    
+]  

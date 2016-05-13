@@ -1,0 +1,2033 @@
+@import url("../common.css");
+
+@import url("icomoon.css");
+
+/*@import url("fontello.css"); */
+
+@import url("vUSAGroupStyle.css");
+
+/*@import url("resultITemList");*/
+
+.jimu-widget-mutualaid{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #3E536C;
+  overflow-x:hidden;
+  overflow-y:auto; 
+}
+
+
+
+.jimu-widget-mutualaid .result-item
+{
+  padding-left: 15px;
+  border-bottom: 1px solid #7c7c7c;
+  padding-top: 3px;
+  padding-bottom: 3px;
+
+}
+
+.jimu-widget-mutualaid .result-item-clicked
+{
+  padding-left: 15px;
+  border-bottom: 1px solid #7c7c7c;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+
+/* Panels */
+
+
+
+
+.panel-container img {
+  max-width: 100%;
+  height: 100%;
+}
+
+
+.panel-title {
+  margin: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #333;
+}
+
+.panel-padding {
+  padding: 0 20px 10px 10px;
+/*  color: #666; */
+
+}
+
+.esriRTL .panel-padding {
+  padding: 0 10px 10px 20px;
+}
+
+.panel-header {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 20px 6px 10px;
+  line-height: 24px;
+  color: #555;
+  background: #fff;
+}
+
+.esriRTL .panel-header {
+  padding: 12px 10px 6px 20px;
+}
+
+.panel-section {
+  border-top: 1px solid #e0e0e0;
+}
+
+.panel-more-info,
+.panel-modified-date,
+.panel-views-count,
+.panel-summary,
+.panel-description {
+  color: #666;
+  line-height: 24px;
+}
+
+.panel-modified-date,
+.panel-views-count,
+.panel-summary {
+  padding: 0 20px 5px 10px;
+}
+
+.esriRTL .panel-modified-date,
+.esriRTL .panel-summary {
+  padding: 0 10px 5px 20px;
+}
+
+.panel-description,
+.panel-more-info {
+  padding: 0 20px 10px 10px;
+}
+
+.esriRTL .panel-description,
+.esriRTL .panel-more-info {
+  padding: 0 10px 10px 20px;
+}
+
+.panel-modified-date {
+  font-size: 14px;
+  color: #999;
+}
+
+
+
+/* Drawer Menu */
+
+.drawer-menu-container {
+  /* width: 280px; */
+  width: 300px;  /*  JF widened the panel by 20 px for 4th button */
+}
+
+.drawer-menu-panels .panel {
+  display: none;
+  width: 100%;
+}
+
+.drawer-menu-panels .panel-selected {
+  display: block;
+  width: 100%;
+}
+
+.drawer-menu-buttons {
+  
+  /* background-color: #007ac2; JF button background color*/
+
+  /* background-color: #42526C;  JF Alternate color for background and text */
+
+  background-color: #3E536C; /* COLOR IS ALSO SET IN   JIMU-THEME.CSS   jimiu.css contains widget border as well*/
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  overflow: visible;
+  width: 100%;
+  height: 70px;
+}
+
+.drawer-menu-1 .drawer-menu-buttons {
+  display: none;
+}
+
+.drawer-menu-buttons .item {
+  text-align: center;
+  /* color: #97cbec;  JF default color of icons and text when not selected*/
+  color: #A0A8B5;   /* JF Alternate color used with Thira template  */
+  float: left;
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.esriRTL .drawer-menu-buttons .item {
+  float: right;
+}
+
+.drawer-menu-buttons .item {
+  /*  width: 33.3%; JF for inserting 4th drawer*/
+  width: 33.3%;
+}
+
+.drawer-menu-4 .drawer-menu-buttons .item {
+/*  width: 33.3%;  JF for inserting 4th drawer*/
+  width: 25%;
+}
+
+.drawer-menu-3 .drawer-menu-buttons .item {
+  /*  width: 33.3%; JF for inserting 4th drawer*/
+  width: 50%;
+}
+
+.drawer-menu-2 .drawer-menu-buttons .item {
+  /*  width: 50%; JF for inserting 4th drawer*/
+  width: 75%%;
+}
+
+.drawer-menu-1 .drawer-menu-buttons .item {
+  /*  width: 100%; JF for inserting 4th drawer*/
+  width: 100%;
+}
+
+.drawer-menu-buttons .item-container {
+  position: relative;
+  overflow: visible;
+  width: 100%;
+}
+
+
+
+.drawer-menu-buttons .item .title {
+
+/*JF Commented noWrap*/
+  /* white-space: nowrap; 
+  border-right controls the separator of menu headers*/
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 4px 0;
+  font-size: 24px;
+  line-height: normal;
+
+
+  border-right: 1px solid #a0a8b5;
+}
+
+.esriRTL .drawer-menu-buttons .item .title {
+  border-left: 0;
+  border-right: 1px solid #5fa8d4;
+}
+
+.drawer-menu-buttons .item-first .title {
+  border-left: 0;
+}
+
+.esriRTL .drawer-menu-buttons .item-first .title {
+  border-right: 0;
+}
+
+.drawer-menu-buttons .item-selected {
+  color: #fff;
+  cursor: default;
+}
+
+.drawer-menu-buttons .arrow {
+  display: none;
+}
+
+.drawer-menu-buttons .item-selected .arrow {
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  z-index: 2;
+  height: 9px;
+  width: 100%;
+  background: url(../images/selected-arrow.png) no-repeat center bottom;
+}
+
+.esriRTL .drawer-menu-buttons .item-selected .arrow {
+  left: auto;
+  right: 0;
+}
+
+.drawer-menu-buttons .icon-text {
+  font-size: 14px;
+  margin-bottom: 3px;
+  line-height: 14px;
+  height: 20px;
+  font-weight: 500;
+}
+
+/* Misc */
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+/* LayerSwipe */
+
+.PIMSwipe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  *z-index: 1;
+  /* IE7 */
+}
+
+.PIMSwipe .handleContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.PIMSwipe .vertical {
+  position: absolute;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  width: 6px;
+  height: 100%;
+  padding: 0!important;
+  margin: 0;
+  z-index: 30;
+  cursor: col-resize;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.PIMSwipe .vertical .handle {
+  width: 30px;
+  height: 30px;
+  margin: -16px 0 0 -16px;
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-image: url(../images/vertical.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.PIMSwipe .horizontal {
+  position: absolute;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  width: 100%;
+  height: 6px;
+  padding: 0!important;
+  margin: 0;
+  z-index: 30;
+  cursor: row-resize;
+}
+
+.PIMSwipe .horizontal .handle {
+  width: 30px;
+  height: 30px;
+  margin: -16px 0 0 -16px;
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, 0.3);
+  background-image: url(../images/horizontal.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.PIMSwipe .scope {
+  border: 0;
+  height: 261px;
+  overflow: hidden;
+  position: absolute;
+  width: 261px;
+  cursor: move;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  background-color: transparent;
+  background-image: url(../images/scope.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.PIMSwipe .scope .handleContainer {
+  display: none;
+}
+/* Loading */
+
+.loading-indicator {
+  display: none;
+  height: 100%;
+  width: 100%;
+  z-index: 500;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  background: #eee;
+  color: #666;
+}
+
+.loading-error {
+  display: none;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 0;
+  text-align: center;
+  margin: -50px 0 0 0;
+}
+
+.app-loading .loading-indicator {
+  display: block;
+  background-position: center center;
+  background-image: url(../images/ajax-loader.gif);
+  background-repeat: no-repeat;
+}
+
+.app-error .loading-indicator {
+  display: block;
+}
+
+.app-error .loading-error {
+  display: block;
+}
+
+.app-error .loading-error .icon-emo-unhappy {
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.app-error .loading-error .error-message-text {
+  margin: 10px 0 0 0;
+}
+
+
+/*****************************************************/
+/*  BEGIN ALL NEW CLASSES INSERTED INTO THIS TEMPLATE*/
+/*****************************************************/
+
+/* Container for Left Panel Bottom of Capabilities List */
+/*  ThiraLayer.js */
+
+
+
+
+
+.coreCapDashboard{
+  height: calc(100%-55px);
+  width: 100%;
+
+}
+
+.ccList-item {
+  height: 100%;
+  background-color: #FFFFFF;
+  margin-bottom: .5em;
+  border-bottom: 1px solid #000000;
+  border-top: 1px solid #000000;
+}
+
+.coreCapTitle{
+  display: block;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 16px;
+  padding: 5px 10px 5px 5px ;
+  color: #000000;
+  border-bottom: 1px solid #000000;
+  font-weight: bold;
+  /*background-color:  #778899 */
+  background-color: #a4afbb;
+}
+
+
+.capDetails{
+    padding: 2px 15px 5px 5px;
+    font-size: 14px;
+    max-height:auto;
+    overflow: hidden;
+    border-bottom: 1px solid #000000; 
+/*
+    max-height: 100px;
+    text-overflow: ellipsis;
+*/
+}
+
+/*
+.esriCTReportButton:after{
+  float:right;
+  vertical-align: middle;
+  cursor: pointer;
+  content: url(../images/EMAC50x.png);
+  border-left: 1px solid #000000;
+  height: 50px;
+
+}
+*/
+
+
+
+
+
+
+
+/* Clickable Element used on Capabilities page*/
+.allocationBar{
+  width: 100%;
+  display: block;
+  vertical-align: middle;
+  text-align:left;
+  height:35px;
+  cursor: pointer;
+}
+
+.allocationBar:hover {
+  background-color: #a4afbb;
+}
+
+/* Holds the scales icon now */
+.capStatus:before{
+  display: block;
+  vertical-align: middle;
+  float: left;
+  margin-right: 2px;
+  padding: 3px 10px 0px 8px;
+  color: #b20000;
+  content: url(../images/scales2_30x.png);
+}
+
+/*
+.capStatus{
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  margin-right: 2px;
+  padding: 12px 0px 0px 0px;
+  cursor: pointer;
+  float: left;
+  color: #b20000;
+  width: 20%;
+  height: 30px;
+  font-size: 14px;
+  line-height: 16px;
+  font-size: 20px;
+  font-weight: bold;
+}*/
+
+/* used for the handshake icon on CAPLIST 
+.allocateGraphic{
+  display: block;
+  vertical-align: middle;
+  float: right;
+  margin-right: 10px;
+  padding: 5px 0px 0px 0px;
+  cursor: pointer;
+  color: #b20000;
+  height: 30px;
+  content: url(../images/handshake40x_BlueBrown.png);
+}
+*/
+
+.rrDetails{
+  display: block;
+  padding: 5px 0px 5px 0px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: center;
+  overflow: hidden;
+
+  vertical-align: middle;
+  color:#141414;
+}
+
+/* used for the handshake icon on CAPLIST */
+.rrDetails:after{
+  display: block;
+  float: right;
+  margin-right: 5px;
+
+  color: #b20000;
+
+  content: url(../images/handshake30x_BlueBrown.png);
+}
+
+
+
+/*************************************************************************/
+/*  CAPABILITIES SUMMARY PAGE Invoked when clicking on a Capability      */ 
+/*************************************************************************/
+/* Style a Div that is identical to the mapDiv.  Used to anchor all dynamic Forms*/
+
+#formParentDiv{
+  display:none;
+  padding: 0;
+  width: 100%;
+  height: 100%; 
+  text-align: center;
+  background: #c9c9c9;
+    /*border: #a0a0a0 solid 4px;
+    margin: 20px;*/
+  /*height: calc(100% - 75px);*/
+}
+
+#mapDiv {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+
+ }
+
+
+
+/*  INSERT FONT Item for Cap Summary Close  */
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('../font/icomoon.eot?pki9xx');
+  src:url('../font/icomoon.eot?#iefixpki9xx') format('embedded-opentype'),
+    url('../font/icomoon.ttf?pki9xx') format('truetype'),
+    url('../font/icomoon.woff?pki9xx') format('woff'),
+    url('../font/icomoon.svg?pki9xx#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*********************************/
+/* to style hazard dropdown box*/
+/*********************************/
+.hazardSelect{
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  vertical-align: middle;
+  margin-top:3px; 
+  margin-bottom:3px;
+  padding-top: 10px;
+
+  color: #121820;
+}
+
+.dijitSelect{
+  height: 40px;
+  width: 100%;
+  margin-top: 1px;
+  margin-bottom: 3px;
+  margin-left:3px;
+}
+
+.selectHeader{
+  padding: 5px 0px 5px 12px;
+  color: #555;
+  /*font-weight: bold;
+  color: #666; */
+}
+
+.thiraPanelHeaderStyle{
+
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px 0px 10px 12px;
+  line-height: 18px;
+  height: 18px;
+  color: #555;
+  background: #fff;
+  /* word-wrap: break-word;*/
+  width: 90%;
+  height: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+
+/* CAP_Summary.js Capabilities Summary Header CSS
+
+.panel-padding-capSum{
+
+}
+ */
+
+/******************************************************/
+/* Example CSS for referencing an icon font
+
+/* Close button Icon on CAP_SUMMARY.JS */
+.icon-cancel-circle:before {
+    font-family: 'icomoon';
+    float:right;
+    width: 35px;
+    height: 35px;
+    padding: 10px 5px;
+    font-size: 24px;
+    cursor: pointer;
+    /*color: #42526C;*/
+    color: #FFF;
+    content: "\e619";
+}
+
+
+
+
+.capSummaryHeader{
+  width: 100%;
+  display: block;
+  text-align:left;
+  min-height:90px;
+  max-height:120px;
+  /*background-color: #a4afbb;*/
+  background-color: #42526C;
+  overflow: hidden;
+
+}
+
+.capSubHeaderContainer{
+  border-top: 1px solid #FFF;
+  width: 100%;
+  padding: 3px 0px 3px 0px;
+  display: block;
+  text-align:center;
+  background-color: #42526C;
+  overflow: hidden;
+
+}
+
+
+.capSubHeader{
+  /*background-color: #a4afbb;*/
+  background-color:#42526C;
+  width: 350px;
+  display: inline-block;
+  text-align:center;
+  vertical-align: middle;
+  line-height: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  color:#FFF;
+  overflow: hidden;
+  /*background-color: #a4afbb;*/
+  /*background-color: #42526C;*/
+
+}
+
+.capSubHeader:before{
+
+  display: block;
+  vertical-align: middle;
+  float: left;
+  margin-right: 2px;
+
+  color: #FFF;
+  content: url(../images/scales2_30x_white.png);
+  overflow: hidden;
+
+}
+
+.capSubHeader:after{
+
+  display: block;
+  vertical-align: middle;
+  float: right;
+  margin-right: 2px;
+
+  color: #FFF;
+  content: url(../images/scales2_30x_white.png);
+  overflow: hidden;
+}
+
+
+
+.capSubHeaderHandshake{
+  /*background-color: #a4afbb;*/
+  background-color:#42526C;
+  width: 350px;
+  display: inline-block;
+  text-align:center;
+  vertical-align: middle;
+  line-height: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  color:#FFF;
+  overflow: hidden;
+  /*background-color: #a4afbb;*/
+  /*background-color: #42526C;*/
+
+}
+.capSubHeaderHandshake:before{
+
+
+  display: block;
+  vertical-align: middle;
+  float: left;
+
+  /* content: url(../images/handshake30x_BlueBrown.png); */
+  overflow: hidden;
+
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #FFF;
+    content: "\e603";
+    vertical-align:middle;
+
+}
+
+.capSubHeaderHandshake:after{
+
+  display: block;
+  vertical-align: middle;
+  float: right;
+
+ /*  content: url(../images/handshake30x_BlueBrown.png); */
+  overflow: hidden;
+
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #FFF;
+    content: "\e603";
+    vertical-align:middle;
+
+}
+.capSubHeaderGraph{
+  background-color:#42526C;
+  width: 350px;
+  display: inline-block;
+  text-align:center;
+  vertical-align: middle;
+  line-height: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 18px;
+  color:#FFF;
+  overflow: hidden;
+
+}
+
+.capSubHeaderGraph:before{
+  display: block;
+  vertical-align: middle;
+  float: left;
+  overflow: hidden;
+
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #FFF;
+    content: "\e600";
+    vertical-align:middle;
+}
+
+
+.capSubHeaderGraph:after{
+  display: block;
+  vertical-align: middle;
+  float: right;
+  overflow: hidden;
+
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #FFF;
+    content: "\e600";
+    vertical-align:middle;
+
+}
+
+
+/* no longer needed
+.capSumStatus{
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  margin-left: 10px;
+  padding: 0px 0px 0px 0px;
+  cursor: pointer;
+  color: #000000;
+  width: 25%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.capSumStatusSmall{
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  margin-left: 10px;
+  padding: 0px 0px 0px 0px;
+  cursor: pointer;
+  color: #b20000;
+  width: 25%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.capCenterContainer{
+  padding: 5px 0px 5px 5px;
+  display: inline-block;
+  vertical-align: middle;
+  float:left;
+  cursor: default;
+  color: #b20000;
+  width: 55%;
+  word-wrap: break-word;
+}
+
+.capTargetHeader{
+    color:#FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 0px 0px 5px;
+    overflow: hidden;
+
+}
+
+.capRRDetails{
+  display: inline-block;
+  padding: 5px 0px 5px 5px;
+  font-weight: bold;
+  font-size: 14px;
+  text-align: left;
+  line-height: 16px;
+  overflow: hidden;
+  width: 100%;
+  min-height: 90px;
+  max-height: 150px;
+  word-wrap: break-word;
+  color:#FFFFFF;
+}
+
+.capLeftButtonsContainer{
+  display: inline-block;
+  vertical-align: top;
+  float:left;
+  cursor: default;
+  color: #b20000;
+  width: 15%;
+  min-width: 105px;
+  font-size: 18px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+
+
+.capRightButtonsContainer{
+  display: inline-block;
+  vertical-align: top;
+  float:right;
+  cursor: pointer;
+  color: #b20000;
+  width: 25%;
+  font-size: 18px;
+  font-weight: bold;
+  word-wrap: break-word;
+}
+
+*/
+
+
+
+
+/* responsible for table vertical scoller*/
+.gridsAndGraphDIV{
+  vertical-align: top;
+  width: 100%;
+  height: calc(100% - 50px);
+  display: block;
+  text-align:left;
+  background-color:#fff;
+  padding: 0px 0px 0px 0px;
+
+}
+
+/* responisible for footer that does not hide the last records of the list*/
+.rTableParentDiv{
+    height: calc(100% - 50px);
+    overflow-y: auto;
+}
+
+/*
+.capReportList{
+  display: block;
+  vertical-align: middle;
+  text-align: left;
+  font-size: 16px;
+  padding: 5px 10px 5px 5px ;
+  color: #000000;
+  border-bottom: 1px solid #000000;
+  font-weight: bold;
+  background-color:  #778899 
+}
+*/
+
+.capGraph {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-align:left;
+  max-height:100%;
+  cursor: pointer;
+}
+
+
+#dg1{
+  width: 100%;
+  max-height: 220px: 
+}
+
+#dg2{
+  width: 100%;
+  max-height: 220px: 
+}
+
+
+/*.esriAttributeInspector .atiField .atiRichTextField .atiTextAreaField  { */
+.esriAttributeInspector .atiField { 
+  background:#FFF6D9; 
+  width: 370px;
+  font-size: 14px;
+}
+
+.atiLayerName{
+  display: none;
+}
+
+.aiDialog_title{
+  padding-right: 10px;
+}
+
+#rtltCmbBox,
+#widget_rtltCmbBox,
+#widget_rtltCmbBox2  { 
+  background:#FFF6D9; 
+  width: 370px;
+  font-size: 14px;
+}
+
+/* style for divs on splash page*/
+
+#continueButtonDiv, #checkBoxDiv{
+  float:left;
+  padding-left:20px;
+}
+
+/* JF Needed span and baseClass in order to take back the dijit button CSS*/
+
+span.myButtons .dijitButtonNode {
+  cursor:pointer;
+  min-width: 70px;
+  display:inline-block;
+  padding:12px;
+  font-size:18px;
+  vertical-align:middle;
+  text-align:center;
+  border-radius: 5px;
+
+
+  background:#007AC2;   
+  /*background: #778899;  */
+
+  color:#ffffff;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+
+}
+
+.genericCenteredContainer{
+  border-top: 1px solid #c9c9c9;
+  width: 100%;
+  display: block;
+  text-align:center;
+  vertical-align: middle;
+  background-color: #FFF;
+  overflow: hidden;
+  padding: 0px 10px 0px 10px;
+}
+
+
+
+span.AboutThisAppBtn .dijitButtonNode {
+  cursor:pointer;
+  width: 300px;
+  display:inline-block;
+  padding-right: 5px;
+  padding-left:5px;
+  font-size:18px;
+  vertical-align:middle;
+  text-align:left;
+  border-radius: 5px;
+
+  background:#007AC2;   
+
+  color:#ffffff;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+
+}
+
+/* Buttons for Core Capability View*/
+span.coreCapBtns .dijitButtonNode {
+  cursor:pointer;
+  width: 50px;
+  height: 50px;
+  display:inline-block;
+  padding-right: 15px;
+  padding-left:15px;
+  font-size:18px;
+  vertical-align:middle;
+  text-align:left;
+  border-radius: 5px;
+
+  background:#007AC2;   
+
+  color:#ffffff;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+}
+
+/*
+span.myButtons:hover{
+  background-color: #FFFFFF;
+    padding:4px;
+}
+*/
+
+.myIconButtons{
+  
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+  border-radius: 3px;
+}
+
+.myIconButtons:focus {
+    outline-color: #FFFFFF;
+}
+
+.myIconButtons:hover{
+  color: #677489;
+}
+
+.myIcon-user:before{
+  background-color: #a4afbb;
+  font-family: 'icomoon';
+  content: "\e603";
+  font-size: 24px;
+  color:#e0e0e0;
+  cursor:pointer;
+  display:inline-block;
+  padding:4px;
+  text-align:center;
+  /* background:#42526C; */
+  background: #007ac2;
+  vertical-align:middle;
+
+
+}
+
+
+.myIcon-clipboard:before{
+
+  background-color: #a4afbb;
+  font-family: 'icomoon';
+  content: "\e64f";
+  font-size: 24px;
+  color:#e0e0e0;
+  cursor:pointer;
+  display:inline-block;
+  padding:4px;
+  text-align:center;
+  /* background:#42526C; */
+  background: #007ac2;
+  vertical-align:middle;
+
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+  border-radius: 5px;
+}
+
+
+/* Not used */
+.myIcon-table:before{
+  /* background-color: #a4afbb; */
+
+  font-family: 'icomoon';
+  content: "\e664";
+  font-size: 24px;
+  color:#e0e0e0;
+  cursor:pointer;
+  display:inline-block;
+  padding:4px;
+  text-align:center;
+  /* background:#42526C; */
+  /*background: #007ac2;*/
+  vertical-align:middle;
+
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+  border-radius: 5px;
+}
+
+.myIcon-graph:before{
+  background-color: #a4afbb;
+  font-family: 'icomoon';
+  content: "\e600";
+  font-size: 24px;
+  color:#e0e0e0;
+  cursor:pointer;
+  display:inline-block;
+  padding:4px;
+  text-align:center;
+  /* background:#42526C; */
+  background: #007ac2;
+  vertical-align:middle;
+
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -o-border-radius:3px;
+  -ms-border-radius:3px;
+  border-radius: 5px;
+}
+
+
+
+/* ======================================
+ * Resource Table CSS from CAP_Summary.js
+ * ====================================== */
+
+
+.icon-cog:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    font-weight: normal;
+    vertical-align:middle;
+    content: "\e609";
+}
+
+.icon-clipboard:before {
+  font-family: 'icomoon';
+  font-size: 20px;
+  cursor: pointer;
+  color: #42526C;
+  content: "\e64f";
+}
+.icon-pencil:before {
+    font-family: 'icomoon';
+    font-size: 20px;
+    cursor: pointer;
+    color: #42526C;
+    content: "\e62a";
+}
+
+.icon-pencil-white:before {
+    font-family: 'icomoon';
+    font-size: 18px;
+    cursor: pointer;
+    color: #e0e0e0;
+    content: "\e62a";
+    padding-right: 10px;
+}
+
+/* Not used - replaced with cell based icon, not a float*/
+.pencilAfter:after{
+    float: right;
+    font-family: 'icomoon';
+    font-size: 24px;
+    cursor: pointer;
+    color: #42526C;
+    content: "\e62a";
+}
+
+.icon-users:before {
+/*  cursor: pointer;*/
+    font-family: 'icomoon';
+    font-size: 20px;
+    color: #42526C;
+    content: "\e603";
+    vertical-align:middle;
+}
+
+.icon-users-white:before {
+/*  cursor: pointer;*/
+    font-family: 'icomoon';
+    font-size: 20px;
+    content: "\e603";
+    vertical-align:middle;
+}
+
+.icon-user-plus:before {
+/*  cursor: pointer;*/
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #42526C;
+    content: "\e604";
+}
+
+.icon-user-minus:before {
+/*  cursor: pointer;*/
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #42526C;
+    content: "\e605";
+}
+
+.icon-books:before {
+    font-family: 'icomoon';
+    font-size: 20px;
+    color: #42526C;
+    content: "\e602";
+}
+
+.icon-book-thing:before {
+    font-family: 'icomoon';
+    font-size: 20px;
+    color: #42526C;
+    content: "\e62c";
+}
+
+.icon-map-thing:before {
+    font-family: 'icomoon';
+    font-size: 20px;
+    color: #42526C;
+    content: "\e636";
+}
+
+.icon-checkmark-green:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    cursor: pointer;
+    color: #196619;
+    content: "\e61b";
+}
+
+.icon-happy-green:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #196619;
+    content: "\e653";
+}
+
+.icon-warning-orange:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #E1880A;
+    content: "\e659";
+    vertical-align:middle;
+}
+
+.icon-warning-yellow:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #FBD700;
+    content: "\e659";
+    font-weight: bold;
+    vertical-align:middle;
+}
+
+.icon-warning-dark:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #42526C;
+    content: "\e659";
+    font-weight: bold;
+    vertical-align:middle;
+}
+
+
+.logo-fema:before{
+  vertical-align: middle;
+  cursor: pointer;
+  content: url(../images/DHS_Best30x.png);
+}
+
+.aboutIcon:before {
+    font-family: 'fontello';
+    font-size: 24px;
+    padding-right: 30px;
+    padding-left: 30px,
+    color: #e0e0e0;
+    content: '\e801';
+    font-weight: normal;
+    vertical-align:middle;
+}
+
+.playScreenIcon:before{
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #fff;
+    content: "\e900";
+    font-weight: normal;
+    vertical-align:middle;
+    padding-right: 30px;
+    padding-left: 30px,
+}
+
+.playScreenIconNoPadding:before{
+    font-family: 'icomoon';
+    font-size: 24px;
+    content: "\e900";
+    font-weight: normal;
+    vertical-align:middle;
+}
+
+
+
+.row { 
+  font-size: 14px;   
+  display: table;
+  table-layout: fixed;
+  word-wrap: break-word;
+  width: 99.5%;
+  border-top: 1px solid #b3b3b3;
+  /*border-top: 1px solid #e0e0e0; */
+  padding: .2em .2em .2em .2em;
+  vertical-align:middle;
+
+}
+
+/*  Neat trick here to get alternating colors for the table.  not used*/
+
+.row:nth-child(odd) {
+   background-color:#e6e6e6;
+}
+.row:nth-child(even) {
+  background-color:#FFFFFF; 
+}
+
+
+
+.row:hover {
+  background-color:#c9c9c9
+}
+
+
+
+.row:first-child {
+    background-color:#a4afbb; 
+    color:#000000;
+    border-top: 1px solid #c9c9c9;
+    /*border-bottom: 2px solid #42526C;*/
+    border-bottom: 1.5px solid #3F3F3F;
+    padding: .3em .2em .3em .2em;
+}
+
+.row:first-child .resColumn1{
+  cursor: default;
+  font-weight: bold;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* resColumn5 is a hidden column containing the Pencil Edit Icon */
+.row:first-child .resColumn5{
+  cursor: default;
+  font-weight: bold;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.row:first-child .resColumn2,
+.row:first-child .resColumn3,
+.row:first-child .resColumn4,
+.row:first-child .resColumn6,
+.row:first-child .resColumn7,
+.row:first-child .resColumn100    
+{ /* needed to turn off hand cursor in column header (first child of row)
+    And used to make header bold */
+  cursor: default;
+  font-weight: bold;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.clickCursor {
+    cursor: pointer;
+}
+
+.resColumn1 {
+  width:85px;
+  vertical-align:middle;
+
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+     font-weight:bold;
+     text-align: center;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+}
+
+.resColumn2 {
+  vertical-align:middle;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.resColumn3 {
+  vertical-align:middle;
+  width:90px;
+  border-left: 1px solid #434343;
+  padding: .2em .2em .2em .2em;
+  display: table-cell; 
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn4 {
+  vertical-align:middle;
+  width:70px;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn5 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:70px;
+/*border-left: 1px solid #434343; */
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn6 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:90px;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn7 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:90px;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn100 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:110px;
+  border-left: 1px solid #434343;
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/* END Table Format*/
+
+.resColumn135 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:135px;
+  
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.resColumn35 {
+  vertical-align:middle;
+  cursor: pointer;
+  width:35px;
+
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*****************************************************
+ Begin Resource Assignment Report- Partner Report Table
+******************************************************/
+
+
+.pGroupHeader{
+    vertical-align:middle;
+    background-color:#a4afbb; 
+    color:#000000;
+    border-bottom: 1px solid #3F3F3F;
+    line-height: 24px;
+    
+    font-size: 16px;
+
+}
+
+.pGroupItem { 
+  font-size: 14px;  
+  background-color: #FFF; 
+  display: table;
+  table-layout: fixed;
+  word-wrap: break-word;
+  width: 99.5%;
+  border-top: 1px solid #b3b3b3;
+  /*border-top: 1px solid #e0e0e0; */
+  padding: .2em .2em .2em .2em;
+  vertical-align:middle;
+
+}
+
+.pGroupHeader .resColumn1 {
+
+  vertical-align:middle;
+  width:35px;
+
+  display: table-cell; 
+  padding: .2em .2em .2em .2em;
+     font-weight:bold;
+     text-align: center;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+}
+
+
+.pGroupHeader .resColumn2 {
+  vertical-align:middle;
+  display: table-cell; 
+  width: 100%;
+  padding: .2em .2em .2em .5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+
+.pGroupHeader .resColumn3 {
+  vertical-align:middle;
+  width:80px;
+  border-left: 1px solid #434343;
+  padding: .2em .2em .2em .2em;
+  display: table-cell; 
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+/* END Resource Assignement Report    */
+
+
+/* Format Add Resource Button used with PartnerDialog */
+.zzzzhorizontal-cont{
+    background-color: rgb(53, 172, 70);
+    vertical-align: middle;
+    line-height:50px;
+    height:50px;
+    display: block;
+    width:100%;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+
+.horizontal-cont{
+    display: block;
+    top: auto;
+    bottom: 1px;
+    padding: 0px;
+    z-index: auto;
+    position: absolute;
+
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    line-height:50px;
+    height:50px;
+    width:100%;
+    background-color: rgb(53, 172, 70);
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+
+}
+
+.horizontal-text-with-icon:before{
+    font-family: 'icomoon';
+    font-size: 16px;
+    cursor: pointer;
+    color: #FFF;
+    content: "\e617";
+    padding-right: 20px;
+}
+
+
+
+
+
+.horizontal-text-with-icon{
+  cursor: pointer;
+  float: left;
+  vertical-align: middle;
+  width: 85%;
+  border:none;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+/* EMAC Button */
+.horizontal-right-content:before{
+    cursor: pointer;
+    float:right;
+    content: url(../images/EMAC50x.png);
+    height: 50px;
+    width: 63px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    line-height: 50px;
+    margin-left: 5px;
+    border-left: 1px solid #000000;
+
+}
+
+.horizontal-cont-clear{
+clear:both;
+}
+
+
+
+
+
+
+
+
+.esriCTReportButton {
+    background-color: rgb(53, 172, 70);
+    cursor: pointer;
+    height: 50px;
+ /*
+    position: fixed;
+    bottom: 0px;
+    width: 270px;
+*/
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    border-bottom: 1px solid #000000;
+    border-top: 1px solid #000000;
+}
+.esriCTReportButtonContainer {
+    line-height: 55px;
+    margin: 0px;
+    display: inline-block;
+    max-width: 100%;
+}
+.esriCTReportButtonIcon {
+    float:left;
+    background-image: url("../images/report-button-icon.png");
+    background-size: 19px;
+    height: 55px;
+    width: 19px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    line-height: 55px;
+    margin-left: 5px;
+}
+.esriCTReportButtonText {
+    padding-left: 20px;
+    color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.emacPartnerButton{
+    float:right;
+  content: url(../images/EMAC50x.png);
+
+    height: 50px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    line-height: 50px;
+    margin-left: 5px;
+
+
+  border-left: 1px solid #000000;
+
+}
+
+/*  BEGIN SLIDE SHOW CSS    */
+/*  BEGIN SLIDE SHOW CSS    */
+/*  BEGIN SLIDE SHOW CSS    */
+
+
+.horizontal-text-with-slideShow-icon{
+  float: left;
+  vertical-align: middle;
+  width: 85%;
+  border:none;
+  color: #FFFFFF;
+  font-size: 30px;
+}
+.horizontal-text-with-slideShow-icon:before{
+    font-family: 'icomoon';
+    font-size: 30px;
+    color: #FFF;
+    content: "\e900";
+    padding-right: 25px;
+
+}
+.icon-cancel-circle-slideShowHeader:before {
+    font-family: 'icomoon';
+    float:right;
+    padding: 0px 10px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #FFF;
+    content: "\e619";
+    line-height: 70px;
+}
+
+
+.slideShowContainer{
+
+  padding: 0;
+  background: #111;
+  overflow: hidden;
+}
+
+.slideShowHeader{
+  padding-left: 15px;
+  height: 70px;
+  line-height: 70px;
+  position: relative;
+  display: block;
+  background: #111;
+  overflow:hidden;
+  color: #FFF;
+  text-overflow: ellipsis;
+  font-size: 24px;
+  font-weight: 400;
+  vertical-align: middle;
+
+}
+
+
+.diy-slideshow{
+  /*margin-top: 44px;*/
+  position: relative;
+  display: block;
+
+  overflow:hidden;
+
+}
+figure{
+  position: absolute;
+  opacity: 0;
+  transition: 1s opacity;
+  margin: 0;
+  overflow:hidden;
+}
+
+iframe{
+  position: relative;
+  overflow:hidden;
+}
+
+
+figcaption{
+  margin: 0;
+  position: absolute;
+  font-family: sans-serif;
+  font-size: 1.8em;
+  bottom: 1.0em;
+  right: .35em;
+  padding: .25em;
+  color: #fff;
+  background: rgba(28,28,28, .85);
+  border-radius: 2px;
+}
+
+figcaption:hover{
+
+}
+
+figcaption a{
+
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+figure.show{
+  opacity: 1;
+  position: static;
+  transition: 1s opacity;
+  overflow:hidden;
+}
+.next, .prev{
+  color: #fff;
+  position: absolute;
+  background: rgba(0,0,0, .6);
+  top: 50%;
+  z-index: 1;
+  font-size: 2.5em;
+  margin-top: -.75em;
+  opacity: .7;
+  user-select: none;
+}
+.next:hover, .prev:hover{
+  cursor: pointer;
+  opacity: 1;
+}
+.next{
+  right: 0;
+  padding: 5px 10px 10px 15px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.prev{
+  left: 0;
+  padding: 5px 15px 10px 10px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.slideShowCaption{
+  color: #FFF;
+  height: 100%;
+  width: 44px;
+  display: block;
+  text-align:center;
+  background: rgba(28,28,28, .45);
+  overflow: hidden;
+  padding: 5px 0px 5px 0px;
+
+}
+
+
+.captionHeaderStyle{
+
+  color:#FFF;
+  font-weight: 400;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.jimu-widget-mutualaid .list-section {
+    position: absolute;
+    top: 110px;
+    bottom: 50px;
+    overflow: visible;
+}
+
+/*  END SLIDE SHOW CSS    */
+/*  END SLIDE SHOW CSS    */
+/*  END SLIDE SHOW CSS    */
+

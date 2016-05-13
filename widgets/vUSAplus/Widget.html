@@ -1,0 +1,44 @@
+<div>
+	<div class="jimu-r-row group-section">
+		<div id="map_groupheader" class="group-select"></div>
+	</div>
+
+	<div id="radioItemPicker" class="jimu-r-row radio-section">
+		<div class="radio-btns" id="form1" data-dojo-type="dijit/form/Form" >	
+			<ul class="radio-btns-ul"> 
+        		<input id="btnMap" name="itemType" type="radio" data-dojo-attach-point="btnMap" checked>
+        		<label for="btnMap">Map</label>&nbsp;&nbsp;
+<!--
+        		<input id="btnLayer" name="itemType" type="radio" data-dojo-attach-point="btnLayer">
+        		<label for="btnLayer">Layer</label>&nbsp;&nbsp;
+-->
+        		<input id="btnGeoForm" name="itemType" type="radio" data-dojo-attach-point="btnGeoForm">
+        		<label for="btnGeoForm">GeoForm</label>&nbsp;&nbsp;
+
+        		<input id="btnOpsDash" name="itemType" type="radio" data-dojo-attach-point="btnOpsDash">
+        		<label for="btnOpsDash">Dashboard</label>&nbsp;&nbsp;
+
+        		<input id="btnApp" name="itemType" type="radio" data-dojo-attach-point="btnApp">
+        		<label for="btnApp">App</label>
+    		</ul>
+    	</div>	
+	</div>	
+
+	<div class="jimu-r-row search-section">
+		<input class="jimu-input input-search" data-dojo-attach-point="inputSearch" type="text" placeholder="${nls.placeholderSearch}">
+		<div class="btn-search" data-dojo-attach-point="btnSearch" data-dojo-attach-event="onclick:_onSearchBtnClicked"><div class="jimu-center-img"></div></div>
+	</div>
+
+
+	<div class="jimu-r-row list-section">
+		<div id="msg" class="jimu-r-row message-text"></div>
+		<div class="jimu-state-error" data-dojo-attach-point="errorNode">&nbsp;</div>		
+		<div class="bookmark-list" data-dojo-attach-point="bookmarkListNode"></div>
+	</div>
+	<div class="jimu-r-row play-section">
+		<div class="col-1-2">
+			<div class="jimu-btn btn-Login" id="LoginButton" data-dojo-attach-point="btnLogin" data-dojo-attach-event="onclick:_onLoginBtnClicked">${nls.labelLogin}</div>
+			<div class="userLabel" id="userName"></div>
+		</div>
+	</div>
+</div>

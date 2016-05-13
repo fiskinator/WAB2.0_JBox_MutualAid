@@ -1,0 +1,10 @@
+{
+  "name": "vUSAGeoForm",
+  "platform": "HTML",
+  "version": "1.3",
+  "wabVersion": "1.3",
+  "author": "National Information Sharing Constortium",
+  "description": "loads webmaps",
+  "copyright": "NISC 2015",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0"
+}

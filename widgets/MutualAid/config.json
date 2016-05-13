@@ -1,0 +1,72 @@
+{
+  "portalLogin": true,
+
+  "defaultLayerItemId": "c7ed050236c24b0a8a1f24b9918e2278",
+  "defaultGroupId": "cdbc676652d44883a642edfcb0c10e27",
+  "capabilitiesLayerName": "Capabilities",
+  "capabilitiesColorBoundary": [255,50,90],
+  "capabilitiesWidth": "3",
+
+  "defaultOrgSymbol": "./images/defaultOrgImage64x.png",
+  "defaultGroupSymbol": "./images/defaultGroupImage64x.png",
+
+
+  "configuredGroups": [
+      {
+        "id": "cdbc676652d44883a642edfcb0c10e27",
+        "type": "group"
+      },
+      {
+        "id": "be1fe53acdb44398b6a2f06931e7d3e9",
+        "type": "group"
+      }
+    ],
+
+
+
+
+    "configuredGroupOrgs": [
+    
+    {
+      "title": "vUSA -- NISC",
+      "id": "DO4gTjwJVIJ7O9Ca",
+      "thumbnailUrl": "http://vusa.maps.arcgis.com/sharing/rest/portals/self/resources/thumbnail.png",
+      "description":"The ArcGIS Online Portal for the Esri Disaster Response Program",
+      "type": "org"
+      
+    },
+
+    {
+      "title": "St Clair County",
+      "id": "cDRdM6mX9inSTFKm",
+      "thumbnailUrl": "http://sccdemo.maps.arcgis.com/sharing/rest/portals/self/resources/thumbnail.png",
+      "description":"Shared and trusted geospatial data, services, and applications for use by the public and by government agencies and partners to meet their mission needs.",
+      "type": "org"
+      
+    },
+
+    {
+      "title": "KYEM",
+      "id": "jNL8GAN3Ejyqxy3x",
+      "thumbnailUrl": "http://kyem.maps.arcgis.com/sharing/rest/portals/self/resources/thumbnail.jpg",
+      "description":"Providing Geospatial Data and Analytics in Support of Emergency Management",
+      "type": "org"
+      
+    },
+
+    {
+      "title": "FEMA GeoPlatform",
+      "id": "XG15cJAlne2vxtgt",
+      "thumbnailUrl": "http://fema.maps.arcgis.com/sharing/rest/portals/self/resources/thumbnail.png",
+      "description":"Providing Geospatial Data and Analytics in Support of Emergency Management",
+      "type": "org"
+
+
+    }
+
+
+
+  ]
+
+
+}

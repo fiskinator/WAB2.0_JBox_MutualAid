@@ -1,0 +1,294 @@
+/*the css for ImageNode dijit*/
+
+
+.hazardSelect{
+  height: 40px;
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  font-size: 14px;
+
+}
+
+
+/* This is the element that contains the list of capabilities*/
+.coreCapList{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-left: 2px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+}
+
+
+.hiddenDiv{
+  display:none
+}
+
+.showingDiv{
+  display:block;
+}
+
+
+
+.capability-item-node{
+    cursor: pointer;
+    width: 100%;
+    height: 56px;
+    border: 1px solid #021a40;
+    background-color: #FFF;
+    overflow: hidden;
+}
+.capability-item-node:hover{
+    background-color: #e0e0e0;
+}
+
+.capability-item-node .node-box{
+  width: 50px;
+  border-radius: 2px;
+  overflow: hidden;
+  float: left;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.capability-item-node  img{
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.capability-item-node .node-label{
+    cursor: pointer;
+    position: absolute;
+    width: 83%;
+    left: 58px;
+    height: 30px;
+    font-size: 16px;
+    padding-top: 6px;
+    color:#000;
+}
+
+
+.selectedLyrHeader{
+    cursor: pointer;
+    width: 100%;
+    height: 56px;
+    border: 1px solid #021a40;
+    border-bottom: 2px solid #3E536C;
+    background-color: #FFF;
+    overflow: hidden;
+}
+.selectedLyrHeader .node-box{
+  width: 50px;
+  border-radius: 2px;
+  overflow: hidden;
+  float: left;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.selectedLyrHeader  img{
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.selectedLyrHeader .node-label{
+    cursor: pointer;
+    position: absolute;
+    width: 83%;
+    left: 58px;
+    height: 30px;
+    font-size: 16px;
+    padding-top: 6px;
+    color:#000;
+}
+
+
+
+
+
+
+
+
+
+.icon-background{
+    background: red;
+
+}
+
+.icon-background-selected{
+    background-color: #a4afbb;
+}
+
+.selectedLyrButtonsContainer {
+    display: inline-block;
+    text-align: right;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    word-wrap: break-word;
+    padding: 9px;
+    border-bottom:1px solid #021a40;
+    border-top:1px solid #021a40;
+}
+
+.icon-circle-left-btn:before{
+  color: #3E536C;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e662";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 40px;
+  font-weight: bold;
+}
+
+
+.icon-pencil-btn:before {
+  color: #e0e0e0;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e62a";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 25px;
+
+}
+
+.icon-table-btn:before {
+  color: #e0e0e0;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e663";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 25px;
+}
+
+.icon-people-btn:before {
+  color: #e0e0e0;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e603";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 25px;
+}
+
+.icon-bar-graph-btn:before {
+  color: #e0e0e0;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e600";
+  font-size: 25px;
+}
+
+
+
+
+.cap-info-heading{
+  font-size:18px;
+  color:#000;
+  font-weight:bold;
+  border-bottom:1px solid  #3E536C;
+  padding-top:10px;
+  
+}
+
+.cap-info-text{
+  color:#383a3f;
+  /*color::#565E69;*/
+  font-size:16px;
+
+
+  text-rendering:auto;
+}
+
+
+
+.capInfoTextContainer{
+  background-color: #ededed;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: 1px solid #000;
+
+}
+
+
+.ma-jimu-btn {
+    background-color:#3E536C;
+    position: relative;
+    padding-right: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+    border: 2px solid transparent;
+}
+
+.ma-jimu-btn.state-selected{
+  background-color:#5a6675;
+  border: 2px solid #1c2228;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+}
+
+.jimu-img-node.jimu-state-selected .node-label{
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+/* TESTING CSS */
+
+.example-four {
+  overflow: hidden;
+}
+#ex-four-button:hover {
+  background: #ccc;
+}
+.hider {
+  overflow: hidden;
+}
+.slider-wrap {
+  width: 200%;
+  position: relative;
+  transition: transform 0.5s linear;
+}
+.slider-wrap.open {
+  transform: translateX(-50.1%); 
+}
+.example-four ul {
+  width: 50%;
+}
+.example-four .summary {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 1;
+  display: none;
+}
+

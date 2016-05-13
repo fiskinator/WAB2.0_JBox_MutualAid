@@ -1,0 +1,178 @@
+[
+		{
+		"icon": "ICS_Planning.png",		
+		"PPD8":	"Planning"
+		},
+
+		{
+		"icon": "OPS_Response.png",					
+		"PPD8":	"Public Information And Warning"
+		},
+
+		{
+		"icon": "ICS_Operations.png",
+		"PPD8":	"Operational Coordination"
+		},
+
+		{
+		"icon": "esf8_fatality.png",
+		"PPD8":	"Forensics And Attribution"
+		},
+
+		{
+		"icon": "Group_PublicInformation.png",
+		"PPD8":	"Intelligence And Information Sharing"
+		},
+
+		{
+		"icon": "esf13.png",
+		"PPD8":	"Interdiction And Disruption"
+		},
+
+		{
+		"icon": "esf9.png",
+		"PPD8":	"Screening, Search, And Detection"
+		},
+
+		{
+		"icon": "xtra_esf14_locked65x.png",
+		"PPD8":	"Access Control And Identity Verification"
+		},
+
+		{
+		"icon": "xtra_CyberSecurity65x.png",
+		"PPD8":	"Cybersecurity"
+		},
+
+		{
+		"icon": "xtra_Barricade65x.png",
+		"PPD8":	"Physical Protective Measures"
+		},
+
+		{
+		"icon": "OPS_Mitigation",
+		"PPD8":	"Risk Management For Protection Programs And Activities"
+		},
+
+		{
+		"icon": "esf7.png",
+		"PPD8":	"Supply Chain Integrity And Security"
+		},
+
+		{
+		"icon": "esf14.png",
+		"PPD8":	"Community Resilience"
+		},
+
+		{
+		"icon": "OPS_Mitigation",
+		"PPD8":	"Long-Term Vulnerability Reduction"
+		},
+
+		{
+		"icon": "ICS_Command.png",
+		"PPD8":	"Risk And Disaster Resilience Assessment"
+		},
+
+		{
+		"icon": "xtra_ThiraIcon65x",
+		"PPD8":	"Threats And Hazard Identification"
+		},
+
+		{
+		"icon": "esf1.png",
+		"PPD8":	"Critical Transportation"
+		},
+
+		{
+		"icon": "esf11.png",
+		"PPD8":	"Environmental Response/Health And Safety"
+		},
+
+		{
+		"icon": "esf8_fatality.png",
+		"PPD8":	"Fatality Management Services"
+		},
+
+		{
+		"icon": "esf4.png",
+		"PPD8":	"Fire Management And Suppression"
+		},
+
+		{
+		"icon": "esf12.png",
+		"PPD8":	"Infrastructure Systems"
+		},
+
+		{
+		"icon": "esf7.png",
+		"PPD8":	"Logistics And Supply Chain Management"
+		},
+
+		{
+		"icon": "esf6.png",			
+		"PPD8":	"Mass Care Services"
+		},
+
+		{
+		"icon": "esf9.png",
+		"PPD8":	"Mass Search And Rescue Operations"
+		},
+
+		{
+		"icon": "esf13.png",
+		"PPD8":	"On-Scene Security, Protection, And Law Enforcement"
+		},
+
+		{
+		"icon": "esf13.png",
+		"PPD8":	"On-scene Security and Protection"
+		},
+
+		{
+		"icon": "esf2.png",
+		"PPD8":	"Operational Communications"
+		},
+
+		{
+		"icon": "esf8.png",
+		"PPD8":	"Public Health, Healthcare, And Emergency Medical Services"
+		},
+
+		{
+		"icon": "esf5.png",
+		"PPD8":	"Situational Assessment"
+		},
+
+		{
+		"icon": "ICS_Finance.png",
+		"PPD8":	"Economic Recovery"
+		},
+
+		{
+		"icon": "esf8.png",
+		"PPD8":	"Health And Social Services"
+		},
+
+		{
+		"icon": "esf6.png",
+		"PPD8":	"Housing"
+		},
+
+		{
+		"icon": "Site_Basemaps.png",
+		"PPD8":	"Natural And Cultural Resources"
+		},
+
+		{
+		"icon": "esf8.png",
+		"PPD8": "Public Health and Medical Services"
+		},
+		{
+		"icon": "esf1.png",
+		"PPD8": "Public and Private Services and Resources"
+		}
+]		
+
+
+

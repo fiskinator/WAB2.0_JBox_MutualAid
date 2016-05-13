@@ -1,0 +1,32 @@
+      {
+        "name": "RelatedTableCharts",
+        "label": "Related Table Charts",
+        "version": "2.0.1",
+        "IsController": false,
+        "uri": "widgets/RelatedTableCharts/Widget",
+        "index": 10,
+        "id": "widgets_RelatedTableCharts_Widget_40"
+      },
+      {
+        "name": "Summary",
+        "label": "Summary",
+        "version": "2.0.1",
+        "uri": "widgets/Summary/Widget",
+        "index": 11,
+        "id": "widgets_Summary_Widget_41",
+        "position": {
+          "relativeTo": "map"
+        }
+      },
+            {
+        "name": "InfoSummary",
+        "label": "Info Summary",
+        "version": "2.0.1",
+        "IsController": false,
+        "uri": "widgets/InfoSummary/Widget",
+        "index": 6,
+        "id": "widgets_InfoSummary_Widget_34",
+        "position": {
+          "relativeTo": "map"
+        }
+      },

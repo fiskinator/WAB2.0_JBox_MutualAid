@@ -1,0 +1,120 @@
+<div>
+    <!--    ***************************************************** -->
+    <!--    DRAWER MENU BUTTONS FOR MAIN NAVIGATION OF THE WIDGET -->
+    <!--    ***************************************************** -->
+    <div id="drawer-menu-button-parent" class="drawer-menu-buttons">
+        <!--    ******************** -->
+        <!--    DRAWER MENU BUTTON 1 -->
+        <!--    ******************** -->
+        <div class="item item-first item-selected" id="thiraMenuId">
+            <div class="item-container" title="My Capability Targets">
+                <div class="title">
+                    <div class="icon-map"></div>
+                    <div class="icon-text">Mutual Aid Planner</div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+        <!--    ******************** -->
+        <!--    DRAWER MENU BUTTON 2 -->
+        <!--    ******************** -->
+        <div class="item" id="aboutMenuId">
+            <div class="item-container" title="About">
+                <div class="title">
+                    <div class="playScreenIconNoPadding"></div>
+                    <div class="icon-text">About</div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+        <!--    ******************** -->
+        <!--    DRAWER MENU BUTTON 3 -->
+        <!--    ******************** -->
+        <div class="item" id="planPickerMenuId">
+            <div class="item-container" title="Shared Resource Plans">
+                <div class="title">
+                    <div class="icon-cog"></div>
+                    <div class="icon-text">Settings</div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+<!--    ****************************************************************** -->
+<!--    DRAWER MENU PANELS CONTAIN CONTENT FOR EACH DRAW MENU BUTTON ABOVE -->
+<!--    ****************************************************************** -->
+    <div id="drawer-menu-panel-parent" class="drawer-menu-panels">
+        <!--    ******************** -->
+        <!--    DRAWER MENU PANEL 1 -->
+        <!--    ******************** -->
+        <div class="panel panel-selected" id="drawer-menu-panel-1">
+            <div id="showerId" class="showingDiv">
+                <div id="planningLayer_groupheader"></div> 
+                <div id="placeHazardFilterId"></div>
+                <div data-dojo-attach-point="coreCapListNode"></div>
+            <!--<div class="selectedLyrHeader" style="width: 99%; height: 53px;">
+                    <div class="node-box"><img id="addCoreCapImg" src="widgets/mutualAid/images/esri_icons/xtra_AddCapability65x.png"></div>
+                    <div class="node-label">Add Capability Target</div>
+                </div>
+
+                selectedLyrButtonsContainer style="padding-left:20px;padding-right:20px;height:35px"
+                style="padding-left:20px;padding-right:20px;height:35px"
+                style="padding-left:20px;padding-right:20px;height:35px"
+             -->   
+            </div>
+
+            <div id="hiderId" class="hiddenDiv">    
+                <div id="selectedCoreCap" class="selectedLyrHeader" style="width: 100%; height: 115px;">
+                    <div id="capInfoHeaderId"class="selectedLyrButtonsContainer">
+                        <span class="icon-circle-left-btn" style="float:left; position:absolute; left:20px;" aria-hidden="true" 
+                               data-dojo-attach-event="onclick:_onBackBtnClicked" >
+                        </span>
+                        <span style="padding-right:20px">
+                            <button class="ma-jimu-btn icon-pencil-btn" data-dojo-attach-event="onclick:_clickCapEditBtn" tooltip="Edit" type="button"></button>
+                        </span>
+                        <span style="padding-right:20px">
+                            <button class="ma-jimu-btn icon-table-btn" data-dojo-attach-event="onclick:_clickCapTableBtn" type="button"></button>
+                        </span>
+                        <span style="padding-right:20px">
+                            <button class="ma-jimu-btn icon-people-btn" data-dojo-attach-event="onclick:_clickPartnerReportBtn" type="button"></button>
+                        </span>
+                        <span style="padding-right:10px">
+                            <button class="ma-jimu-btn icon-bar-graph-btn" data-dojo-attach-event="onclick:_clickGraphCapBtn" type="button"></button>
+                        </span>
+                    </div>
+                    <div class="node-box"><img id="selectedCoreCapImg" src=""></div>
+                    <div class="node-label" id="selectedCoreCapTitle" style="width: 82%;"></div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--    ******************** -->
+        <!--    DRAWER MENU PANEL 2 -->
+        <!--    ******************** -->
+        <div class="panel" id="drawer-menu-panel-2">
+            <div class="panel-header">About this widget</div>
+            <div class="panel-container">
+                <div class="genericCenteredContainer" style="width:100%">
+                    <span class="AboutThisAppBtn"><button id="appOverviewBtn" baseClass="AboutThisAppBtn" type="button"></button></span>
+                    <span class="AboutThisAppBtn"><button id="appDeployConfigBtn" baseClass="AboutThisAppBtn" type="button"></button></span>
+                    <span class="AboutThisAppBtn"><button id="appBtn3" baseClass="AboutThisAppBtn" type="button"></button></span>
+                </div>
+            </div>
+        </div>
+
+        <!--    ******************** -->
+        <!--    DRAWER MENU PANEL 3 -->
+        <!--    ******************** -->
+        <div class="panel" id="drawer-menu-panel-3">
+                <div id="map_groupheader2"></div>
+                <div data-dojo-attach-point="resultItemListNode"></div>
+                <div id="itemDetailHider" style="display:none"> 
+                    <div id="itemDetails" class="summary">This is test</div>
+                </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,2783 @@
+[
+    {
+      "attributes" : {
+        "ID" : "1-508-1147", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Large Animal Rescue Strike Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1147"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1148", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Large Animal Sheltering Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1148"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1149", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Large Animal Transport Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1149"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1150", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Small Animal Rescue Strike Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1150"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1151", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Small Animal Sheltering Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1151"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1152", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Animal Protection: Small Animal Transport Team", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1152"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-508-1153", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Incident Management Team Animal Protection", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-508-1153"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1086", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Case Manager", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1086"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1087", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Control Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1087"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1088", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Disease Epidemiologist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1088"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1089", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Handling Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1089"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1090", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Industry Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1090"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1091", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Premises Site Manager", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1091"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1092", 
+        "Type" : "Position Qualification", 
+        "Name" : "Animal Technician", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1092"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1102", 
+        "Type" : "Position Qualification", 
+        "Name" : "Permit Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1102"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1113", 
+        "Type" : "Position Qualification", 
+        "Name" : "Risk Assessment Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1113"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1114", 
+        "Type" : "Position Qualification", 
+        "Name" : "Species Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1114"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1115", 
+        "Type" : "Position Qualification", 
+        "Name" : "Vector Control Specialist", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1115"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "1-509-1116", 
+        "Type" : "Position Qualification", 
+        "Name" : "Veterinarian", 
+        "Category" : "Animal Emergency Response", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/1-509-1116"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1133", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Epidemiology (Surveillance and Investigation)", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1133"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1134", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Isolation and Quarantine", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1134"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1135", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Environmental Health", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1135"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1136", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mass Dispensing Consultant Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1136"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1137", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Receiving, Staging, and Storing (RSS) Task Force", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1137"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1138", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Ancillary Support Team (Laboratory, Pharmacy, or Radiology Services)", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1138"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1139", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Emergency/Critical Care Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1139"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1140", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mobile Field Medical Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1140"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1141", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Specialty Services Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1141"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1142", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Palliative Care/Hospice Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1142"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1143", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Public Health and Medical Team in a Shelter", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1143"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-508-1144", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Medical/Public Health System Assessment Team", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-508-1144"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1039", 
+        "Type" : "Position Qualification", 
+        "Name" : "Advanced Practice Registered Nurse", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1039"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1040", 
+        "Type" : "Position Qualification", 
+        "Name" : "Assessment Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1040"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1041", 
+        "Type" : "Position Qualification", 
+        "Name" : "Behavioral Health Specialist, Licensed", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1041"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1042", 
+        "Type" : "Position Qualification", 
+        "Name" : "Behavioral Health Specialist, Unlicensed", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1042"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1043", 
+        "Type" : "Position Qualification", 
+        "Name" : "Dental Assistant/Hygienist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1043"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1044", 
+        "Type" : "Position Qualification", 
+        "Name" : "Dentist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1044"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1045", 
+        "Type" : "Position Qualification", 
+        "Name" : "Dialysis Technician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1045"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1046", 
+        "Type" : "Position Qualification", 
+        "Name" : "Dietician/Nutritionist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1046"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1047", 
+        "Type" : "Position Qualification", 
+        "Name" : "Environmental Health Generalist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1047"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1048", 
+        "Type" : "Position Qualification", 
+        "Name" : "Environmental Health Specialist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1048"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1049", 
+        "Type" : "Position Qualification", 
+        "Name" : "Environmental Health Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1049"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1050", 
+        "Type" : "Position Qualification", 
+        "Name" : "Epidemiologist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1050"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1051", 
+        "Type" : "Position Qualification", 
+        "Name" : "Epidemiology Interviewer", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1051"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1052", 
+        "Type" : "Position Qualification", 
+        "Name" : "Epidemiology Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1052"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1053", 
+        "Type" : "Position Qualification", 
+        "Name" : "Laboratory Technologist/Technician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1053"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1054", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1054"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1055", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Consultant", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1055"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1056", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Dispenser", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1056"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1057", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Operations Team Consultant", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1057"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1058", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Patient Intake/ Line Flow Consultant", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1058"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1059", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Public Information Consultant", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1059"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1060", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mass Dispensing, Vaccinator", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1060"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1061", 
+        "Type" : "Position Qualification", 
+        "Name" : "Medical Unit Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1061"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1062", 
+        "Type" : "Position Qualification", 
+        "Name" : "Patient Care Technician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1062"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1063", 
+        "Type" : "Position Qualification", 
+        "Name" : "Pharmacist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1063"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1064", 
+        "Type" : "Position Qualification", 
+        "Name" : "Pharmacy Technician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1064"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1065", 
+        "Type" : "Position Qualification", 
+        "Name" : "Phlebotomist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1065"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1066", 
+        "Type" : "Position Qualification", 
+        "Name" : "Physician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1066"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1067", 
+        "Type" : "Position Qualification", 
+        "Name" : "Physician Assistant", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1067"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1068", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Health and Medical Support Team Leader in a Shelter", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1068"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1069", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Health Data Entry Staff", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1069"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1070", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Health Disaster Assessor", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1070"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1071", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Health Information Technology Specialist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1071"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1072", 
+        "Type" : "Position Qualification", 
+        "Name" : "Radiologic Technician", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1072"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1073", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving, Staging & Storage (RSS), Distribution Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1073"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1074", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving, Staging & Storage (RSS), Finance and Administrative Team Lead", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1074"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1075", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving Staging & Storage (RSS), Logistics Team Lead", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1075"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1076", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving Staging & Storage (RSS), Operations Team Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1076"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1077", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving Staging & Storage (RSS), Tactical Communications Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1077"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1078", 
+        "Type" : "Position Qualification", 
+        "Name" : "Receiving Staging & Storage (RSS) Task Force Leader", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1078"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1079", 
+        "Type" : "Position Qualification", 
+        "Name" : "Registered Nurse", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1079"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1080", 
+        "Type" : "Position Qualification", 
+        "Name" : "Respiratory Therapist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1080"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1081", 
+        "Type" : "Position Qualification", 
+        "Name" : "Social Worker", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1081"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "12-509-1082", 
+        "Type" : "Position Qualification", 
+        "Name" : "Surgical Technician/Technologist", 
+        "Category" : "Medical and Public Health", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/12-509-1082"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1037", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Airborne Communications Relay Team (Fixed-Wing)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1037"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1038", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Airborne Communications Relay (Fixed-Wing) (CAP)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1038"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1039", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Airborne Transport Team (Fixed-Wing)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1039"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1040", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Communications Support Team (CAP)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1040"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1041", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Critical Incident Stress Management Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1041"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1042", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Donations Coordinator", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1042"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1043", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Donations Management Personnel/Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1043"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1044", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "EOC Finance / Administration Section Chief / Coordinator", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1044"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1045", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "EOC Management Support Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1045"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1046", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "EOC Operations Section Chief", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1046"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1047", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "EOC Planning Section Chief", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1047"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1048", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Evacuation Coordination Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1048"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1049", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Evacuation Liaison Team (ELT)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1049"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1050", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Incident Management Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1050"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1051", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Individual Assistance Disaster Assessment Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1051"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1052", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Individual Assistance Disaster Assessment Team Leader", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1052"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1053", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mobile Communications Center (Also referred to as \"Mobile EOC\")", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1053"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1054", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mobile Feeding Kitchen (Mobile Field Kitchen)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1054"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1055", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Public Assistance Coordinator", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1055"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1056", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Rapid Needs Assessment Team", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1056"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-508-1058", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Volunteer Agency Liaison", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-508-1058"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1031", 
+        "Type" : "Position Qualification", 
+        "Name" : "Finance/Administration Section Chief (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1031"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1032", 
+        "Type" : "Position Qualification", 
+        "Name" : "Incident Commander (IC) (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1032"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1033", 
+        "Type" : "Position Qualification", 
+        "Name" : "Liaison Officer (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1033"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1034", 
+        "Type" : "Position Qualification", 
+        "Name" : "Logistics Section Chief (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1034"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1035", 
+        "Type" : "Position Qualification", 
+        "Name" : "Operations Section Chief (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1035"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1036", 
+        "Type" : "Position Qualification", 
+        "Name" : "Planning Section Chief (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1036"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1037", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Information Officer (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1037"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "2-509-1038", 
+        "Type" : "Position Qualification", 
+        "Name" : "Safety Officer (Type 3)", 
+        "Category" : "Incident Management", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/2-509-1038"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1026", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Ambulance (Fixed-Wing)", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1026"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1027", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Ambulance (Rotary-Wing)", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1027"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1028", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Ambulances (Ground)", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1028"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1029", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Ambulance Strike Team", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1029"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1030", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Ambulance Task Force", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1030"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1031", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Emergency Medical Task Force", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1031"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1032", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mass Casualty Support Vehicle", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1032"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-508-1033", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Multi-Patient Medical Transport Vehicle", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-508-1033"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1000", 
+        "Type" : "Position Qualification", 
+        "Name" : "Advanced Emergency Medical Technician", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1000"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1001", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Manager or Administrator", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1001"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1002", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Mechanic", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1002"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1003", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Paramedic", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1003"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1004", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Physician", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1004"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1005", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Pilot (Rotorcraft)", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1005"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1006", 
+        "Type" : "Position Qualification", 
+        "Name" : "Air Medical Transport Registered Nurse", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1006"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1007", 
+        "Type" : "Position Qualification", 
+        "Name" : "Ambulance Strike Team / Ambulance Task Force Leader", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1007"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1008", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Medical Responder", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1008"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1009", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Medical Task Force Leader", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1009"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1010", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Medical Technician", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1010"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1011", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Vehicle Operator", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1011"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1012", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Vehicle Operator - Heavy", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1012"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1013", 
+        "Type" : "Position Qualification", 
+        "Name" : "EMS Physician", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1013"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1014", 
+        "Type" : "Position Qualification", 
+        "Name" : "Medical Supply Coordinator", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1014"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "3-509-1015", 
+        "Type" : "Position Qualification", 
+        "Name" : "Paramedic", 
+        "Category" : "Emergency Medical Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/3-509-1015"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1035", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Aerial Apparatus, Fire", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1035"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1114", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Area Command Team, Firefighting", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1114"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1115", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Brush Patrol, Firefighting (Type VI Engine)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1115"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1116", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Crew Transport (Firefighting Crew)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1116"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1117", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Engine, Fire (Pumper)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1117"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1118", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Fire Boat", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1118"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1119", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Fire Truck - Aerial (Ladder or Platform)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1119"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1120", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Foam Tender, Firefighting", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1120"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1121", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Fuel Tender (Gasoline, Diesel, AvGas, aka Gas Tanker)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1121"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1122", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Hand Crew", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1122"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1123", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "HazMat Entry Team", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1123"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1124", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Helicopters, Firefighting", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1124"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1125", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Helitanker (firefighting helicopter)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1125"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1126", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Incident Management Team, Firefighting", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1126"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1127", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Interagency Buying Team, Firefighting", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1127"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1128", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mobile Communications Unit (Law/Fire)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1128"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1129", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Portable Pump", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1129"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1130", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Strike Team, Engine (Fire)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1130"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1131", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "U.S. Coast Guard National Strike Force", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1131"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-508-1132", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Tender, Firefighting (Tanker)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-508-1132"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1016", 
+        "Type" : "Position Qualification", 
+        "Name" : "Airport Firefighter", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1016"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1017", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Vehicle Technician", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1017"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1018", 
+        "Type" : "Position Qualification", 
+        "Name" : "Fire Apparatus Driver/Operator", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1018"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1019", 
+        "Type" : "Position Qualification", 
+        "Name" : "Firefighter", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1019"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1020", 
+        "Type" : "Position Qualification", 
+        "Name" : "Fire Inspector", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1020"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1021", 
+        "Type" : "Position Qualification", 
+        "Name" : "Fire Officer I/II (Company/Unit)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1021"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1022", 
+        "Type" : "Position Qualification", 
+        "Name" : "Fire Officer III/IV (Command)", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1022"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1023", 
+        "Type" : "Position Qualification", 
+        "Name" : "HazMat Officer", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1023"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1024", 
+        "Type" : "Position Qualification", 
+        "Name" : "HazMat Technician", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1024"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1025", 
+        "Type" : "Position Qualification", 
+        "Name" : "HazMat Safety Officer", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1025"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1026", 
+        "Type" : "Position Qualification", 
+        "Name" : "Plans Examiner I/II", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1026"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1027", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Safety Telecommunicator I/II", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1027"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1028", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wildland Firefighter", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1028"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1029", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wildland Fire Officer", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1029"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "4-509-1030", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wildland/Urban Interface Protection Specialist", 
+        "Category" : "Fire/Hazardous Materials", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/4-509-1030"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1001", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Bomb Squad/Explosives Team", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1001"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1002", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Law Enforcement Aviation - Helicopters - Patrol & Surveillance", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1002"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1003", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Law Enforcement Observation Aircraft (Fixed-Wing)", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1003"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1004", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mobile Field Force Law Enforcement (Crowd Control Teams)", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1004"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1005", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Public Safety Dive Team", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1005"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1006", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "SWAT/Tactical Teams", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1006"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "6-508-1034", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Law Enforcement Patrol Team (Strike Team)", 
+        "Category" : "Law Enforcement Operations", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/6-508-1034"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1025", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Maintenance and Repair Team - Light Equipment Public Works", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1025"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1036", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Emergency Management Support Team - Water/Wastewater", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1036"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1059", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Damage Assessment, Repair and Start-Up Team - Wastewater Lift and Pump Station", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1059"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1060", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Aerial Lift - Articulating Boom", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1060"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1061", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Aerial Lift, Self Propelled, Scissor, Rough Terrain", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1061"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1062", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Aerial Lift Ð Telescopic Boom", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1062"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1063", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Aerial Lift - Truck Mounted", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1063"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1064", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Compressor", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1064"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1065", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Conditioner/ Heater", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1065"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1066", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Curtain Burners (Fire Box-Above Ground, Refractory Walled)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1066"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1067", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Curtain Burners (Trench Burner, In-Ground)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1067"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1068", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Buses", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1068"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1069", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Chillers & Air Handlers (500 Ton to 50 Ton)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1069"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1070", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Concrete Cutter/Multi-Processor for Hydraulic Excavator", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1070"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1071", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Cranes, All Terrain & Rough Terrain", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1071"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1072", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Cranes, Crawler (Lattice)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1072"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1073", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Electronic Boards, Arrow Boards", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1073"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1074", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Electronic Boards, Variable Message Signs (VMS)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1074"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1075", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Floodlights", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1075"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1076", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Generators", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1076"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1077", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Grader", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1077"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1078", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Hydraulic Excavator (Large Mass Excavation 13 cy to 3 cy buckets)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1078"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1079", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Hydraulic Excavator (Medium Mass Excavation 4 cy to 1.75 cy buckets)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1079"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1080", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Hydraulic Excavator (Compact Ð Short Radius 1.75 cy to 0.62 cy Buckets)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1080"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1081", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Hydraulic Excavator Truck Mounted", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1081"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1082", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Road Sweeper", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1082"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1083", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Scraper, Earth Moving", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1083"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1084", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Snow Blower (Chassis Mounted)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1084"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1085", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Snow Blower (Loader Mounted)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1085"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1086", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Snow Cat", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1086"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1087", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Track Dozer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1087"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1088", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Track Loader", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1088"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1089", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Trailer, Equipment Tag-Trailer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1089"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1090", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Trailer, Dump (one type/example only)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1090"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1091", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Trailer, Flat Bed Truck (Two Types/Example Only)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1091"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1092", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Trailer, Gooseneck Tractor", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1092"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1093", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Trailer, Small Equipment", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1093"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1094", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Truck, Off-Road Dump", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1094"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1095", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Truck, On-Road Dump", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1095"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1096", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Truck, Plow", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1096"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1097", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Truck, Sewer Flusher", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1097"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1098", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Truck, Tractor Trailer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1098"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1099", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Tug Boat (General)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1099"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1100", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Pumps, De-Watering", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1100"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1101", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Pumps, Drinking Water Supply- Auxiliary Pump", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1101"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1102", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Pumps, Water Distribution", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1102"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1103", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Pumps, Wastewater", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1103"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1104", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Water Truck (example only)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1104"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1105", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Dozer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1105"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1106", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loader Backhoe", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1106"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1107", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loaders (Large 41 cy to 8 cy)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1107"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1108", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loaders (Medium 7 cy to 3 cy)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1108"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1109", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loaders (Small 7 cy to 2 cy)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1109"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1110", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loaders, Skid Steer (Small)", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1110"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1111", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wheel Loaders, Telescopic Handler", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1111"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1112", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wood Chipper", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1112"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1113", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wood Tub Grinder", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1113"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1145", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Damage Assessment and Repair Team - Water Pump Facilities", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1145"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1146", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Damage Assessment and Repair Team - Sewer Mains", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1146"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-508-1154", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Damage Assessment, Repair and Start-Up Team - Wastewater Treatment Facilities", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-508-1154"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1093", 
+        "Type" : "Position Qualification", 
+        "Name" : "Assistant Public Works Director - Operations", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1093"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1094", 
+        "Type" : "Position Qualification", 
+        "Name" : "Assistant Public Works Director - Logistics", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1094"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1095", 
+        "Type" : "Position Qualification", 
+        "Name" : "Civil/Field Engineer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1095"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1096", 
+        "Type" : "Position Qualification", 
+        "Name" : "Debris Collection Supervisor", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1096"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1097", 
+        "Type" : "Position Qualification", 
+        "Name" : "Debris Removal Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1097"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1098", 
+        "Type" : "Position Qualification", 
+        "Name" : "Debris Site Supervisor", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1098"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1099", 
+        "Type" : "Position Qualification", 
+        "Name" : "Engineering Branch Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1099"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1100", 
+        "Type" : "Position Qualification", 
+        "Name" : "Engineering Division Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1100"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1101", 
+        "Type" : "Position Qualification", 
+        "Name" : "Equipment Operator", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1101"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1103", 
+        "Type" : "Position Qualification", 
+        "Name" : "Public Works Director", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1103"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1104", 
+        "Type" : "Position Qualification", 
+        "Name" : "Quality Assurance Personnel", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1104"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1105", 
+        "Type" : "Position Qualification", 
+        "Name" : "Structural Engineer", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1105"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1106", 
+        "Type" : "Position Qualification", 
+        "Name" : "Utility Systems Reconstruction Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1106"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1107", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wastewater Collection Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1107"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1108", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wastewater System Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1108"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1109", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wastewater Treatment Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1109"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1110", 
+        "Type" : "Position Qualification", 
+        "Name" : "Water Distribution Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1110"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1111", 
+        "Type" : "Position Qualification", 
+        "Name" : "Water System Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1111"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "7-509-1112", 
+        "Type" : "Position Qualification", 
+        "Name" : "Water Treatment Manager", 
+        "Category" : "Public Works", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/7-509-1112"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1007", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Air Search Team (Fixed-Wing)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1007"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1008", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Airborne Reconnaissance (Fixed Wing)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1008"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1009", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Avalanche Snow Air Scent", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1009"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1010", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Disaster Response", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1010"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1011", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Land Cadaver Air Scent", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1011"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1012", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Water Air Scent", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1012"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1013", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Wilderness Air Scent", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1013"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1014", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Canine Search and Rescue Team Ð Wilderness Tracking/Trailing", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1014"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1015", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Cave Search and Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1015"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1017", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mine and Tunnel Search and Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1017"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1018", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Mountain Search and Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1018"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1019", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Radio Direction Finding Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1019"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1020", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Swiftwater/Flood Search and Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1020"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1021", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "US&R Incident Support Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1021"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1023", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Wilderness Search and Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1023"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1158", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Structural Collapse Search Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1158"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1159", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Structural Collapse Rescue Team", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1159"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-508-1160", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Urban Search and Rescue (US&R) Task Force", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-508-1160"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1117", 
+        "Type" : "Position Qualification", 
+        "Name" : "Disaster Collapsed Structure Canine Search Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1117"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1118", 
+        "Type" : "Position Qualification", 
+        "Name" : "Disaster Collapsed Structure Canine Search Technical Specialist (Advisor)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1118"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1119", 
+        "Type" : "Position Qualification", 
+        "Name" : "Disaster Collapsed Structure Canine Search Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1119"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1120", 
+        "Type" : "Position Qualification", 
+        "Name" : "Helicopter Search and/or Rescue Crew Chief", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1120"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1121", 
+        "Type" : "Position Qualification", 
+        "Name" : "Helicopter Search and/or Rescue Pilot", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1121"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1122", 
+        "Type" : "Position Qualification", 
+        "Name" : "Helicopter Search and/or Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1122"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1123", 
+        "Type" : "Position Qualification", 
+        "Name" : "Human Remains Canine Search Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1123"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1124", 
+        "Type" : "Position Qualification", 
+        "Name" : "Human Remains Canine Search Technical Specialist (Advisor)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1124"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1125", 
+        "Type" : "Position Qualification", 
+        "Name" : "Human Remains Canine Search Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1125"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1126", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mountain Search and/or Rescue Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1126"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1127", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mountain Search and/or Rescue Technical Specialist (Advisor)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1127"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1128", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mountain Search and/or Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1128"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1129", 
+        "Type" : "Position Qualification", 
+        "Name" : "Mountain Search and/or Rescue Unit Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1129"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1130", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Services Rescue Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1130"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1131", 
+        "Type" : "Position Qualification", 
+        "Name" : "Emergency Services Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1131"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1132", 
+        "Type" : "Position Qualification", 
+        "Name" : "Logistics Search and/or Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1132"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1133", 
+        "Type" : "Position Qualification", 
+        "Name" : "Medical Search and/or Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1133"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1138", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1138"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1139", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1139"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1140", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Technician - Boat Bowman", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1140"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1141", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Technician - Boat Operator", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1141"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1142", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Technical Specialist (Advisor)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1142"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1143", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Technician - Animal Rescue", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1143"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1144", 
+        "Type" : "Position Qualification", 
+        "Name" : "Swiftwater/Flood Rescue Unit Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1144"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1145", 
+        "Type" : "Position Qualification", 
+        "Name" : "Water Canine Search Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1145"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1146", 
+        "Type" : "Position Qualification", 
+        "Name" : "Water Canine Search Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1146"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1147", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Air Scent Canine Search Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1147"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1148", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Air Scent Canine Search Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1148"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1149", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Search and/or Rescue Manager", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1149"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1150", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Search and/or Rescue Technical Specialist (Advisor)", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1150"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1151", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Search and/or Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1151"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1152", 
+        "Type" : "Position Qualification", 
+        "Name" : "Wilderness Search and/or Rescue Unit Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1152"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1164", 
+        "Type" : "Position Qualification", 
+        "Name" : "Structural Collapse - Search Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1164"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1165", 
+        "Type" : "Position Qualification", 
+        "Name" : "Structural Collapse Search Team Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1165"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1166", 
+        "Type" : "Position Qualification", 
+        "Name" : "Structural Collapse - Rescue Technician", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1166"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1167", 
+        "Type" : "Position Qualification", 
+        "Name" : "Structural Collapse Rescue Team Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1167"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "8-509-1168", 
+        "Type" : "Position Qualification", 
+        "Name" : "Urban Search and Rescue (US&R) Task Force Leader", 
+        "Category" : "Search and Rescue", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/8-509-1168"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "9-508-1000", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Field Kitchen Unit", 
+        "Category" : "Mass Care Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/9-508-1000"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "9-508-1155", 
+        "Type" : "Resource Typing Definition", 
+        "Name" : "Shelter Management Team", 
+        "Category" : "Mass Care Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/9-508-1155"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "9-509-1083", 
+        "Type" : "Position Qualification", 
+        "Name" : "State Mass Care Coordinator", 
+        "Category" : "Mass Care Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/9-509-1083"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "9-509-1084", 
+        "Type" : "Position Qualification", 
+        "Name" : "Field Kitchen Manager", 
+        "Category" : "Mass Care Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/9-509-1084"
+      }
+    }, 
+    {
+      "attributes" : {
+        "ID" : "9-509-1085", 
+        "Type" : "Position Qualification", 
+        "Name" : "Shelter Manager", 
+        "Category" : "Mass Care Services", 
+        "PDF" : "https://rtlt.preptoolkit.org/Public/Position/ViewPdf/9-509-1085"
+      }
+    }
+  ]
