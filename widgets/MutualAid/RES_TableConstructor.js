@@ -14,6 +14,7 @@ define([
     "dojo/on",
     "dojo/request",
     "dijit/Dialog",
+    "./AttrFormsManager",
 
     "dojo/store/Memory",
     "dojox/charting/action2d/Highlight",
@@ -38,7 +39,7 @@ define([
 ],
     function (
         registry,array,declare,lang,dom, win, domClass, Stateful, Evented,
-        domConstruct,easing,numbr,on,request, Dialog, 
+        domConstruct,easing,numbr,on,request, Dialog, AttrFormsManager,
         Memory, Highlight,Tooltip,Chart, Chart2D, StackedColumns, MiamiNice,
         Extent, Button, FeatureLayer, RelationshipQuery, QueryTask
  //       CAP_InitiateDialog,CAP_EditRecordDialog,RES_AddRecordDialog,RES_EditRecordDialog, RESP_EditRecordDialog,RESP_AddRecordDialog
@@ -202,7 +203,14 @@ define([
 
                 on(clickAddResource, 'click', lang.hitch(this, function(capID){
                     console.log('click-event');
-                    this.initAddResRecord(this.capID); //located in RES_AddRecordDialog;
+
+            // ************************************************
+            // Call AttrFormManager to create AddResource Form
+            // ************************************************
+                    var createForm = new AttrFormsManager();
+                        createForm._insertEditPanel("addRes");
+
+                    //this.initAddResRecord(this.capID); //located in RES_AddRecordDialog;
                 }));
 
             // ******************************************
@@ -225,6 +233,10 @@ define([
         },
 
  
+
+
+
+
         // ********************************************************************
         //  JF Pure CSS Table for resources - adding to domID "rTableParent"
         // ********************************************************************
@@ -264,6 +276,9 @@ define([
                         // console.log("No related resources for Capability OID: ", sourceID);
 
                         alert("No reources exist.  Please add resources for this capability.");
+
+
+                        this._displayDivElementsOnTheMap2();
 
                         return;
                     }
@@ -347,6 +362,37 @@ define([
                 }
 
         },
+
+
+
+    _displayDivElementsOnTheMap2:function(){
+
+        // return visibility to map element and hide the parent Element containing mutual aid table
+          var hide = dom.byId("map_root")
+              hide.style.display="block";
+          var show = dom.byId("formParentDiv");
+              show.style.display="none";
+
+          //  Classnames of elements on the map div.  this does not hide using widgetId that can change
+          var classesToHide=["onscreen","mylocation","homebutton", "search", "overview", "scalebar","zoomslider","coordinate"];
+
+          var c = document.getElementById("map").children;
+
+          for (i = 0; i < c.length; i++) {
+
+              var str=c[i].className;
+
+              array.forEach(classesToHide, function(keyword) {
+
+                  if(str.indexOf(keyword)!=-1){
+
+                        c[i].style.display="block";
+                  }
+            
+              }, this);
+
+          }// end loop of child elements
+    },
 
 
         // ********************************************************
@@ -612,8 +658,16 @@ define([
         // EDIT RESOURCE ICON HAS BEEN CLICKED
         // *****************************************************
         _editResClicked: function(resName,resGID, clickedFrom){
-           // alert( "Edit Resource Clicked - " + CAPidx + " " + resIdx) //this.ccList[idx].resourceArrayGlobalID +  " CAPID=" + this.ccList[idx].GlobalID)
-            this.initResEditForm(resGID,resName, clickedFrom);// located in RES_EditRecordDialog.js
+
+            //this.initResEditForm(resGID,resName, clickedFrom);// located in RES_EditRecordDialog.js
+
+/// TODO pass enough form above to create AttrInspector            
+            // ************************************************
+            // Call AttrFormManager to create AddResource Form
+            // ************************************************
+                var createForm = new AttrFormsManager();
+                    createForm._insertEditPanel("editRes");
+
         },
 
         // *****************************************************

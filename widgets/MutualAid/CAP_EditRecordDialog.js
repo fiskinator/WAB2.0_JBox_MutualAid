@@ -70,7 +70,6 @@ define([
               this.set("selected_Capability", defaults.capName);
               this.set("current_config", defaults.this_config);
 
-
               this.configureEditDialog();
 
         },

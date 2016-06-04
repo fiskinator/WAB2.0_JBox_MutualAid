@@ -65,14 +65,15 @@
             </div>
 
             <div id="hiderId" class="hiddenDiv">    
-                <div id="selectedCoreCap" class="selectedLyrHeader" style="width: 100%; height: 115px;">
+                <div id="selectedCoreCap" class="selectedLyrHeader" style="width: 100%; height: auto;">
                     <div id="capInfoHeaderId"class="selectedLyrButtonsContainer">
-                        <span class="icon-circle-left-btn" style="float:left; position:absolute; left:20px;" aria-hidden="true" 
-                               data-dojo-attach-event="onclick:_onBackBtnClicked" >
+                        <span class="icon-circle-left-btn" style="float:left; position:relative; padding-top:5px; padding-right:10px; padding-left:6px;" aria-hidden="true" data-dojo-attach-event="onclick:_onBackBtnClicked" >
                         </span>
+<!--
                         <span style="padding-right:20px">
                             <button class="ma-jimu-btn icon-pencil-btn" data-dojo-attach-event="onclick:_clickCapEditBtn" tooltip="Edit" type="button"></button>
                         </span>
+
                         <span style="padding-right:20px">
                             <button class="ma-jimu-btn icon-table-btn" data-dojo-attach-event="onclick:_clickCapTableBtn" type="button"></button>
                         </span>
@@ -82,9 +83,20 @@
                         <span style="padding-right:10px">
                             <button class="ma-jimu-btn icon-bar-graph-btn" data-dojo-attach-event="onclick:_clickGraphCapBtn" type="button"></button>
                         </span>
+-->
+                        <div class="node-label" id="selectedCoreCapTitle" style="font-weight:bold;"></div>
+                        <div class="node-box"><img id="selectedCoreCapImg" stylesrc=""></div>
+
                     </div>
-                    <div class="node-box"><img id="selectedCoreCapImg" src=""></div>
-                    <div class="node-label" id="selectedCoreCapTitle" style="width: 82%;"></div>
+
+                    <!--
+                    <div id="selectedCoreCapSubTitle" class="cap-info-text"></div>
+                    <div class="short-border-line"></div>
+
+                    <div id="capInfo-rCount" class="cap-info-text"></div>
+                    <div id="capInfo-rFully" class="cap-info-text"></div>
+                    <div id="capInfo-pCount" class="cap-info-text"></div>
+                    -->
                 </div>
             </div>
 

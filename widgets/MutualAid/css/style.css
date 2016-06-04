@@ -1027,13 +1027,17 @@
   max-height: 220px: 
 }
 
-
-/*.esriAttributeInspector .atiField .atiRichTextField .atiTextAreaField  { */
+/
+/*  JF Edit Dialog .esriAttributeInspector .atiField .atiRichTextField .atiTextAreaField  { */
 .esriAttributeInspector .atiField { 
-  background:#FFF6D9; 
-  width: 370px;
+  background:#FFF; 
+  width: 100%;
   font-size: 14px;
+  color:#000;
 }
+
+
+
 
 .atiLayerName{
   display: none;
@@ -1043,6 +1047,7 @@
   padding-right: 10px;
 }
 
+/* Moved to Common.css
 #rtltCmbBox,
 #widget_rtltCmbBox,
 #widget_rtltCmbBox2  { 
@@ -1050,6 +1055,7 @@
   width: 370px;
   font-size: 14px;
 }
+*/
 
 /* style for divs on splash page*/
 

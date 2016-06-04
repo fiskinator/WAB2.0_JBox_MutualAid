@@ -10,7 +10,7 @@
   background-repeat: no-repeat;
 }
 .claro .dijitSelect .dijitInputField{
-  padding: 1px 10px;
+  padding: 1px 5px;
 }
 .claro .dijitSelect input{
   float: none;
@@ -39,9 +39,14 @@
 
 /* dijit/form/TextBox */
 .claro .dijitTextBox{
-  height: 30px;
+  /*height: 40px;*/ 
   border-color: #d9dde0;
 }
+.esriAttributeInspector .atiField{
+  width: 100%;
+  margin: 1px;
+}
+
 .claro .dijitInputContainer{
   line-height: 28px;
 }
@@ -52,7 +57,7 @@
   padding: 0px !important;
   height: 26px;
   line-height: 26px !important;
-  font-size: 14px;
+  font-size: 15px; /* JF */
 }
 .claro .dijitTextBox .dijitPlaceHolder{
   height: 28px;

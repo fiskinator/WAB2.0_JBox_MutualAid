@@ -12,6 +12,7 @@
 
   "configuredGroupsOrgs": [
 
+
     {
       "title": "FEMA GeoPlatform",
       "id": "XG15cJAlne2vxtgt",
@@ -20,11 +21,34 @@
       "type": "org"
       
     },
-  {
+    {
+      "title": "NOAA GeoPlatform",
+      "id": "C8EMgrsFcRFL6LrL",
+      "thumbnailUrl": "./images/NOAA_logo.png",
+      "description":"Providing Geospatial Data and Analytics in Support of NOAA's Mission",
+      "type": "org"
+    },
+    {
+      "title": "GeoHEALTH Platform",
+      "id": "0123456789ABCDEF",
+      "thumbnailUrl": "./images/GeoHealth_logo.png",
+      "description":"US Department of Health & Human Services",
+      "type": "org"
+    },
+
+    {
       "title": "GEOPLATFORM.gov",
       "id": "Hp6G80Pky0om7QvQ",
       "thumbnailUrl": "./images/geoplatform.png",
       "description":"Shared and trusted geospatial data, services, and applications for use by the public and by government agencies and partners to meet their mission needs.",
+      "type": "org"
+      
+    },
+    {
+      "title": "Oregon DOT GeoPlatform",
+      "id": "HdNMW2j6UI55aLXm",
+      "thumbnailUrl": "./images/ODOT_logo.png",
+      "description":"Providing Geospatial Data and Analytics in Support of Emergency Management",
       "type": "org"
       
     },

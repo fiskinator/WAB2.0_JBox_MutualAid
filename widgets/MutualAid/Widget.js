@@ -34,9 +34,11 @@ define([
   'dijit/form/Form',
   'dijit/form/Select',
 
+
   'dijit/form/FilteringSelect',
 
-  //'jimu/dijit/TileLayoutContainer',
+  'dijit/TitlePane',
+  './AttrFormsManager',
   './dijit/TileLayoutContainer_JF',
   './ImageNode',
   './AboutThisApp',
@@ -62,7 +64,7 @@ define([
 
 ],
 function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, dom, domConstruct, topic, all, Memory, registry, Form, Select, FilteringSelect, 
-  TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, CAP_AddRecordDialog, CAP_EditRecordDialog, Button, 
+ TitlePane, AttrFormsManager, TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, CAP_AddRecordDialog, CAP_EditRecordDialog, Button, 
  utils,   esriPortal, esriRequest, InfoTemplate, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol, SimpleRenderer, Color, tokenUtils, 
  QueryTask, RelationshipQuery) {
 
@@ -83,6 +85,13 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       //    this function will be called when widget is started.
 
             this.inherited(arguments);
+
+             
+            //topic.subscribe("REFRESH_CAPINFO", lang.partial(this._insertCapInfo, this.config.selectedCap));                                   
+            topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
+            topic.subscribe("DELETED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
+            topic.subscribe("ADDED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
+            //topic.subscribe("REFRESH_CAP_ARRAY", lang.hitch(this, this.onCapSaved));
 
             // *********************************************************************************************
             // 1st TileLayout Containter digit s used for listing Core Capabilities of Planning Layer
@@ -108,21 +117,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // 2nd TileLayout Containter dijit is used for listing layers in the configured groups
             // Uses resultItemListNode in widget.html because igit must be parsed with dojo parser at login.
             // *********************************************************************************************
-/*
-            this.resultItemList = new TileLayoutContainer_JF({
-                strategy: 'fixWidth',
-                itemSize: {
-                    width: 340,
-                    height: 55
-                }, //image size is: 100*60,  200x133 = 80 x 53
-                maxCols: 1,
-                hmargin: 15,
-                vmargin: 2
-            }, this.resultItemListNode);
 
-
-            this.resultItemList.startup();
-*/
 
 
 
@@ -201,30 +196,19 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 domConstruct.place(newDIV, dom.byId('main-page'), 'before');// could be "after" or "last"
 
             var insertTable="";
-               // insertTable+= '<div class="slideShowHeader">';
                 insertTable+=   '<div id="formParentDiv" dir="ltr"></div';
-               // insertTable+=       '<div class="horizontal-text-with-slideShow-icon" id="slideShowHeaderId"></div>';// Used for title of slide
-               // insertTable+=       '<div class="icon-cancel-circle-slideShowHeader" id=closeSlideShowId></div>';// <div class="horizontal-right-content" id="AddPartnerBtnId_EMACBtn">
-               // insertTable+=       '<div class="horizontal-cont-clear"></div>';
-               // insertTable+=    '</div>';
-               // insertTable+= '</div>'; //JF Inserted to contain additional DIV window to replace mapDiv -->
 
             var newDIV = domConstruct.toDom(insertTable);
                 domConstruct.place(newDIV, dom.byId('map'), 'first');
 
-
- //           <div id="slideShowDiv" dir="ltr"></div><!--  JF Inserted to contain alternate window to replace mapDiv -->
-
     },
+
+
 
 
     onOpen: function(){
 
-      // alert("ON OPEN");
-      // this.displayBookmarks();
-
       this.createDrawerMenus();
-
 
     },
 
@@ -360,20 +344,37 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // **********************************************************
             // Insert OVERVIEW Buttons ID is contained in the widget.html
             // **********************************************************
-            var maBackBtn = new Button({
-                label: "Back",
-                id:"appBackBtn",
-                //baseClass: "AboutThisAppBtn",
-                //iconClass: "playScreenIcon",
-                //style: "padding-bottom: 5px;",
-                onClick: lang.hitch(this,function(){
-                // Do something:
-                  //this._openSlideShow("overview");
-                  alert("clicked")
-            })
-            }, "maBackBtn").startup();
+/*
+            var removeBackBtn=dijit.byId("appBackBtn");
+                if(removeBackBtn){
 
-          //this._startupGroupContentListDijit();// startup dijit that will manage the "bookmarkList" Dijit created in panel 2
+                    removeBackBtn.destroyRecursive();
+
+                    var maBackBtn = new Button({
+                        label: "Back",
+                        id:"appBackBtn",
+                        onClick: lang.hitch(this,function(){
+                            // Do something:
+                            //this._openSlideShow("overview");
+                            alert("clicked")
+                         })
+                    }, "maBackBtn").startup();
+
+                }
+
+                else{
+                    var maBackBtn = new Button({
+                        label: "Back",
+                        id:"appBackBtn",
+                        onClick: lang.hitch(this,function(){
+                            // Do something:
+                            //this._openSlideShow("overview");
+                            alert("clicked")
+                         })
+                    }, "maBackBtn").startup();
+
+                }
+  */
 
     },
 
@@ -491,7 +492,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // this value is not ready by the time I need it in setGlobalQueryParams
                 this.config.thiraExtent=results.item.extent;
 
-            
                 this.config.capabilitiesLayerName=results.item.title;
            
                 //start with a default that can be changed later
@@ -504,8 +504,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // *************************************************************            
                 // 2 - Create relatedTable query parameters - may not work!!
                 this.setGlobalQueryParameters(this.config.capabilitiesUrl);
-
-
 
                 // *************************************************************
                 // 3 - add default layer to map
@@ -522,43 +520,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // required to get thumbnail on login, without using preset image
                 // this.insertSelectedLayerAsHeader(thiraUrl, createImgUrlAtLogin, results.item.title)
 
-
-
           })); // END RESULTS HANDLING
 
       },
-
-     // ***********************************************************************************************
-     //  Function updates a header that shows the active Planning layer name and thumbnail
-     //           Called by _getDefaultThiraLayer AND by  _onBookmarkClick when changing planning layers
-     // ***********************************************************************************************
-//      insertSelectedLayerAsHeader:function(selectedLyrUrl, selectedLyrThumb, selectedLyrTitle){
-
-//       this.inherited(arguments);
-
-        // reset configured capabilitiesUrl for later use.
-//        this.config.capabilitiesUrl = selectedLyrUrl;
-
-//        var showHeader = document.getElementById("selectedLyrHeaderId");
-//          if(showHeader){
-//                  showHeader.style.display='block';    
-//         }
-
-
-// Name of planning layer.  This does not show the name at the moment.
-// Could change the name of the viewer
-
-
-  //      var getSelectedLyrImg = document.getElementById("selectedLyrImgId");
-  //          getSelectedLyrImg.src=selectedLyrThumb;
-
-  //      var getSelectedLyrTitle = document.getElementById("selectedLyrTitleId");
-  //          getSelectedLyrTitle.innerHTML=selectedLyrTitle;
-
-        // Switching layer does not have definition filter by default.
-
-//      },
-
 
 
 
@@ -603,7 +567,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
           hazArr = hazString.split(',');
           hazArr.getUnique(); 
 
-          console.log(hazArr);
+          //console.log(hazArr);
 
           //now loop through temp hazard array and populate name/id object pairs into new array
           for (var j = 0; j < hazArr[0].length; j++) {    
@@ -656,7 +620,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             else{
               defQuery = "Threat_Hazard Like '%" + value + "%'";
             }
- //TODO     this.hideCapSummary(); // remove table window
+
             this.queryCapabilitiesLayer2(this.config.capabilitiesUrl, defQuery);
           }));
 
@@ -671,69 +635,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 // *******************************************************
 // QUERY CAPABILITIES LAYER
 // *******************************************************
-/*
-      // ************************************************************
-      // 1) List Core Capabilities from specified Capabilities layer
-      // ************************************************************
-      queryCapabilitiesLayer: function(url, defQuery) {
-          console.log('queryCapabilitiesLayer - task defined');
-          var whereQuery = defQuery; // 1=1 is the default set at handleItemResults()
-          var queryTask = new QueryTask(url);
-          var query = new esri.tasks.Query();
-          query.outFields = ['ESF,Capability'];
-          query.where = whereQuery;
-          query.returnGeometry = false;
-          queryTask.execute(query).then(lang.hitch(this, this.queryCapabilitiesCompleted));
-      },
-
-
-      queryCapabilitiesCompleted: function(results) {
-          console.log('queryCapabilities - Task Completed');
-          this.capArr = []; // reset the array
-
-          for (var i = 0; i < results.features.length; i++) {
-              //var feature = features[i];
-              this.capArr.push({
-                  Capability: results.features[i].attributes.Capability,
-                  ESF: results.features[i].attributes.ESF,
-                  GlobalID: results.features[i].attributes.GlobalID,
-                  //Impacts: results.features[i].attributes.Impacts,
-                  Jurisdiction: results.features[i].attributes.Jurisdiction,
-                  //Outcomes: results.features[i].attributes.Outcomes,
-                  ResourceID: results.features[i].attributes.ResourceID,
-                  //Targets: results.features[i].attributes.Targets,
-                  Threat_Hazard: results.features[i].attributes.Threat_Hazard,
-                  ObjectID: results.features[i].attributes.OBJECTID,
-                  resCount: "0",
-                  resTotal: "0",
-                  totResourcesReq: "0", // JF Populated in _qryRelatedResources
-                  totResourcesCommit: "0",
-                  totResourceTypes: "0", // JF Populated in _qryRelatedResources
-                  totResPartnerCount: 0, // JF Populated in _qryAssistingJuris
-                  resCommitted: "0",
-                  pctResourced: "0",
-                  countComplete: "0 of " + (i + i) + ' Required Resources Fulfilled',
-                  resourceArray: [], // array of resources assoc with capability
-                  assistingArray: [], // array of assisting agencies assoc with capability
-              });
-              var sourceID = results.features[i].attributes.OBJECTID;
-              //this._qryRelatedResources(sourceID, this.featureLayer, i); // this.featureLayer is set in ThiraLayer.js
-          } // end loop
-
-//TODO          this._placeThiraCoreCapList(this.capArr);
-          
-          console.log('zoomToThira: true or false');
-
-          console.log(this.capArr);
-          
-      
-      this._updateExtent(results);
-      
-
-          
-          
-      },
-*/
 
 
 
@@ -771,7 +672,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
           console.log('queryCapabilities - Task Completed');
           this.capArr = []; // reset the array
           var count=0
-          //this.capArr=results.features;
 
           for (var i = 0; i < results.features.length; i++) {
               this.capArr.push({
@@ -791,10 +691,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
               var sourceID = results.features[i].attributes.OBJECTID;
           } // end loop
-
-
-//TODO   this._placeThiraCoreCapList(this.capArr);
           
+         // *************************************************************
          // Insert "Add Capability Target" into array to use as a button
          // wait until loop is finished to add the button at the end.
          if(count==results.features.length){
@@ -814,8 +712,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
               this.capabilityIcons(this.capArr); 
           }
-
-
           
       },
 
@@ -849,45 +745,34 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
       gotoTest: function(){
 
-
-        // console.log("COMPLETED " + this.capArr)
-
-
-        //         array.forEach(this.capArr, function(coreCap) {
-        //             //bookmark.isInWebmap = true;
-        //             coreCaps.title = coreCap.Capability;
-        //             console.log("bookmark: " + bookmark.capability);
-
-        //             var repeat = 0;
-        //             for (var i = 0; i < this.coreCaps.length; i++) {
-        //                 if (this.coreCaps[i].title === coreCap.Capability) {
-        //                     repeat++;
-        //                 }
-        //             }
-        //             if (!repeat) {
-        //                 this.coreCaps.push(coreCap);
-        //             }
-        //         }, this);
- 
-        //         console.log(this.coreCaps);
-
-                this.displayBookmarks(this.capArr);
+          this.displayBookmarks(this.capArr);
 
       },
 
+      // ******************************************************
+      // Called when the layer is switched.
+      // Must check to see if the layer has features
+      // ******************************************************
+      zoomToExtentOfSingleFeature: function(result){
 
-      zoomToExtentOfSingleFeature: function(results){
+          if(result.features.length>0){// some planning layers could be empty
+                if (result.features[0].geometry){
+                  console.log('update Extent has geometries');
+                  var extent = esri.graphicsExtent(result.features); 
+                }
+            
+                //set map extent to features extent
+                if(extent) {
+              
+                  this.map.setExtent(extent.expand(1.5));
+                }
 
-        if (results.features[0].geometry){
-          console.log('update Extent has geometries');
-          var extent = esri.graphicsExtent(results.features); 
-        }
-    
-        //set map extent to features extent
-        if(extent) {
-      
-          this.map.setExtent(extent.expand(1.5));
-        }
+          }
+          else{
+
+              alert("This planning layer has no records.  Would you like to initialize this layer?")
+
+          }
 
       },
 
@@ -1049,13 +934,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
            })); // END RESULTS HANDLING     
       },
 
-
-          // This should be used for 
-
-          //read the results and build the new bookmark array  
-
-
-
+            //read the results and build the new bookmark array  
             // create array of planning layers for the dropdown menu.
             _createSelectionLayerArray: function(){
 
@@ -1087,8 +966,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     });
 
                 }), this);
-
-
 
 
                       // Only place drop down after it has been loaded.  Does not count array proplerly outside of this loop
@@ -1153,7 +1030,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     // Select the default layer set in the configuration.  The id value must match exactly.  This does not always fire soon enough. 
 
-                        //this.planningSelect.attr('value', String(idString.trim()));
+                    //this.planningSelect.attr('value', String(idString.trim()));
 
 
 
@@ -1215,7 +1092,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
     resize: function() {
         var box = html.getMarginBox(this.domNode);
-        var listHeight = box.h - 37 - 21 - 61 - 55; // JF added 55 to make room for the insert item. 
+        var listHeight = box.h - 37 - 21 - 61 - 59; // JF added 55 to make room for the insert item. 
 
         //fix for IE8
         if (listHeight < 0) {
@@ -1250,108 +1127,340 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 // ********************************************************
-//  BEGIN RELATIONSHIP QUERIES FROM CLICKING ON CAPABILITY
-//    PASS THE OBJECTID OF THE SELECTED CAPABILITY
+//  CLICK ON CAPABILITY - BEGIN RELATIONSHIP QUERIES FROM 
+//           PASS THE OBJECTID OF THE SELECTED CAPABILITY
+//
+//      CLICK TO SHOW CAPABILITY PANEL 
+//  
+//      CLICK TO SHOW ADD CAPABILITY FORM
+//
 // ********************************************************
     _onBookmarkClick: function(coreCap) {
      
         this.config.selectedCap=[];
 
+        // ***********************************************
+        // Get all Capability Values and hold as variable
+        // ***********************************************
+
         this.config.selectedCap = coreCap;
-
-
-        //var thiraUrl=coreCap.url + '/2';
 
         console.log(coreCap.Capability);
 
+        // *************************************************************************
+        // ADD NEW CAPABILITY TARGET HAS BEEN CLICKED!
+        //   
+        // This calls the logic to create form in the left panel - AttrFormsManager
+        // *************************************************************************
+
         if(coreCap.Capability=="Add Capability Target"){
-
-          alert("Add Cap has been clicked")
-        }
-        else{
-
-          this._insertCapInfo(coreCap);
-
-          this.createCapResourceArray_0(coreCap.ObjectID);// create summaryArray
 
           document.getElementById("showerId").className="hiddenDiv";
           document.getElementById("hiderId").className="showingDiv";
 
           document.getElementById("selectedCoreCapImg").src=coreCap.ThumbnailUrl;
           document.getElementById("selectedCoreCapTitle").innerHTML=coreCap.Capability;
+
+
+          var createForm = new AttrFormsManager();
+              createForm._insertEditPanel("addCap",this.config);
+
+
+        }
+        else{
+
+        // *************************************************************************
+        // SHOW CAPABILITY SUMMARY - Left panel cap Info Panel
+        // *************************************************************************
+
+          document.getElementById("showerId").className="hiddenDiv";
+          document.getElementById("hiderId").className="showingDiv";
+
+          document.getElementById("selectedCoreCapImg").src=coreCap.ThumbnailUrl;
+          document.getElementById("selectedCoreCapTitle").innerHTML=coreCap.Capability;   // + "(" + coreCap.Jurisdiction + ")";  // parethesis does not work well here
+
+          this._insertCapInfo(coreCap);
+
+          this.createCapResourceArray_0(coreCap.ObjectID);// create summaryArray
+
+
+
+          //document.getElementById("selectedCoreCapSubTitle").innerHTML=coreCap.Jurisdiction;
+
+          //document.getElementById("capInfo-rCount").innerHTML ="";
+          //document.getElementById("capInfo-rFully").innerHTML ="";
+          //document.getElementById("capInfo-pCount").innerHTML ="";
+
+
         }
 
       // possible way to change the title of the viewer.
-      //onAppConfigChanged: function(appConfig, reason, changedData){
-      //topic.publish("appConfigChanged", lang.hitch(this, this.onAppConfigChanged)));
-
-        //this.TitleNode.set('value', new Date());
+      // onAppConfigChanged: function(appConfig, reason, changedData){
+      // topic.publish("appConfigChanged", lang.hitch(this, this.onAppConfigChanged)));
+      // this.TitleNode.set('value', new Date());
     
     },
 
 
 
-    // InfoPanel left hand side of
-    _insertCapInfo: function(coreCap){
+      // ******************************************************************************************
+      //  FUNCTION: onEditCapSaved
+      //  TOPIC Subscribe Listener is called by this function due to subscribe listener
+      //  Triggers a refresh for lefthand CapInfo Panel
+      //     
+      // ******************************************************************************************
+    onEditCapSaved: function(){
+        this.inherited(arguments);
 
-      var content="";
-           content+='<div class="capInfoTextContainer" id="capInfoId">'
-           content+=   '<div class="cap-info-heading">Capability Summary</div>';
-           content+=   '<div id="capInfo-rCount" class="cap-info-text"></div>';
-           content+=   '<div id="capInfo-rFully" class="cap-info-text"></div>';
-           content+=   '<div id="capInfo-pCount" class="cap-info-text"></div>';
-           content+=   '<div class="cap-info-heading">Jurisdiction</div>';
-           content+=   '<div class="cap-info-text">' + coreCap.Jurisdiction + '</div>';
-           content+=   '<div class="cap-info-heading">Threats / Hazards</div>';
-           content+=   '<div class="cap-info-text">' + coreCap.Threat_Hazard  +'</div>';
-           content+=   '<div class="cap-info-heading">Target Capability</div>';
-           content+=   '<div class="cap-info-text">' +coreCap.Target + '</div>';
-           content+=   '<div class="cap-info-heading">Impacts</div>';
-           content+=   '<div class="cap-info-text">' +  coreCap.Impact  + '</div>';
-           content+=   '<div class="cap-info-heading">ESF</div>';
-           content+=   '<div class="cap-info-text">' + coreCap.ESF + '</div>';
-           content+=   '<div class="cap-info-heading">Outcomes</div>';
-           content+=   '<div class="cap-info-text">' + coreCap.Outcome + '</div>';
-           content+=   '<div class="cap-info-heading">Resource Partners</div>';
-           content+=   '<div id="capInfo-partners" class="cap-info-text"></div>';
-           content+='</div>';
+        this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
+        this._refreshCapInfo();
 
-      var val = dom.byId("capInfoId");
+    },
 
-          if(!val){
+      // ******************************************************************************************
+      // Called from onEditCapSaved() when the capabilty is saved - AttrFormsManager 
+      // Refresh is called in 2 places:  1) Back button clicked  & 2) when edits are made to a Cap.
+      // Re-Creates the lefthand CapInfoId Panel using updated content
+      // ******************************************************************************************
+      // onEditCapSaved() also calls refresh for the Hazards, icons, partner, resource statistics etc.
+      // ******************************************************************************************
+    _refreshCapInfo: function(){
 
-            var newDIV = domConstruct.toDom(content);
-                domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
+      // ************************************************************
+      // Get Capabilities from specified Capabilities layer
+      // ************************************************************
+          console.log('queryCapabilitiesLayer - task defined ' + this.config.capabilitiesUrl);
+          var whereQuery = "GlobalID='" + this.config.selectedCap.GlobalID + "'";
+          var queryTask = new QueryTask(this.config.capabilitiesUrl);
+          var query = new esri.tasks.Query();
+          query.outFields = ['*'];
+          query.orderByFields=['Capability'];
+          query.where = whereQuery;
+          query.returnGeometry = false;
+          queryTask.execute(query).then(lang.hitch(this, this.queryGetCapInfo));
+      },
 
-          }
-          else{// this should not ever occur, since the element is removed when back button is clicked
+      // ******************************************************************
+      // Create and object with updated values to pass to the details page
+      // ******************************************************************
+      queryGetCapInfo: function(results) {
 
-            alert("removed cap-info DOM elements");
-            val.remove();
+          console.log('queryCapabilities - Create updated Object of selected Capability');
+          var newCoreCap = new Object();
 
-            var newDIV = domConstruct.toDom(content);
-                domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
+          for (var i = 0; i < results.features.length; i++) {
 
-          }
+                newCoreCap.Capability = results.features[i].attributes.Capability,
+                newCoreCap.Threat_Hazard = results.features[i].attributes.Threat_Hazard,
+                newCoreCap.Jurisdiction = results.features[i].attributes.Jurisdiction,
+                newCoreCap.Target = results.features[i].attributes.Targets,
+                newCoreCap.Impact = results.features[i].attributes.Impacts,
+                newCoreCap.Outcome = results.features[i].attributes.Outcomes,
+                newCoreCap.ESF = results.features[i].attributes.ESF,
+                newCoreCap.GlobalID = results.features[i].attributes.GlobalID,
+                newCoreCap.ObjectID = results.features[i].attributes.OBJECTID,
+                newCoreCap.ThumbnailUrl = ""
 
+
+          } // end loop
+
+          this._insertCapInfo(newCoreCap);
+
+          this.createCapResourceArray_0(newCoreCap.ObjectID);// create Summary, create Resource List, create Partner list
 
     },
 
 
+
+
+
+
+    // ***********************************************************************************************
+    // Called by _onBookmarkClick. - with click of Capability.  
+    //    Creates the lefthand CapInfoId Panel for Capability summary 
+    //    Uses coreCap Array previoulsy created for capabilit list.   Not from a fresh query. 
+    //    Refresh is called in 2 places:  1) Back button clicked  & 2) when edits are made to a Cap.
+    // ***********************************************************************************************
+    _insertCapInfo: function(coreCap){
+
+      var val = dom.byId("capInfoId");
+
+           if(val){
+
+                val.remove();
+                alert("Capability Info Panel was removed! ")
+
+           }
+
+
+    //      <img style="width:45px;float:right;" id="addResourceImg" src="./widgets/MutualAid/images/esri_icons/xtra_AddCapability65x.png"/>
+
+
+                  var content="";
+                     content+='<div class="capInfoTextContainer" id="capInfoId">'
+                     content+=   '<p><div id="capInfoEditPanel" class="cap-info-btn-heading" style="padding:6px"><span class="ma-jimu-btn-blue"><button id="maEditCAP" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Capability Target</div></p>';
+                     content+=   '<div class="cap-info-text">' +coreCap.Target + '</div>';
+                     content+=   '<div class="cap-info-heading">Threats / Hazards</div>';
+                     content+=   '<div class="cap-info-text">' + coreCap.Threat_Hazard  +'</div>';
+                     content+=   '<div class="cap-info-heading">Jurisdiction</div>';
+                     content+=   '<div class="cap-info-text">' + coreCap.Jurisdiction + '</div>';
+                     content+=   '<div class="cap-info-heading">ESF</div>';
+                     content+=   '<div class="cap-info-text">' + coreCap.ESF + '</div>';
+                     content+=   '<div class="cap-info-heading">Impacts</div>';
+                     content+=   '<div class="cap-info-text">' +  coreCap.Impact  + '</div>';
+                     content+=   '<div class="cap-info-heading">Outcomes</div>';
+                     content+=   '<div class="cap-info-text-bottom-border">' + coreCap.Outcome + '</div>';
+                     content+=   '<p><div id="placeAttrInsp_addRes" class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maReqResTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="reqResCountId" style="display:inline"></div>&nbsp;Required Resources<span style:"float:right" class="ma-jimu-btn-green"><button  id="maAddResource" type="button"></button></span></div></p>';
+                     content+=   '<div id="capInfo-resources" class="cap-info-resources"></div>';
+                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maPartnerTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="partnerCountId" style="display:inline">0</div>&nbsp;Partnerships</div></p>';
+                     content+=   '<div id="capInfo-partners" class="cap-info-text"></div>';
+                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Resource Gaps</div></p>';
+                     content+=   '<div id="capInfo-gap-graph" class="cap-info-text"></div>';
+                     content+='</div>';
+
+                var newDIV = domConstruct.toDom(content);
+                    domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
+
+
+                // *************************************************************************
+                // Inserting Edit Button for Capabilities  - Edit This Capability!
+                // **************************************************************************
+                var myButton = new Button({
+                    //label: "Edit",
+                    baseClass: "ma-jimu-btn-blue",
+                    iconClass: "icon-pencil-btn",
+                    onClick: lang.hitch(this,function(capId){
+                        // Do something:
+                        //this.initEditForm(this.capID,  this.coreCapability, this.capIdx);// located in CAP_EditRecordDialog.js
+                        this._clickCapEditBtn();
+                    })
+                }, "maEditCAP").startup();
+
+           
+                var myButton = new Button({
+                    //label: "Edit",
+                    baseClass: "ma-jimu-btn-blue",
+                    iconClass: "icon-table-btn",
+                    onClick: lang.hitch(this,function(capId){
+                        // Do something:
+                        //this.initEditForm(this.capID,  this.coreCapability, this.capIdx);// located in CAP_EditRecordDialog.js
+                        this._clickCapTableBtn();
+                    })
+                }, "maReqResTable").startup();
+
+                var myButton = new Button({
+                    //label: "Edit",
+                    baseClass: "ma-jimu-btn-green",
+                    iconClass: "icon-plus-btn",
+                    onClick: lang.hitch(this,function(capId){
+                        // Do something:
+                        //this.initEditForm(this.capID,  this.coreCapability, this.capIdx);// located in CAP_EditRecordDialog.js
+                        this._clickAddResourceToCap();
+                    })
+                }, "maAddResource").startup();
+
+
+                var myButton = new Button({
+                    //label: "Edit",
+                    baseClass: "ma-jimu-btn-blue",
+                    iconClass: "icon-people-btn",
+                    onClick: lang.hitch(this,function(capId){
+                        // Do something:
+                        //this.initEditForm(this.capID,  this.coreCapability, this.capIdx);// located in CAP_EditRecordDialog.js
+                        this._clickPartnerReportBtn();
+                    })
+                }, "maPartnerTable").startup();
+
+                var myButton = new Button({
+                    //label: "Edit",
+                    baseClass: "ma-jimu-btn-blue",
+                    iconClass: "icon-bar-graph-btn",
+                    onClick: lang.hitch(this,function(capId){
+                        // Do something:
+                        //this.initEditForm(this.capID,  this.coreCapability, this.capIdx);// located in CAP_EditRecordDialog.js
+                        this._clickGraphCapBtn();
+                    })
+                }, "maGapTable").startup();
+
+                
+
+
+
+                // Add clickEvent to AddResource Image.  This is an alternative way
+
+
+
+  //        }
+
+  //         else{// 
+
+  //              val.remove();
+
+  //              alert("Capability Info Panel was not removed")
+  //        }
+
+
+
+    },
+
+    removeCapInfoDijitBtns: function(){
+
+      var removeCapBtn = dijit.byId("maEditCAP");
+          if(removeCapBtn){
+             removeCapBtn.destroyRecursive();
+          } 
+      var removeTableBtn = dijit.byId("maReqResTable");
+          if(removeTableBtn){
+             removeTableBtn.destroyRecursive();
+          } 
+
+      var removeAddResourceBtn = dijit.byId("maAddResource");
+          if(removeAddResourceBtn){
+             removeAddResourceBtn.destroyRecursive();
+          } 
+
+      var removePartnerBtn = dijit.byId("maPartnerTable");
+          if(removePartnerBtn){
+             removePartnerBtn.destroyRecursive();
+          } 
+
+      var removeGraphBtn = dijit.byId("maGapTable");
+          if(removeGraphBtn){
+             removeGraphBtn.destroyRecursive();
+          } 
+          
+          
+
+    },
+
+
+    //  *********************************************************************************************
+    //  Clears ALL left hand elements and resource table.
+    //    Back button restores map visibility
+    //    Refreshes refreshes all aspects of Capability List, including rebuilding the Hazards Array.
+    //  *********************************************************************************************
+
     _onBackBtnClicked: function(){
+
+        this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
+        this.removeCapInfoDijitBtns();// removeds dijit btns for refreshing the info pane
+
+        // removes edit panel if it was open
+         var inspectorDiv = dom.byId("capEditId")
+             if(inspectorDiv){
+               inspectorDiv.remove();
+             }
 
          var val = document.getElementById("capInfoId");
          if(val){
-          val.remove();
-
-
+            val.remove();
             this._displayDivElementsOnTheMap();
 
             //remove grid element
             var gridsAndGraph = dom.byId("gridsAndGraph");
                 if (gridsAndGraph) {
                       gridsAndGraph.remove();
-                  }
+                }
          }
 
           document.getElementById("showerId").className="showingDiv";
@@ -1366,21 +1475,32 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
-
+    // ****************************
+    // Create Edit Capability Form
+    // ****************************
     _clickCapEditBtn:function(){
         this.inherited(arguments);
 
-        alert("This is an edit window");
+         // var val = document.getElementById("capInfoId");
+         // val.remove();
 
-                    //JF Call Summary as a constructor.
-                    this.capEdit = new CAP_EditRecordDialog ({// this calls the constructor.  No need for analysis functions
-                        capID: this.config.selectedCap.GlobalID,
-                        capName: this.config.selectedCap.Capability,
-                        this_config: this.config
-                    });
-
+        var createForm = new AttrFormsManager();
+            createForm._insertEditPanel("editCap", this.config);
 
     },
+
+
+    _clickAddResourceToCap:function(){
+        this.inherited(arguments);
+
+         // var val = document.getElementById("capInfoId");
+         // val.remove();
+
+        var createForm = new AttrFormsManager();
+            createForm._insertEditPanel("addRes", this.config);
+
+    },
+
 
     _clickCapTableBtn:function(){
 
@@ -1388,66 +1508,58 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         this._hideDivElementsOnTheMap();
 
 
-                    console.log("SelectedCAP: " + this.config.selectedCap);
+              console.log("SelectedCAP: " + this.config.selectedCap);
 
-                    //JF Call Summary as a constructor.
-                    this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
-                        capID: this.config.selectedCap.GlobalID,
-                        capIdx: 1,
-                        capOID: this.config.selectedCap.ObjectID,
-                        capURL: this.config.capabilitiesUrl,
-                        capName: this.config.selectedCap.Capability,
-                        pageToLoad: "requiredResources",
-                        //capResArr: this.capResourceArray,
-                        this_config: this.config
-                    });
-
-
+              //JF Call Summary as a constructor.
+              this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
+                  capID: this.config.selectedCap.GlobalID,
+                  capIdx: 1,
+                  capOID: this.config.selectedCap.ObjectID,
+                  capURL: this.config.capabilitiesUrl,
+                  capName: this.config.selectedCap.Capability,
+                  pageToLoad: "requiredResources",
+                  //capResArr: this.capResourceArray,
+                  this_config: this.config
+              });
     },
 
 
     _clickPartnerReportBtn:function(){
 
-            this._hideDivElementsOnTheMap();
+          this._hideDivElementsOnTheMap();
 
-                    console.log("SelectedCAP: " + this.config.selectedCap);
+              console.log("SelectedCAP: " + this.config.selectedCap);
 
-                    //JF Call Summary as a constructor.
-                    this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
-                        capID: this.config.selectedCap.GlobalID,
-                        capIdx: 1,
-                        capOID: this.config.selectedCap.ObjectID,
-                        capURL: this.config.capabilitiesUrl,
-                        capName: this.config.selectedCap.Capability,
-                        pageToLoad: "partnerSummary",
-                        //capResArr: this.capResourceArray,
-                        this_config: this.config
-                    });
-
-
-
+              //JF Call Summary as a constructor.
+              this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
+                  capID: this.config.selectedCap.GlobalID,
+                  capIdx: 1,
+                  capOID: this.config.selectedCap.ObjectID,
+                  capURL: this.config.capabilitiesUrl,
+                  capName: this.config.selectedCap.Capability,
+                  pageToLoad: "partnerSummary",
+                  //capResArr: this.capResourceArray,
+                  this_config: this.config
+              });
     },
 
     _clickGraphCapBtn:function(){
 
-              this._hideDivElementsOnTheMap();
+        this._hideDivElementsOnTheMap();
 
+              console.log("SelectedCAP: " + this.config.selectedCap);
 
-              //this.minimizeWidget();
-
-                    console.log("SelectedCAP: " + this.config.selectedCap);
-
-                    //JF Call Summary as a constructor.
-                    this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
-                        capID: this.config.selectedCap.GlobalID,
-                        capIdx: 1,
-                        capOID: this.config.selectedCap.ObjectID,
-                        capURL: this.config.capabilitiesUrl,
-                        capName: this.config.selectedCap.Capability,
-                        pageToLoad: "chartSummary",
-                        //capResArr: this.capResourceArray,
-                        this_config: this.config
-                    });
+              //JF Call Summary as a constructor.
+              this.resTable = new RES_TableConstructor ({// this calls the constructor.  No need for analysis functions
+                  capID: this.config.selectedCap.GlobalID,
+                  capIdx: 1,
+                  capOID: this.config.selectedCap.ObjectID,
+                  capURL: this.config.capabilitiesUrl,
+                  capName: this.config.selectedCap.Capability,
+                  pageToLoad: "chartSummary",
+                  //capResArr: this.capResourceArray,
+                  this_config: this.config
+              });
 
 
     },
@@ -1514,7 +1626,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
         // ********************************************************************
-        //  New Code to createCapArray
+        //  New Code to create Capabilities Array with Summary Statistics
         //  
         //  the capabilities URL is not the one that is currently selected!
         // ********************************************************************
@@ -1546,14 +1658,18 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     fLayer.queryRelatedFeatures(relatedResourcesQry, lang.hitch(this, function(relatedRecords) {
 
+
+                    // If no resoures exist for the selected capability  
                     if (typeof relatedRecords[capOID] == 'undefined') {
 
                         //alert("No reources exist.  Please add resources for this capability.");
 
-                        var resourceCount = dom.byId("capInfo-rCount");
-                            if(resourceCount){
-                                resourceCount.innerHTML="No resources allocated.";
-                            }
+                        //var resourceCount = dom.byId("capInfo-rCount");
+                        //    if(resourceCount){
+                        //        resourceCount.innerHTML="No resources allocated.";
+                        //    }
+                        var resourceCount2 = dom.byId("reqResCountId");
+                          if(resourceCount2){resourceCount2.innerHTML =  "0";  }
 
                         return;
                     }
@@ -1597,10 +1713,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                                 // Update the summary Info Section
                                 if(pSet.length==j+1){
                                     
-
-
                                         console.log("Completed First Cut of capResourceArray")
-
 
                                 }
 
@@ -1625,22 +1738,68 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                             }));
 
-                    }// Related reource do exist for the selected capability!
+                    }// Related reources do exist for the selected capability!
                 }));
 
                 }
                 else{
-                    alert("Can not determine the resource table for this capability.  Problem with relates.");
+                    alert("Can not determine the resource table for this capability.  Problem with the name of the relate.");
                 }
 
         },
 
 
+        createResourceListInPanel: function(){
 
+                // *********************************************
+                // list all Resources at the bottom of the info panel
+                array.forEach(this.capResourceArray, lang.hitch(this, function(item) {
+                    var contenta="";
+                        contenta='<div class="cap-info-text">' + item.Name + " " + item.Type +'</div>';
+
+                    var tp = new TitlePane({title:item.Name, content:contenta });
+                        dom.byId("capInfo-resources").appendChild(tp.domNode);
+
+                        tp.attr('open', false);
+                        tp.startup();
+
+
+                    //var newDIV = domConstruct.toDom(content);
+                    //             domConstruct.place(newDIV, dom.byId('capInfo-resources'), 'last');// could be "after" or "last"
+                }))
+
+
+
+        },
+
+
+        createPartnerListInPanel: function(){
+
+                // *************************************************
+                // list all Partners at the bottom of the info panel
+                array.forEach(this.capResourceArray, lang.hitch(this, function(item) {
+                    var contenta="";
+                        contenta='<div class="cap-info-text">' + item.Name + " " + item.Category +'</div>';
+
+                    var tp = new TitlePane({title:item.Name, content:contenta });
+                        dom.byId("capInfo-resources").appendChild(tp.domNode);
+
+                        tp.attr('open', false);
+                        tp.startup();
+
+
+                    //var newDIV = domConstruct.toDom(content);
+                    //             domConstruct.place(newDIV, dom.byId('capInfo-resources'), 'last');// could be "after" or "last"
+                }))
+
+
+        },
 
         countPartnerResources_0: function(rOID, rName, reqRes, i){
             //console.log("Function:  countPartnerResources-" + rOID);
-// test comment
+
+
+
               var resTabl = this.config.relates.filter(function(item) { return item.queryTableName === 'Mission_AssistingOrgs' && item.origin === 'Capability_Resources'; });
                   resTableUrl = resTabl[0].originURL;
                   relID = resTabl[0].queryRelId;
@@ -1678,10 +1837,11 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                           this.getUniquePartnerList(this.capResourceArray[0].CapID)
                           // Calling Balance Statitics for summary panel
                           this.countResourceItemsWithNoGaps();
+                          this.createResourceListInPanel(); // create initial resource list for cap Info Panel
 
                       }
-
-
+                      // ***********************************************************************
+                      // This may not be needed here, since it is used to to update table icons
                         if (typeof relatedRecords[rOID] == 'undefined') {
                             // console.log("No related resources for Capability OID: ", sourceID);
                             if(updateBalance){
@@ -1706,6 +1866,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                             // are calculated directly here and updated to the table via dom 
                             // CapResourceArray for use with other functions on this page. 
                             var balance = rCount-reqRes;
+
                                 this.capResourceArray[i].Balance = balance;
                                 this.capResourceArray[i].NmbCommitted =rCount;
                                 if((balance)>=0 && rCount!=0){
@@ -1746,11 +1907,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                                 }
 
 
-                            //if(this.capResourceArray.length==i+1){
 
 
-
-                            //}
 
 
                         }))// end response function for related records
@@ -1759,6 +1917,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         },
 
+        // ************************************************
+        //  UPDATE Resource COUNTS via DOM on capInfo Panel 
+        // ************************************************
 
         countResourceItemsWithNoGaps: function(){
             var countGreens=0;
@@ -1767,22 +1928,29 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
               if(item.Gap=="Green"){
                   console.log(item.Balance + " " + item.Name);
                   countGreens=countGreens+1;
-                  dom.byId("capInfo-rFully").innerHTML= countGreens + " resource types with no gaps";
+   //               dom.byId("capInfo-rFully").innerHTML= countGreens + " resource types with no gaps";
               }
 
             }))
 
-            var resourceCount = dom.byId("capInfo-rCount");
-                if(resourceCount){
+            //var resourceCount = dom.byId("capInfo-rCount");
+            var resourceHeading = dom.byId("reqResCountId");// update with resourceCount
+             
+                  //if(resourceCount){
 
-                  if(this.capResourceArray.length==1){
-                      resourceCount.innerHTML=this.capResourceArray.length + " resource required"
-                  }
-                  else{
-                       resourceCount.innerHTML=this.capResourceArray.length + " types of resources"
-                  }
+                      if(this.capResourceArray.length==1){
+                          // resourceCount.innerHTML=this.capResourceArray.length + " required resource";
+                          if(resourceHeading){resourceHeading.innerHTML =  "1 ";  }
+                      }
 
-                }
+
+                      if(this.capResourceArray.length>1){
+                          // resourceCount.innerHTML=this.capResourceArray.length + " types of resources"
+                          if(resourceHeading){resourceHeading.innerHTML = this.capResourceArray.length;  }
+                      }
+
+
+                //}
 
         },
 
@@ -1821,29 +1989,39 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         },
 
-// UPDATE SUMMARY
-
+        // ********************************************************
+        // This provides the summary of partners in the left panel 
+        // ********************************************************
         qComplete_UniquePartners: function(results) {
 
                 // *********************************************
                 // Update Capability Summary with partner count
+
                 var uPartnersArr=results.features;// save for layer use
                     if(uPartnersArr.length){// if 
 
-                      if(dom.byId("capInfo-pCount")){
+                     // if(dom.byId("capInfo-pCount")){
+                     //     dom.byId("capInfo-pCount").innerHTML= uPartnersArr.length + " partners supporting this capability";
+                     // }
 
-                          dom.byId("capInfo-pCount").innerHTML= uPartnersArr.length + " partners supporting this capability";
-
+                     // **********************
+                     // More than 0 Partners
+                      if(dom.byId("partnerCountId")){
+                       dom.byId("partnerCountId").innerHTML=uPartnersArr.length;// overwrite the "0"
                       }
-
 
                     }                                            
                     else{
+                      // **********************************
+                      // ZERO PARTNERS is the default
                       console.log("unassigned resource in partner results")
+                   
+
+
                     }
 
 
-                var val = dom.byId("capInfo-partners");
+                //var val = dom.byId("capInfo-partners");
                 // *********************************************
                 // list partners at the bottom of the info panel
                 array.forEach(uPartnersArr, lang.hitch(this, function(item) {
@@ -1901,49 +2079,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 */
 
-
-
-
-
-// Dynamically create the bookmarList dijit
-// Must be running when the content is ready to add to add to it.
-/*
-      _startupGroupContentListDijit: function(){
-                console.log("Place ThiraPicker Contents");
-
-                this.inherited(arguments);
-
-                if (!this.groupContentList) {// this is the new "bookmarkList" object used in the tileLayout container
-
-
-                    var bookmarkNode = dijit.byId('groupContentListId');
-                    if (bookmarkNode) {
-                        bookmarkNode.destroyRecursive();
-                    }
-
-
-                    this.groupContentList = new TileLayoutContainer({
-                        id: "thiraLayerList",
-                        strategy: 'fixWidth',
-                        itemSize: {
-                            width: 100,
-                            height: 92
-                        }, //image size is: 100*60,
-                        hmargin: 15,
-                        vmargin: 5
-                      }, "groupContentListId");
-
-
-                    //initiate hazard dropdown
-                    domConstruct.place(this.groupContentList.domNode, "thiraLayerPicker", "replace");
-
-                    this.groupContentList.startup();
-                }
-      },   
-*/
-
-
- 
 
 
 // Set Related Tables as application variables
@@ -2053,11 +2188,11 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
-// **************************************************
-//  Function 3  Add Capabilities Layer to Map
-// **************************************************
+// ********************************************************
+//  Function 3  Adds and Removes Capabilities Layer to Map
+// ********************************************************
  newLayer: function (url, token, newTitle) {
- //               this.hideCapSummary(); // remove table window 
+ //     this.hideCapSummary(); // remove table window 
         console.log("Begin adding Planning Layer");
 
         if(this.featureLayer){
@@ -2084,8 +2219,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                  this.url = newurl;
                }
       
-//ToDo              this.queryCapabilitiesLayer(newurl, this.defQuery);
-//ToDo               this._createHazArray(newurl);
+
             // *******************************************************************
             // When a new url is selected the app must change numerous settings
             // 
@@ -2137,23 +2271,23 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                 });
             
-                  this.featureLayer.setDefinitionExpression("1=1");
+                this.featureLayer.setDefinitionExpression("1=1");
 
                 var ringColorArray=this.config.capabilitiesColorBoundary;
                 var ringWidth=this.config.capabilitiesWidth;
                 var newRenderer = new SimpleRenderer(
 
-                    //new SimpleLineSymbol("solid", new Color([79, 131, 197]), 5)
-                    new SimpleLineSymbol("solid", new Color(ringColorArray), ringWidth)
+                //new SimpleLineSymbol("solid", new Color([79, 131, 197]), 5)
+                new SimpleLineSymbol("solid", new Color(ringColorArray), ringWidth)
                 );
             
+
                 // var newRenderer = new SimpleRenderer();
                 // var fillSymbol = new SimpleFillSymbol("solid", null, new Color([79, 131, 197]));
                 // // fillSymbol.setColor(new Color([146, 172, 211, 0]));
                 // fillSymbol.outline.setColor(new Color([0, 0, 0, 0.5]));
                 // fillSymbol.outline.setWidth(5);
                 // newRenderer.backgroundFillSymbol = fillSymbol;
-
 
                 this.featureLayer.setDefinitionExpression(this.defQuery);
                 this.featureLayer.setRenderer(newRenderer);
@@ -2163,7 +2297,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             this.map.addLayer(this.featureLayer);
 
             if(newTitle){ // changes name of selected Thira layer in Panel  
-//                this.updateThiraName(newTitle);
+//              this.updateThiraName(newTitle);
             }
 
             console.log("finished adding")

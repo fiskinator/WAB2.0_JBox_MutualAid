@@ -1,5 +1,5 @@
 
-
+.esriAttributeInspector .atiField
 
 /* Necessary for centering the selected item */
 .claro .dijitSelect .dijitInputField{
@@ -9,13 +9,15 @@
 /* Necessary for centering the selected item */
 .claro .dijitSelectLabel{
   padding: 5px 5px 5px 0px;
-  width: 99%;
+  /*width: 99%;*/
 }
+
 
 .claro .dijitSelect, .claro .dijitSelect .dijitButtonContents, .claro .dijitTextBox, .claro .dijitTextBox .dijitButtonNode {
     border-color: #b5bcc7;
     background-color: #FFF;
-    max-width:350px;
+    font-size: 18px;
+    height: 35px;
 }
 
 
@@ -67,7 +69,7 @@
     padding-left: 5px;
     color: #000;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     word-wrap: break-word;
     text-overflow: ellipsis;
     max-width: 300px;
