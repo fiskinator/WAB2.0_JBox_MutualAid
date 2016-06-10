@@ -517,9 +517,9 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 //    *******************************      
       else if(formType=="editRes"){
 
-          msgHeader.innerHTML="Edit Resource & Partner Updates";
+         // msgHeader.innerHTML="Edit Resource & Partner Updates";
 
-
+          alert("Yay - AttrFormsManager - create the edit resource Form")
 
 
       }

@@ -26,7 +26,7 @@ define([
 ],
 function (declare, lang, html, _WidgetBase, _TemplatedMixin, on, mouse, query) {
   return declare([_WidgetBase, _TemplatedMixin], {
-    templateString: '<div class="jimu-img-APnode"></div>',
+    templateString: '<div class="jimu-img-result-node"></div>',
     /**
     *options:
     *img: the img url,
@@ -45,7 +45,7 @@ function (declare, lang, html, _WidgetBase, _TemplatedMixin, on, mouse, query) {
       
       this.imgBox = html.create('div', {
         id: "EEI_PanelList",
-        'class': 'node-boxImg'
+        'class': 'node-resultImg'
       }, this.domNode);
 
 // used for image

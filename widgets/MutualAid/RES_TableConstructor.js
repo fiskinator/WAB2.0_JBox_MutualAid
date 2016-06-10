@@ -626,7 +626,6 @@ define([
             }));
         },        
 
- 
         // **************************************************
         // Create Event on Edit Resource Table Cell
         // Used to create clickable list for the resources 

@@ -30,6 +30,101 @@
   display:block;
 }
 
+/* Used for edit resource heading*/
+.edit-resource-item-node{
+    width: 100%;
+    padding: 5px;
+    border-bottom:1px solid  #3E536C;
+    background-color: #FFF;
+    overflow: hidden;
+    cursor: default;
+}
+
+
+.edit-resource-item-table{
+    width: 80%;
+    height: 35px;
+    font-weight: bold;
+    font-size: 14px;
+}
+.edit-partner-item-table{
+    width: 80%;
+    height: 35px;
+    font-size: 14px;
+}
+
+.edit-resource-item-status40px{
+    vertical-align: middle;
+    width: 40px;
+    padding: .2em .2em .2em .2em;
+    display: table-cell;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.edit-partner-item-status60px{
+    vertical-align: middle;
+    width: 60px;
+    padding-right: 10px;
+    display: table-cell;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.edit-resource-item-status95px{
+    vertical-align: middle;
+    width: 95px;
+    border-right: 1px solid #434343;
+    padding: .2em .2em .2em .2em;
+    display: table-cell;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.expand-partner-item-node{
+    width: 100%;
+    padding: 5px;
+  /*  border-bottom:1px solid  #3E536C;*/
+    background-color: #F5F3CB;
+    overflow: hidden;
+    /*cursor: pointer;*/
+}
+
+
+.add-partner-item-node{
+    width: 100%;
+    padding: 5px;
+    border-top:1px solid  #3E536C;
+
+    background-color: #FFF;
+    overflow: hidden;
+}
+.edit-partner-item{
+    vertical-align: middle;
+    width: 100%;
+    border-left: 1px solid #434343;
+    padding-left:10px;
+    display: table-cell;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.edit-partner-item-node{
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 10px;
+    /* border-top: 1px solid #3E536C;*/
+    background-color: #F5F3CB;
+    overflow: hidden;
+    cursor: default;
+}
 
 
 .capability-item-node{
@@ -184,6 +279,46 @@
 
 }
 
+.icon-pencil-edit-btn{
+    border-radius: 4px;
+    background-color:#007AC2;
+    border: none;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+
+}
+
+.icon-green-plus-btn{
+    border-radius: 4px;
+    background-color:#35ac46;
+    border: none;
+    padding: 5px;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+}
+
+.icon-green-plus-btn:before {
+  color: #ffffff;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e617";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 25px;
+}
+
+
+.icon-pencil-edit-btn:before {
+  color: #e0e0e0;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e62a";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 25px;
+
+}
+
+
 .icon-table-btn:before {
   color: #e0e0e0;
   font-family: 'icomoon'; /* BYO icon font, mapped smartly */
@@ -221,8 +356,16 @@
     border-bottom:1px solid  #3E536C;
 }
 
+.res-info-heading{
+  color:#383a3f;
+  font-size:16px;
+  text-rendering:auto;
+  padding-left: 5px;
+  padding-top: 2px;
+}
+
 .cap-info-heading{
-  font-size:18px;
+  font-size:16px;
   color:#000;
   font-weight:bold;
   border-bottom:1px solid  #3E536C;
@@ -231,16 +374,17 @@
   
 }
 
+
 .cap-info-btn-heading{
-  font-size:17px;
+  font-size:16px;
   color:#000;
   font-weight:bold;
   background-color: #a1a1a1;
 
-  border-bottom:1px solid  #3E536C;
+  /*border-bottom:1px solid  #3E536C;*/
   /*border-top:1px solid  #3E536C;*/
-  padding-top: 8px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   padding-left: 5px;
 
 }
@@ -248,21 +392,31 @@
 .cap-info-text{
   color:#383a3f;
   /*color::#565E69;*/
-  font-size:16px;
+  font-size:14px;
   text-rendering:auto;
   padding-left: 5px;
   padding-top: 2px;
-
+  cursor: default;
 }
+
+.resource-info-heading{
+    padding: 7px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 
 .cap-info-text-bottom-border{
   color:#383a3f;
   /*color::#565E69;*/
-  font-size:16px;
+  font-size:14px;
   text-rendering:auto;
   padding-left: 5px;
   padding-top: 2px;
   padding-bottom: 5px;
+  border-bottom:1px solid  #3E536C;
+  cursor: default;
 
 }
 
@@ -272,6 +426,7 @@
   border-bottom:1px solid  #3E536C;
   padding-top:10px;
   padding-left:3px;
+
 
 }
 
@@ -292,7 +447,7 @@
     padding-top: 2px;
     padding-left: 5px;
     padding-right: 5px;
-    border: 1px solid #000;
+    /*border: 1px solid #000;*/
     color: #FFF;
     font-weight: 300;
     font-size: 14px;
@@ -317,7 +472,7 @@
 
 /*
 .ma-jimu-btn-blue{
-
+    border-radius: 4px;
     background-color:#007AC2;;
     position: relative;
     padding-right: 10px;
@@ -462,17 +617,22 @@ span.ma-jimu-btn-darkblue .dijitButtonNode {
 
 
 
-/* TitlePane CSS */
-.dijitTitlePaneContentInner{
-
-background-color: #ffffff;
+/* TitlePane CSS controls the resource accordion list*/
+.claro .dijitTitlePaneContentInner{
+  padding:0px;
+  background-color: #ffffff;
 
 }
 
 
 .claro .dijitTitlePaneTitle {
   background-image: none;
-  border:none;
+  border: 1px solid #494949;
+ /* border:none;*/
+}
+
+.claro .dijitTitlePaneTitle:hover{
+  font-weight: bold;
 }
 
 
@@ -492,11 +652,31 @@ padding-bottom:3px;
 background-color: #d3d3d3;
 font-size:14px ;
 font-weight: bold;
+margin-left: 0px;
 }
+
+/* used to remove indent of resource list*/
+.claro .dijitTitlePaneTextNode, .claro .dijitFieldsetLegendNode{
+  margin-left: 0px;
+  width: 0px;
+}
+
+/* used to hide the toggle carrat for resource list*/
+.claro .dijitTitlePane .dijitArrowNode {
+    width: 0px;
+ /* width: 7px; */
+        /* 
+          background-image: url("images/spriteArrows.png");
+          background-repeat: no-repeat;
+          height: 8px;
+          width: 7px; 
+        */
+}
+
 
 .claro .dijitTitlePaneTextNode, 
 .claro .dijitFieldsetLegendNode{
-font-size: 16px;
+/*font-size: 16px;*/
 
 
 }
