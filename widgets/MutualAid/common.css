@@ -48,7 +48,7 @@
     font-size: 14px;
 }
 .edit-partner-item-table{
-    width: 80%;
+    width: 280px;
     height: 35px;
     font-size: 14px;
 }
@@ -66,7 +66,7 @@
 
 .edit-partner-item-status60px{
     vertical-align: middle;
-    width: 60px;
+    width: 50px;
     padding-right: 10px;
     display: table-cell;
     text-align: center;
@@ -88,12 +88,14 @@
 
 .expand-partner-item-node{
     width: 100%;
-    padding: 5px;
+    padding-top: 5px;
   /*  border-bottom:1px solid  #3E536C;*/
-    background-color: #F5F3CB;
+    background-color: #bac2ca;
     overflow: hidden;
     /*cursor: pointer;*/
 }
+
+
 
 
 .add-partner-item-node{
@@ -106,25 +108,31 @@
 }
 .edit-partner-item{
     vertical-align: middle;
-    width: 100%;
+    max-width: 235px;
     border-left: 1px solid #434343;
-    padding-left:10px;
+    padding-left:5px;
     display: table-cell;
     text-align: left;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    /* white-space: nowrap;*/
 }
 
 .edit-partner-item-node{
     width: 100%;
     padding-top: 5px;
-    padding-left: 10px;
-    /* border-top: 1px solid #3E536C;*/
-    background-color: #F5F3CB;
+    padding-left: 5px;
     overflow: hidden;
     cursor: default;
 }
+
+.edit-partner-item-node:nth-child(odd) {
+   background-color:#d4d9de;
+}
+.edit-partner-item-node:nth-child(even) {
+  background-color:#bac2ca; 
+}
+
 
 
 .capability-item-node{
@@ -203,7 +211,7 @@
     font-size: 16px;
     color:#000;
     max-width: 240px;
-    line-height: 18px;
+    line-height: 16px;
     padding-top: 3px;
 
     /*min-height: 48px; /* necessary for single line capabilities */
@@ -254,7 +262,7 @@
     font-size: 18px;
     font-weight: bold;
     word-wrap: break-word;
-    padding: 5px;
+    padding: 10px;
     border-bottom:1px solid #021a40;
     border-top:1px solid #021a40;
 }
@@ -400,9 +408,9 @@
 }
 
 .resource-info-heading{
-    padding: 7px;
+    padding: 5px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -415,7 +423,7 @@
   padding-left: 5px;
   padding-top: 2px;
   padding-bottom: 5px;
-  border-bottom:1px solid  #3E536C;
+  /*border-bottom:1px solid  #3E536C;*/
   cursor: default;
 
 }
@@ -604,6 +612,54 @@ span.ma-jimu-btn-darkblue .dijitButtonNode {
 }
 
 
+
+.dialog-content .esriAttributeInspector{
+    width: 100%;
+    z-index: 99;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.esriAttributeInspector .atiLabel {
+    /* margin: 3px; */
+    padding-right: 5px;
+    padding-bottom: 5px;
+    color: #616060;
+    font-size: 16px;
+}
+
+.esriAttributeInspector .atiField {
+
+width:100%;
+margin: 3px;
+}
+
+.claro .dialog-content .layer-settings-submit, .calcite .dijitButtonNode {
+    -webkit-border-radius: 2;
+    -moz-border-radius: 2;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 17px;
+    line-height: 17px;
+    background: #007ac2;
+    border: 1px solid transparent;
+    padding: 5px 12px;
+    vertical-align: middle;
+    text-decoration: none;
+    margin: 0 0 5px 0;
+    cursor: pointer;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.claro .dijitDialogTitle {
+    padding: 0 1px;
+    font-size: 1.591em;
+    color: #000000;
+}
+
     
 #rtltCmbBox,
 #widget_rtltCmbBox,
@@ -627,32 +683,33 @@ span.ma-jimu-btn-darkblue .dijitButtonNode {
 
 .claro .dijitTitlePaneTitle {
   background-image: none;
-  border: 1px solid #494949;
- /* border:none;*/
-}
-
-.claro .dijitTitlePaneTitle:hover{
-  font-weight: bold;
+  border: 1px solid #717171;
 }
 
 
-.claro .dijitTitlePane{
-  background-color: #e0e0e0;
+
+.claro .dijitTitlePane:hover{
+  border: 2px solid #000;
 }
+
 
 .claro .dijitTitlePaneTitleClosed{
 background-color: #d3d3d3;
 font-size:14px ;
-padding-top: 3px;
-padding-bottom:3px;
+padding: 8px;
+
 }
+
+
 
 .claro .dijitTitlePaneTitleOpen,
 .claro .dijitTitlePaneTitleFixedOpen{
 background-color: #d3d3d3;
 font-size:14px ;
-font-weight: bold;
+padding: 8px;
 margin-left: 0px;
+
+
 }
 
 /* used to remove indent of resource list*/
@@ -664,7 +721,7 @@ margin-left: 0px;
 /* used to hide the toggle carrat for resource list*/
 .claro .dijitTitlePane .dijitArrowNode {
     width: 0px;
- /* width: 7px; */
+    width: 7px; 
         /* 
           background-image: url("images/spriteArrows.png");
           background-repeat: no-repeat;

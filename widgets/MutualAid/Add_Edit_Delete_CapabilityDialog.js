@@ -39,11 +39,13 @@ define([
   'esri/tasks/query',
   'esri/dijit/AttributeInspector',
 
-  'dijit/_WidgetBase'
+  'dijit/_WidgetBase',
+  'dijit/Dialog',
+  'dojo/dom-style'
 ],
 function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic,
           Memory, ComboBox, Polygon, Extent, Button, FeatureLayer, RelationshipQuery, QueryTask, Query, AttributeInspector,
-          _WidgetBase) {
+          _WidgetBase,Dialog,domStyle) {
   
           return declare("", null, {
 
@@ -522,6 +524,45 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           alert("Yay - AttrFormsManager - create the edit resource Form")
 
 
+
+
+
+/*
+
+   var myDialog = new Dialog({
+            id:    "newDialogId",
+            title: "Programmatic Dialog Creation",
+            style: "width: 300px"
+        });
+
+            domStyle.set(myDialog.containerNode, {
+              position: 'relative'
+            })
+
+        var edContent = '';
+            edContent += '<div id="inspector_parent">Testing</div>';
+          
+        var editDialogNode = domConstruct.create('div', {innerHTML: edContent});
+            domConstruct.place(editDialogNode, dom.byId("newDialogId"), 'last');
+
+
+
+               // myDialog.set("content", "Hey, I wasn't there before, I was added at " + new Date() + "!");
+                myDialog.show();
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
       }
 
 
@@ -846,12 +887,46 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           var saveButton = new Button({ label: "Save", "class": "saveButton"},domConstruct.create("div"));
           var cancelAddResButton = new Button({ label: "Cancel", "class": "cancelAddResButton"},domConstruct.create("div"));
 
-          domConstruct.place(attInspector.domNode, dom.byId("inspector_parent"), 'last');
-          domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
+ //         domConstruct.place(attInspector.domNode, dom.byId("inspector_parent"), 'last');
 
+ //         domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
+ //         domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
+ //         domConstruct.place(cancelAddResButton.domNode, attInspector.domNode, "after"); 
+
+// --------------INSERT POPUP
+
+
+  var myDialog = new Dialog({
+            id:    "newDialogId",
+            title: "Programmatic Dialog Creation",
+            style: "width: 500px"
+        });
+
+            domStyle.set(myDialog.containerNode, {
+              position: 'relative'
+            })
+
+        var edContent = '';
+            edContent += '<div id="inspector_parent">Testing</div>';
+          
+        var editDialogNode = domConstruct.create('div', {innerHTML: edContent});
+            domConstruct.place(editDialogNode, dom.byId("newDialogId"), 'last');
+
+
+          domConstruct.place(attInspector.domNode, editDialogNode, 'last');
+          domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
           domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
           domConstruct.place(cancelAddResButton.domNode, attInspector.domNode, "after"); 
 
+
+               // myDialog.set("content", "Hey, I wasn't there before, I was added at " + new Date() + "!");
+          myDialog.show();
+        
+
+
+
+
+// --------------------END INSERT POPUP
 
 
           // ***********************************************************
@@ -900,6 +975,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
                    this.afterNewResourceIsAdded();
 
+                   myDialog.hide;
+                   myDialog.destroyRecursive();
 
 
                   }), function(err){
@@ -923,7 +1000,10 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                 alert('need to remove a record: ' + deletes[0].objectId);
                   this.removeAddResPanel();
                   updateFeature = [];
-                //this.hideRADialog();
+                  //this.hideThisDialog();
+                  myDialog.hide
+                  myDialog.destroyRecursive();
+
                   }), function(err){
                           console.log(err.message);
                       }
@@ -964,9 +1044,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }));
 
 
-                      
-
-          //this._addDialog.show();
+   
       }
 
 

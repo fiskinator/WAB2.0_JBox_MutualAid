@@ -14,7 +14,6 @@ define([
     "dojo/on",
     "dojo/request",
     "dijit/Dialog",
-    "./AttrFormsManager",
 
     "dojo/store/Memory",
     "dojox/charting/action2d/Highlight",
@@ -39,7 +38,7 @@ define([
 ],
     function (
         registry,array,declare,lang,dom, win, domClass, Stateful, Evented,
-        domConstruct,easing,numbr,on,request, Dialog, AttrFormsManager,
+        domConstruct,easing,numbr,on,request, Dialog,
         Memory, Highlight,Tooltip,Chart, Chart2D, StackedColumns, MiamiNice,
         Extent, Button, FeatureLayer, RelationshipQuery, QueryTask
  //       CAP_InitiateDialog,CAP_EditRecordDialog,RES_AddRecordDialog,RES_EditRecordDialog, RESP_EditRecordDialog,RESP_AddRecordDialog
