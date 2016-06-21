@@ -53,33 +53,12 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
     /*************************************************
 
-    This file Code:
-      1) creates 6 different Attribute Inspector Objects based on user input click:
-      
 
-      Create Edit panel depending on type of edit
-          editCap - Edit Capabity Form
-          addCap -  Add Capability Form
-          editRes - Edit Resource
-          addRes -  Add Resource
-          editPar - Edit Partner Committment
-          addPar -  Add Partner Committment
-
-
-      2) Creates the DOM nodes necessary for each form
-
-      3) Passes refresh instructions to the main app
 
     **************************************************/
     constructor: function(options){
 
 
-
-
- //     var defaults = lang.mixin({}, this.options, options);
-          // properties are contained in the config settings
-          // that are created and updated in the app
-  //        this.set("current_config", defaults.this_config);
 
     },
 
@@ -140,25 +119,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
       }
 
-
-      // Place ADD RESOURCE Inspector
-      if(formType=="addRes"){
-
-          var  content="";
-               content+='<div class="inspectorPanelTextContainer" id="capEditId">';
-               content+=    '<div id="formPanelId" class="inspectorPanelTextContainer" ></div>';
-               content+='</div>';
-
-          var newDIV = domConstruct.toDom(content);
-          domConstruct.place(newDIV, dom.byId('placeAttrInsp_addRes'), 'after');// could be "after" or "last"
-      }
-
-
-
               this.createFormComponents(formType, config);
-
-
-
     },
 
     removeEditPanel: function(){
@@ -295,7 +256,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 //  pass what you need to create a fLayer Object  
 //
 //  ************************************************
-    createFormComponents: function(formType,current_config){
+    createCapFormComponents: function(formType,current_config){
 
       this.inherited(arguments);
 
@@ -459,7 +420,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     // ADD NEW RESOURCE ENTRY FORM
     // 
     // *******************************      
-      else if(formType=="addRes"){
+      else if(formType=="addRes"){   //or editRes - but
 
           //msgHeader.innerHTML="Add Resource & Partner Updates";
 
@@ -499,7 +460,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }
         });
 
-        console.log(rtltData);
+        //console.log(rtltData);
 
         capResources_flayer.applyEdits([resAttributes], null, null, 
           lang.hitch(this, function(addResults) {

@@ -45,7 +45,7 @@
     width: 80%;
     height: 35px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
 }
 .edit-partner-item-table{
     width: 280px;
@@ -62,6 +62,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    font-size: 14px;
 }
 
 .edit-partner-item-status60px{
@@ -356,6 +357,15 @@
   font-family: 'icomoon'; /* BYO icon font, mapped smartly */
   content: "\e600";
   font-size: 25px;
+}
+
+
+.icon-checkmark-green:before {
+    font-family: 'icomoon';
+    font-size: 24px;
+    cursor: pointer;
+    color: #196619;
+    content: "\e61b";
 }
 
 
