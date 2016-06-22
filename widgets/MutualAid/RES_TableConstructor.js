@@ -29,18 +29,14 @@ define([
     "esri/tasks/RelationshipQuery",
     "esri/tasks/QueryTask",
 
-    //"application/CAP_InitiateDialog",
-   // "application/CAP_EditRecordDialog",
-    //"application/RES_AddRecordDialog",
-    //"application/RES_EditRecordDialog",
-   // "application/RESP_EditRecordDialog",
-    //"application/RESP_AddRecordDialog"
+    "./Add_Edit_Delete_ResourceDialog"
+
 ],
     function (
         registry,array,declare,lang,dom, win, domClass, Stateful, Evented,
         domConstruct,easing,numbr,on,request, Dialog,
         Memory, Highlight,Tooltip,Chart, Chart2D, StackedColumns, MiamiNice,
-        Extent, Button, FeatureLayer, RelationshipQuery, QueryTask
+        Extent, Button, FeatureLayer, RelationshipQuery, QueryTask, Add_Edit_Delete_ResourceDialog
  //       CAP_InitiateDialog,CAP_EditRecordDialog,RES_AddRecordDialog,RES_EditRecordDialog, RESP_EditRecordDialog,RESP_AddRecordDialog
     ) {
 
@@ -209,7 +205,7 @@ define([
                     var createForm = new AttrFormsManager();
                         createForm._insertEditPanel("addRes");
 
-                    //this.initAddResRecord(this.capID); //located in RES_AddRecordDialog;
+
                 }));
 
             // ******************************************
@@ -555,11 +551,11 @@ define([
                 rTable += '<div class="row">';
                 rTable +=   '<div class="resColumn1">Balance</div>';
                 rTable +=   '<div class="resColumn2">Resource Name</div>';
-                rTable +=   '<div class="resColumn5"></div>';
+            //    rTable +=   '<div class="resColumn5"></div>';
                 rTable +=   '<div class="resColumn3">Required</div>';
                 rTable +=   '<div class="resColumn4">Secured</div>';
                 rTable +=   '<div class="resColumn6">Definition</div>';
-                rTable +=   '<div class="resColumn7">Partners</div>';
+                //rTable +=   '<div class="resColumn7">Partners</div>';
                 rTable += '</div>';
 
             var rTableNode = domConstruct.toDom(rTable);
@@ -594,12 +590,12 @@ define([
                 rTable += '<div class="row">';
                 rTable +=   '<div class="resColumn1" id="resBalance-' + resItem.ObjectID + '">' + (resItem.NmbCommitted - resItem.NmbNeeded) + '</div>';
                 rTable +=   '<div class="resColumn2">' + resItem.Name + '-' + resItem.Type + '</div>';
-                rTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
+            //    rTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
 
                 rTable +=   '<div class="resColumn3">' + resItem.NmbNeeded +' </div>';
                 rTable +=   '<div class="resColumn4" id="resCount-' + resItem.ObjectID + '">' + resItem.NmbCommitted  +' </div>';
                 rTable +=   '<div class="resColumn6" id="rTypeDef-' + i + '">' + '<div class="icon-books"></div>' + '</div>';
-                rTable +=   '<div class="resColumn7" id="rPartner-' + i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
+            //    rTable +=   '<div class="resColumn7" id="rPartner-' + i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
                 rTable += '</div>';
 
                 var clickEdit = "rEditIdx-" + i;
@@ -610,17 +606,17 @@ define([
                 var rTableNode = domConstruct.toDom(rTable);
                     domConstruct.place(rTableNode, dom.byId('rTableParent'), 'last');
 
-                var clickNode1 = dom.byId(clickEdit);
-                    this.ccEditResNodes.push(clickNode1);
-                    this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
+            //    var clickNode1 = dom.byId(clickEdit);
+            //        this.ccEditResNodes.push(clickNode1);
+            //        this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
 
                 var clickNode2 = dom.byId(clickType);
                     this.ccResTypeNodes.push(clickNode2);
                     this._ccEventResTypeInfo(this.capIdx, i);
 
-                var clickNode3 = dom.byId(clickPartner);
-                    this.ccResPartnerNodes.push(clickNode3);
-                    this._ccEventResPartner(i, resItem.Name, resItem.Type, resItem.ObjectID, resItem.GlobalID, clickedFrom);
+            //    var clickNode3 = dom.byId(clickPartner);
+            //        this.ccResPartnerNodes.push(clickNode3);
+            //        this._ccEventResPartner(i, resItem.Name, resItem.Type, resItem.ObjectID, resItem.GlobalID, clickedFrom);
 
             }));
         },        
@@ -657,14 +653,12 @@ define([
         // *****************************************************
         _editResClicked: function(resName,resGID, clickedFrom){
 
-            //this.initResEditForm(resGID,resName, clickedFrom);// located in RES_EditRecordDialog.js
 
-/// TODO pass enough form above to create AttrInspector            
             // ************************************************
-            // Call AttrFormManager to create AddResource Form
+            // Call ResourceDialog to create AddResource Form
             // ************************************************
-                var createForm = new AttrFormsManager();
-                    createForm._insertEditPanel("editRes");
+                var createForm = new Add_Edit_Delete_ResourceDialog();
+                    createForm._createCustomDomains("editRes", this.config);
 
         },
 

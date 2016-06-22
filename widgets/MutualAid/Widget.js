@@ -45,8 +45,8 @@ define([
   './ImageNode',
   './AboutThisApp',
   './RES_TableConstructor',
-  './CAP_AddRecordDialog',
-  './CAP_EditRecordDialog',
+  //'./CAP_AddRecordDialog',
+  //'./CAP_EditRecordDialog',
 
   'dijit/form/Button',
   'jimu/utils',
@@ -66,7 +66,7 @@ define([
 
 ],
 function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, dom, domConstruct, topic, all, Memory, registry, Form, Select, FilteringSelect, 
- TitlePane, Add_Edit_Delete_CapabilityDialog, Add_Edit_Delete_ResourceDialog, Add_Edit_Delete_PartnerDialog, TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, CAP_AddRecordDialog, CAP_EditRecordDialog, Button, 
+ TitlePane, Add_Edit_Delete_CapabilityDialog, Add_Edit_Delete_ResourceDialog, Add_Edit_Delete_PartnerDialog, TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, Button, 
  utils,   esriPortal, esriRequest, InfoTemplate, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol, SimpleRenderer, Color, tokenUtils, 
  QueryTask, RelationshipQuery) {
 
@@ -182,14 +182,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
-
-
-
-
-
 // JF Insert Divs for table and slideshow.
 //  to make this visible must add class="esriMapContainer" when the button is clicked.
-
 
             var insertDIV="";   
                 insertDIV = '<div id="slideShowDiv"></div>';// JF Inserted to contain alternate window to replace mapDiv -->
@@ -264,26 +258,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 }));
 
 
-        // **********************************************
-        // Insert the About Button
-        // **********************************************
-            // var addMenuItem="";   
-            //     addMenuItem = '<div class="item" id="aboutMenuId">';
-            //     addMenuItem +=     '<div class="item-container" title="About">';
-            //     addMenuItem +=        '<div class="title">';
-            //     addMenuItem +=          '<div class="playScreenIconNoPadding"></div>';
-            //     addMenuItem +=          '<div class="icon-text">About</div>';
-            //     addMenuItem +=        '</div>';
-            //     addMenuItem +=        '<div class="arrow"></div>';
-            //     addMenuItem +=     '</div>'
-            //     addMenuItem +='</div>'
-            //     addMenuItem +='<div class="clear"></div>';
-
-
-            // var insertNode = domConstruct.toDom(addMenuItem);
-            //     domConstruct.place(insertNode, dom.byId('drawer-menu-button-parent'), 'last');// could be "after" or "last"
-
-
 
            this.createDrawerMenuPanels();
     },
@@ -342,41 +316,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             }, "appBtn3").startup();
 
 
-
-            // **********************************************************
-            // Insert OVERVIEW Buttons ID is contained in the widget.html
-            // **********************************************************
-/*
-            var removeBackBtn=dijit.byId("appBackBtn");
-                if(removeBackBtn){
-
-                    removeBackBtn.destroyRecursive();
-
-                    var maBackBtn = new Button({
-                        label: "Back",
-                        id:"appBackBtn",
-                        onClick: lang.hitch(this,function(){
-                            // Do something:
-                            //this._openSlideShow("overview");
-                            alert("clicked")
-                         })
-                    }, "maBackBtn").startup();
-
-                }
-
-                else{
-                    var maBackBtn = new Button({
-                        label: "Back",
-                        id:"appBackBtn",
-                        onClick: lang.hitch(this,function(){
-                            // Do something:
-                            //this._openSlideShow("overview");
-                            alert("clicked")
-                         })
-                    }, "maBackBtn").startup();
-
-                }
-  */
 
     },
 
@@ -742,9 +681,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         }))
 
-        this.gotoTest();
+        //this.gotoTest();
+
+        this.displayBookmarks(this.capArr);// after creating the Icon Array
       },
 
+      // not used
       gotoTest: function(){
 
           this.displayBookmarks(this.capArr);
@@ -1050,8 +992,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
                         this.newLayer(planLyrUrl, this.config.token, planLyrTitle);// add featureLayer to webmap.  Featurelayer seems to be added automatically when webmap changes.
-// Important
-// New layer sele
+// Important - New layer selection
                         this.config.capabilitiesUrl=planLyrUrl;
 
                     }));
@@ -1069,14 +1010,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             },
 
 
-
-  
-
-
-
-// ******************************************************
-// List Shared Plans from selected Group using tileDisplay List Digit
-// ******************************************************
+// ********************************************************************************************
+// List Capabilities from selected Plan using ImageNode and tileLayout Container Display Dijit
+// ********************************************************************************************
 
     displayBookmarks: function(coreCaps) {
         // summary:
@@ -1199,6 +1135,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
     // ****************************************************
     // This is called with a topic message from each Dialog
+    // This is how the left panel is refeshed.  
+    // Refresh was an issue with prototype
     // ****************************************************
 
     removeCapInfoDijitBtns: function(){
@@ -1232,11 +1170,11 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
     },
 
-    // ************************************************************************************
+    // ******************************************************************************************************************
     //
-    // This is necessary since it seems like the TitlePane Dijit creates dijits infinately
+    // This is necessary for memory management, since it seems like the TitlePane Dijit creates new dijit ID's infinately
     //
-    // ************************************************************************************
+    // ******************************************************************************************************************
 
     _removeTitleListDijit: function(resCount){
 
@@ -1823,6 +1761,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     // create linkable URL to an an online resource definition.  This can be an MRP definition if necessary.
                     var resID = item.ObjectID;
+                    var typeID = item.ResourceID;
                     var resTyp = item.RTLT_Type;
                     var urlBase="";
                     var resDefUrl="";
@@ -1834,16 +1773,16 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         if (resTyp == "Position Qualification"){
                             urlBase = 'https://rtlt.preptoolkit.org/Public/Position/View/';
                         }
-                        if (typeof resID !== 'undefined' || resID !== null){
+                        if (typeof typeID !== 'undefined' || typeID !== null){
                             //window.open(urlBase+resID, '_blank');
-                            resDefUrl=urlBase+resID;
+                            resDefUrl=urlBase+typeID;
                             resDefLabel='<a href="' + resDefUrl + '" target="_blank">Resource Definition</a>';
                         }
                         // **********************************************************************************
                         // If this is a NON - FEMA typed resource is selected, then no definition is available.  
                         // This will require a change to the data model!
                         // ************************************************************************************
-                          if (typeof resID == 'undefined' || resID == null || resID == ""){
+                          if (typeof typeID == 'undefined' || typeID == null || typeID == ""){
                             console.log('no resource ID for this resource..');
                             resDefLabel="No Resource Definition";
                         }
@@ -1868,19 +1807,10 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         rContent+=    '<div tooltip="Edit Resource" class="node-box" style="float:right;">';
                         rContent+=        '<div id="' + resClickId + '" class="icon-pencil-edit-btn"></div>';
                         rContent+=     '</div>';
-                        
                         rContent+=     '<table class="edit-resource-item-table">';
                         rContent+=         '<tr><td class="edit-resource-item-status95px">' + item.NmbNeeded +'  Required</td><td id="'+ resCommittedId + '" class="edit-resource-item-status95px">' + item.NmbCommitted + ' secured</td>'
                         
-                        //if(item.Gap=="Green"){
-                        //  rContent+=       '<td id="resBalance" style="color:#00b200;" class="edit-resource-item-status40px">+'+  item.Balance +'</td>';  
-                        //}
-                        //else if(item.Gap=="Red"){
-                        //  rContent+=       '<td id="resBalance" style="color:red" class="edit-resource-item-status40px">'+  item.Balance +'</td>';          
-                        //}
-                        //else{
                         rContent+=              '<td id="' + resBalanceId + '" class="edit-resource-item-status40px">'+  item.Balance +'</td>';          
-                        //}
                         
                         rContent+=          '</tr>';
                         rContent+=    '</table>';                   
@@ -2010,7 +1940,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             this.config.selectedResName=resName;
           
             // ************************************************
-            // Call AttrFormManager to create AddResource Form
+            // Call ResourceDialog to create AddResource Form
             // ************************************************
                 var createForm = new Add_Edit_Delete_ResourceDialog();
                     createForm._createCustomDomains("editRes", this.config);
