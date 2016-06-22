@@ -190,7 +190,7 @@
       },
       {
         "uri": "widgets/Splash/Widget",
-        "visible": false,
+        "visible": true,
         "position": {
           "relativeTo": "browser"
         },
@@ -258,7 +258,7 @@
       "right": 0,
       "bottom": 0
     },
-    "itemId": "5fe10ce2cd39417cbfd274a4f9768dba",
+    "itemId": "d16d53126f1243a3a7a7f1d0dff39662",
     "mapOptions": {},
     "id": "map",
     "portalUrl": "http://www.arcgis.com"

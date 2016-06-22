@@ -183,7 +183,7 @@ define(['dojo/_base/declare',
         }
 
         if (html.hasClass(this.domNode, 'jimu-widget-splash-desktop')) {
-          html.setStyle(this.customContentNode, 'marginTop', '20px');
+          html.setStyle(this.customContentNode, 'marginTop', '10px');
           html.setStyle(this.customContentNode, 'height', 'auto');
 
           var box = html.getContentBox(this.splashContainerNode);

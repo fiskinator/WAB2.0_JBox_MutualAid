@@ -30,7 +30,7 @@
   white-space: normal;
   text-indent: 5px;
   margin-left: 5px;
-  color: #fff;
+  color: #000;
   float: none !important;
   display: inline;
 }
@@ -80,12 +80,22 @@
   max-height: 500px;
   max-width: 640px;
 }
+
+
 .jimu-widget-splash-desktop .splash-container{
   position: absolute;
   display: inline-block;
+
+/* Original Splash Widget CSS
   background-color: #485566;
+*/
+
+  background-color: #FFF;
+
   box-shadow: 0 0 4px rgba(160, 160, 160, 0.4);
 }
+
+/* Original Widget CSS
 .jimu-widget-splash-desktop .custom-content{
   width: 560px;
   margin: 20px 40px;
@@ -93,6 +103,17 @@
   color: #fff;
   max-height: 388px;
 }
+*/
+
+.jimu-widget-splash-desktop .custom-content{
+    width: 500px;
+    margin: 2px 4px;
+    overflow: auto;
+    /* color: #8a4444; */
+    max-height: 360px;
+}
+
+
 .jimu-widget-splash-desktop .splash-container .footer{
   max-height: 100px;
   margin: 0 40px 10px 40px;
