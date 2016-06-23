@@ -91,7 +91,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
              
             //topic.subscribe("REFRESH_CAPINFO", lang.partial(this._insertCapInfo, this.config.selectedCap));                                   
             topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
-            //topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.removeCapInfoDijitBtns));
+            topic.subscribe("CAP_DELETED", lang.hitch(this, this._onBackBtnClicked));
 
             topic.subscribe("DELETED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
             topic.subscribe("ADDED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
@@ -1093,15 +1093,15 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         if(coreCap.Capability=="Add Capability Target"){
 
-          document.getElementById("showerId").className="hiddenDiv";
-          document.getElementById("hiderId").className="showingDiv";
+          //document.getElementById("showerId").className="hiddenDiv";
+          //document.getElementById("hiderId").className="showingDiv";
 
-          document.getElementById("selectedCoreCapImg").src=coreCap.ThumbnailUrl;
-          document.getElementById("selectedCoreCapTitle").innerHTML=coreCap.Capability;
+          //document.getElementById("selectedCoreCapImg").src=coreCap.ThumbnailUrl;
+          //document.getElementById("selectedCoreCapTitle").innerHTML=coreCap.Capability;
 
 
           var createForm = new Add_Edit_Delete_CapabilityDialog();
-              createForm._insertEditPanel("addCap",this.config);
+              createForm.createCapFormComponents("addCap",this.config);
 
 
         }
@@ -1643,7 +1643,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     // If no resoures exist for the selected capability  
                     if (typeof relatedRecords[capOID] == 'undefined') {
 
-                        alert("No reources exist.  Please add resources for this capability.");
+                      //  alert("No reources exist.  Please add resources for this capability.");
 
                         //var resourceCount = dom.byId("capInfo-rCount");
                         //    if(resourceCount){
