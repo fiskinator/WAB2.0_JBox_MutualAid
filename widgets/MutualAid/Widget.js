@@ -2564,7 +2564,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             this._createHazArray(newurl);
 
 
-
+            this.map.infoWindow.resize(330, 300);
                
             var content = "<b>Capability</b>: ${Capability}" +
                 "<br><b>Outcomes</b>: ${Outcomes}" +

@@ -68,8 +68,8 @@ define([
 
 
                   content+=   '<div class="diy-slideshow" id="diy-slideshow-DivId">';
-                  content+=     '<span class="prev" id="prevSlideId">&laquo;</span>';
-                  content+=     '<span class="next" id="nextSlideId">&raquo;</span>';
+                  content+=     '<span class="prev-slide" id="prevSlideId">&laquo;</span>';
+                  content+=     '<span class="next-slide" id="nextSlideId">&raquo;</span>';
                   content+=   '</div>';
 
 
@@ -104,8 +104,8 @@ define([
 
                           content="";
                           //content=  '<div class="diy-slideshow" id="diy-slideshow-DivId">';
-                          content+=   '<span class="prev" id="prevSlideId">&laquo;</span>';
-                          content+=   '<span class="next" id="nextSlideId">&raquo;</span>';
+                          content+=   '<span class="prev-slide" id="prevSlideId">&laquo;</span>';
+                          content+=   '<span class="next-slide" id="nextSlideId">&raquo;</span>';
                           //content+='</div>';
 
                   
