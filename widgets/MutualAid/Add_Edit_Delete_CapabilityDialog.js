@@ -298,7 +298,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                                     lang.hitch(this, function(addResults) {
                                       console.log('inserted record: '); 
                                       console.log(addResults[0].objectId);
-                                      this._capabilityUpdateForm(addResults[0].objectId, edit_flayer);
+                                      this._capabilityUpdateForm(addResults[0].objectId, capURL);
+
                                     }), function(err){
                                             console.log(err);
                                         }
@@ -417,11 +418,24 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
  
 */
 
-    _capabilityUpdateForm: function (oid, edit_flayer) {
+    _capabilityUpdateForm: function (oid, capURL) {
 
-      console.log("_capabilityUpdateForm has been reached!")
 
-      var dialogTitle="Create a new capability target"
+      var new_flayer = new FeatureLayer(capURL, {
+          mode: FeatureLayer.MODE_ONDEMAND,
+          id: 'new_flayer',
+          outFields: ["*"]
+        });  
+
+
+      // ***********************************************************************************************
+      // This is VERY important.  Without the .on "load" it will function properly only 50% of the time!
+      // ***********************************************************************************************                                                             
+      new_flayer.on("load", lang.hitch(this, function () {
+
+          console.log("_capabilityUpdateForm has been reached!")
+
+          var dialogTitle="Create a new capability target"
 
           var updateFeature;
 
@@ -429,7 +443,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           var query = new Query();
           query.where = "ObjectID = '" + objectID + "'"; 
 
-          edit_flayer.selectFeatures(query, FeatureLayer.SELECTION_NEW, function(features){
+          new_flayer.selectFeatures(query, FeatureLayer.SELECTION_NEW, function(features){
               if (features.length > 0) {
                 //store the current feature
                 updateFeature = features[0];
@@ -448,7 +462,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
           var layerInfos = [
             {
-              'featureLayer': edit_flayer,
+              'featureLayer': new_flayer,
               'showAttachments': false,
               'isEditable': true,
               'fieldInfos': [
@@ -576,6 +590,9 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
 
         myDialog.show();
+
+     }))// only after new_flayer has loaded   
+
 },
 
 

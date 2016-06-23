@@ -1169,7 +1169,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
         if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
 
-              if(confirm("Delete this capability and all of its resources?")){ 
+              if(confirm("Delete this resource and all of its partners?")){ 
 
                   /** treatement for attributes **/  
 
