@@ -183,7 +183,7 @@ define(['dojo/_base/declare',
         }
 
         if (html.hasClass(this.domNode, 'jimu-widget-splash-desktop')) {
-          html.setStyle(this.customContentNode, 'marginTop', '20px');
+          html.setStyle(this.customContentNode, 'marginTop', '10px');
           html.setStyle(this.customContentNode, 'height', 'auto');
 
           var box = html.getContentBox(this.splashContainerNode);
@@ -192,9 +192,10 @@ define(['dojo/_base/declare',
           }
           if (box && box.h > 0) {
             html.setStyle(this.envelopeNode, 'height', box.h + 'px');
+            html.setStyle(this.envelopeNode, 'top',  '90px'); //JF insert top to place screen;
           }
         } else {
-          html.setStyle(this.splashContainerNode, 'top', 0);
+          html.setStyle(this.splashContainerNode, 'top', 0); 
           html.setStyle(this.splashContainerNode, 'left', 0);
           html.setStyle(this.envelopeNode, 'width', 'auto');
           html.setStyle(this.envelopeNode, 'height', 'auto');

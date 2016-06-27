@@ -681,17 +681,14 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         }))
 
-        //this.gotoTest();
-
         this.displayBookmarks(this.capArr);// after creating the Icon Array
+
+        if(capArr.length==1){
+
+          alert("No Capabilities!");
+        }
       },
 
-      // not used
-      gotoTest: function(){
-
-          this.displayBookmarks(this.capArr);
-
-      },
 
       // ******************************************************
       // Called when the layer is switched.

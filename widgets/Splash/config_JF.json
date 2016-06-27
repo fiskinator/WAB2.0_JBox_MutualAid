@@ -1,0 +1,10 @@
+{
+  "splash": {
+    "splashContent": "<div class=\"splash-info-text\">The <b>Mutual Aid Resource Planner</b> is a tool that Emergency Management officials can use to develop “living plans” that reflect reliance on shared resources for catastrophic events.  This fully configurable template is designed for the ArcGIS Online Platform and is intended to be used to:<ul><li>Develop capability-based plans for the hazards a community faces</li><li>Identify resources necessary to accomplish those capability targets</li><li>Account for resource gaps and partners to fill those gaps</li><li>Share their mutual aid resource assumptions with their partners</li></ul><div class=\"splash-info-text\">The development of this web application template was enabled through funding provided by the <b>First Responders Group</b> at the <b>US Department of Homeland Security Science and Technology Directorate.</b>  The template has been transitioned to become a product of the National Information Sharing Consortium for distribution and operational deployment throughout the public safety community.</div>",
+    "requireConfirm": false,
+    "confirmText": "",
+    "showOption": true,
+    "confirmEverytime": true,
+    "backgroundColor": "#FFF"
+  }
+}
