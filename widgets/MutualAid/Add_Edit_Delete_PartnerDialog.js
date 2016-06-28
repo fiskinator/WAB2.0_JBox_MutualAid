@@ -417,11 +417,12 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           var myDialog = new Dialog({
             id:    "newDialogId",
             title: dialogTitle,
-            style: "width: 500px; background-color:#FFF;",
+            style: "background-color:#FFF;",
             onHide: function() {
                     myDialog.destroyRecursive();}
           });
 
+         domStyle.set(myDialog.domNode, 'visibility', 'hidden');// this is necessary to keep the dialog from jumping when repositioning near the top with dialog.show().then
 
 
           var edContent = '';
@@ -518,7 +519,10 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }));
 
 
-        myDialog.show();
+        myDialog.show().then(function () {
+          domStyle.set(myDialog.domNode, "top", "100px");
+          domStyle.set(myDialog.domNode, 'visibility', 'visible');
+        });
 
       },
 
@@ -533,7 +537,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
         if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
 
-              if(confirm("Delete this capability and all of its resources?")){ 
+              if(confirm("Remove this resource committment?")){ 
 
                   /** treatement for attributes **/  
 

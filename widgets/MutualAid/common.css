@@ -22,6 +22,26 @@
 }
 
 
+.AboutBtnsContainer{
+  border-top: 1px solid #c9c9c9;
+  width: 100%;
+  display: block;
+  text-align:center;
+  vertical-align: middle;
+  background-color: #FFF;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.About-Panel-Header {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 5px;
+    line-height: 40px;
+    color: #555;
+    background: #fff;
+}
+
 .hiddenDiv{
   display:none
 }
@@ -637,7 +657,7 @@ span.ma-jimu-btn-darkblue .dijitButtonNode {
     padding-right: 5px;
     padding-bottom: 5px;
     color: #616060;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .esriAttributeInspector .atiField {
@@ -645,6 +665,21 @@ span.ma-jimu-btn-darkblue .dijitButtonNode {
 width:100%;
 margin: 3px;
 }
+
+
+/* default dijit starts in center screen and bottom gets cut off.*/
+
+.claro .dijitDialog{
+  top:100px;
+}
+
+/*
+.claro .dijitDialogTitleBar{
+      background-color: #abd6ff;;
+      color:#FFF;
+}
+*/
+
 
 .claro .dialog-content .layer-settings-submit, .calcite .dijitButtonNode {
     -webkit-border-radius: 2;

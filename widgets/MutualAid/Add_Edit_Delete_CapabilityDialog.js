@@ -39,12 +39,14 @@ define([
   'esri/tasks/query',
   'esri/dijit/AttributeInspector',
 
+  './Add_NewPlan_GeographyDialog',
+
   'dijit/_WidgetBase',
   'dijit/Dialog',
   'dojo/dom-style'
 ],
 function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic,
-          Memory, ComboBox, Polygon, Extent, Button, FeatureLayer, RelationshipQuery, QueryTask, Query, AttributeInspector,
+          Memory, ComboBox, Polygon, Extent, Button, FeatureLayer, RelationshipQuery, QueryTask, Query, AttributeInspector, Add_NewPlan_GeographyDialog,
           _WidgetBase,Dialog,domStyle) {
   
           return declare("", null, {
@@ -98,6 +100,41 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                             ok=false;  
                         }  
         }  
+
+        if(results.adds!=undefined && results.updates==undefined && results.deletes==undefined){
+
+              if(confirm("Add a new capability to this plan?")){ 
+
+                  /** treatement for attributes **/  
+
+                  } else{  
+                            ok=false;  
+                        }  
+        }  
+
+        if(!ok){  
+            throw new Error();  
+        }  
+      
+
+    }, 
+
+    // Do not bother the user with telling them they are deleting a capability they did not actually populate.
+
+    checkForCancel: function(results){
+
+        var ok = true;  
+
+        // if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
+
+        //       if(confirm("Delete this capability and all of its resources?")){ 
+
+        //           /** treatement for attributes **/  
+
+        //           } else{  
+        //                     ok=false;  
+        //                }  
+        // }  
 
         if(results.adds!=undefined && results.updates==undefined && results.deletes==undefined){
 
@@ -187,7 +224,17 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       topic.publish('REFRESH_CAPINFO');
     },
 
-    afterAddEditDelete: function(){
+    afterNewCapabilityAdded: function(){
+      var thisDialog = dijit.byId("newDialogId");
+
+            if(thisDialog){
+                //thisDialog.hide();
+                thisDialog.destroyRecursive();
+            }
+      topic.publish('ADDED_CAPABILITY');
+    },
+
+    afterExistingCapabilityIsEdited: function(){
       this.removeDijitBtns();
       this.refreshCapInfoId();
       topic.publish('REFRESH_CAPINFO');
@@ -220,6 +267,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
       var updateFeature;
 
+      console.log("ADD_EDIT_DELETE_CAPABILITY_DIALOG" + " " + formType)
 
      if(formType=="editCap"||"addCap")
 
@@ -254,7 +302,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                   // ******************************************************
                   // create listener to intercept deletes to allow a cancel
                   // *****************************************************
-                  edit_flayer.on('before-apply-edits', this.checkDeletes); 
+                  edit_flayer.on('before-apply-edits', this.checkForCancel); 
 
 
                   // ***********************************************************************************************
@@ -279,6 +327,10 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                             //getGeometryTask.execute(query).then(lang.hitch(this,this._addCapability));
                             getGeometryTask.execute(query).then(lang.hitch(this,function(response) {
 
+
+                            if(response.features.length>0){
+
+
                                   var polygon = new Polygon(response.features[0].geometry);
 
                                   var capAttributes = {
@@ -298,12 +350,26 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                                     lang.hitch(this, function(addResults) {
                                       console.log('inserted record: '); 
                                       console.log(addResults[0].objectId);
-                                      this._capabilityUpdateForm(addResults[0].objectId, capURL);
+                                      this._newCapabilityForm(addResults[0].objectId, capURL);
 
                                     }), function(err){
                                             console.log(err);
                                         }
                                     );
+                            }
+                            else{
+
+                                  // ****************************************************************************************************
+                                  // This is where the new geography code detects an empty plan!
+                                  //
+                                  // Calls Add_New_Plan_GeographyDialog.js - only happens if the last cap has been deleted from the plan
+                                  // ****************************************************************************************************
+                                  var newPlan = new Add_NewPlan_GeographyDialog();
+
+                                      newPlan.initializeNewPlan("newPlan", config, capURL);
+
+                            }
+
 
                             }))
 
@@ -325,100 +391,22 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
         } // end check on relationship classes
 
 
-
-
         else{
 
           alert("There is an error with the REST service.  The name for a related table is likely missing.  This can happen when re-publishing a layer package.  Please repair the service schema.")
 
         }
 
-
-
       }
 
 
-    // *************************************************************
-    // Add Capability Target
-    //
-    //
-    // ************************************************************* 
-
-
-      //if(formType== "addCap"){
-
-      //    this._getGeometry(current_config.capabilitiesUrl, config);
-
-
-      //}
-      
-    
-
-
 
 
     },
 
-/*
 
-    // *************************************************************
-    // *************************************************************
 
-    // Functions for Add Capability Target
-
-    // Create this.featLayer
-    // *************************************************************
-    // ************************************************************* 
-     _getGeometry: function(capUrl, config){
-          var geomURL = capUrl;
-          var getGeometryTask = new QueryTask(geomURL);
-          var query = new Query();
-            query.where = '1=1';
-            query.returnGeometry = true;
-            query.returnCount = '1';
-          getGeometryTask.execute(query).then(lang.hitch(this,this._addCapability));
-
-          this.featLayer = new FeatureLayer(capUrl, {
-              mode: FeatureLayer.MODE_ONDEMAND,
-              id: 'featLayer',
-              outFields: ["*"]
-            }); 
-       
-    },
-
-    _addCapability: function(response){
-
-          var polygon = new Polygon(response.features[0].geometry);
-
-          var capAttributes = {
-             "attributes":{
-             'Capability': 'Cs',
-             'Outcomes': 'Os',
-             'Impacts': 'Is',
-             'Targets': 'Ts',
-             'Jurisdiction': 'Js',
-             'ESF': 'Fs',
-             'Threat_Hazard': 'Hs'
-           }};
-
-          var graphic = new esri.Graphic(polygon, null, capAttributes);
-
-          this.featLayer.applyEdits([graphic], null, null, 
-            lang.hitch(this, function(addResults) {
-
-              console.log('inserted record: '); 
-              console.log(addResults[0].objectId);
-              this._capabilityUpdateForm(addResults[0].objectId);
-            }), function(err){
-                    console.log(err);
-                }
-            );
-    },
-
- 
-*/
-
-    _capabilityUpdateForm: function (oid, capURL) {
+    _newCapabilityForm: function (oid, capURL) {
 
 
       var new_flayer = new FeatureLayer(capURL, {
@@ -494,6 +482,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                     myDialog.destroyRecursive();}
           });
 
+          domStyle.set(myDialog.domNode, 'visibility', 'hidden');// this is necessary to keep the dialog from jumping when repositioning near the top with domStyle.set at Dialog.show
 
 
           var edContent = '';
@@ -514,10 +503,16 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
           // ***********************************************************
           // Store the updates to apply when the save button is clicked
+          //  Detect when user has not entered a name for the capability
           // *********************************************************** 
           attInspector.on("attribute-change", function(evt) {
             //store the updates to apply when the save button is clicked 
             updateFeature.attributes[evt.fieldName] = evt.fieldValue;
+
+            if(updateFeature.attributes.Capability==null){
+                  updateFeature.attributes.Capability="Undefined Capability";
+            }
+
           });
 
 
@@ -526,14 +521,20 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           // Save Button has been clicked.  Clear edit panel and refresh
           // ************************************************************* 
           saveButton.on("click", lang.hitch(this, function() {
+
+            // check for null value in the Capability Field.  No change to any value will not trigger attribute-change event
+            if(updateFeature.attributes.Capability==null){
+                  updateFeature.attributes.Capability="Undefined Capability";
+            }
+
             updateFeature.getLayer().applyEdits(null, [updateFeature], null,
               lang.hitch(this, function(adds,updates,deletes) {
                 console.log('updated record: ' + updates[0].objectId);
 
-                   this.afterAddEditDelete();
+                   this.afterNewCapabilityAdded();
 
-                   myDialog.hide;
-                   myDialog.destroyRecursive();
+                   //myDialog.hide;
+                   //myDialog.destroyRecursive();
 
 
                   }), function(err){
@@ -589,7 +590,10 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }));
 
 
-        myDialog.show();
+        myDialog.show().then(function () {
+          domStyle.set(myDialog.domNode, "top", "100px");
+          domStyle.set(myDialog.domNode, 'visibility', 'visible');
+        });
 
      }))// only after new_flayer has loaded   
 
@@ -662,12 +666,15 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           var myDialog = new Dialog({
             id:    "newDialogId",
             title: dialogTitle,
-            style: "width: 500px; position:relative; top:250px; background-color:#FFF;",
+            style: "position:relative; background-color:#FFF;",
             onHide: function() {
                     myDialog.destroyRecursive();}
           });
 
+          domStyle.set(myDialog.domNode, 'visibility', 'hidden');// this is necessary to keep the dialog from jumping when repositioning near the top with domStyle.set at Dialog.show
 
+
+          myDialog.startup();
 
           var edContent = '';
               edContent += '<div class="dialog-content" id="edContent">';
@@ -691,6 +698,11 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           attInspector.on("attribute-change", function(evt) {
             //store the updates to apply when the save button is clicked 
             updateFeature.attributes[evt.fieldName] = evt.fieldValue;
+            
+            if(updateFeature.attributes.Capability==null){
+                  updateFeature.attributes.Capability="Undefined Capability";
+            }
+
           });
 
 
@@ -703,7 +715,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
               lang.hitch(this, function(adds,updates,deletes) {
                 console.log('updated record: ' + updates[0].objectId);
 
-                   this.afterAddEditDelete();
+                   this.afterExistingCapabilityIsEdited();
 
                    myDialog.hide;
                    myDialog.destroyRecursive();
@@ -761,8 +773,14 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                   );
             }));
 
+        //myDialog.layout();
+        //myDialog.show();
 
-        myDialog.show();
+        myDialog.show().then(function () {
+          domStyle.set(myDialog.domNode, "top", "100px");
+          domStyle.set(myDialog.domNode, 'visibility', 'visible');
+        });
+
 
       }
 

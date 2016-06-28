@@ -34,19 +34,18 @@ define([
   'dijit/form/Form',
   'dijit/form/Select',
 
-
   'dijit/form/FilteringSelect',
 
   'dijit/TitlePane',
   './Add_Edit_Delete_CapabilityDialog',
   './Add_Edit_Delete_ResourceDialog',
   './Add_Edit_Delete_PartnerDialog',
+  './Add_NewPlan_GeographyDialog',
   './dijit/TileLayoutContainer_JF',
   './ImageNode',
   './AboutThisApp',
   './RES_TableConstructor',
-  //'./CAP_AddRecordDialog',
-  //'./CAP_EditRecordDialog',
+  //'./CAP_InitiateDialog',
 
   'dijit/form/Button',
   'jimu/utils',
@@ -66,7 +65,8 @@ define([
 
 ],
 function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, dom, domConstruct, topic, all, Memory, registry, Form, Select, FilteringSelect, 
- TitlePane, Add_Edit_Delete_CapabilityDialog, Add_Edit_Delete_ResourceDialog, Add_Edit_Delete_PartnerDialog, TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, Button, 
+ TitlePane, Add_Edit_Delete_CapabilityDialog, Add_Edit_Delete_ResourceDialog, Add_Edit_Delete_PartnerDialog, Add_NewPlan_GeographyDialog,
+ TileLayoutContainer_JF, ImageNode, AboutThisApp, RES_TableConstructor, Button, 
  utils,   esriPortal, esriRequest, InfoTemplate, FeatureLayer, SimpleFillSymbol, SimpleLineSymbol, SimpleRenderer, Color, tokenUtils, 
  QueryTask, RelationshipQuery) {
 
@@ -92,6 +92,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             //topic.subscribe("REFRESH_CAPINFO", lang.partial(this._insertCapInfo, this.config.selectedCap));                                   
             topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
             topic.subscribe("CAP_DELETED", lang.hitch(this, this._onBackBtnClicked));
+            //topic.subscribe("DELETED_ONLY_CAPABILITY", lang.hitch(this, this._getDefaultThiraLayer));
 
             topic.subscribe("DELETED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
             topic.subscribe("ADDED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
@@ -443,7 +444,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 this._createHazArray(this.config.capabilitiesUrl);
 
                 // *************************************************************            
-                // 2 - Create relatedTable query parameters - may not work!!
+                // 2 - Create relatedTable query parameters
                 this.setGlobalQueryParameters(this.config.capabilitiesUrl);
 
                 // *************************************************************
@@ -648,7 +649,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                   GlobalID: "",
                   Threat_Hazard: "",
                   ObjectID: "",
-                  ThumbnailUrl: "widgets/mutualAid/images/esri_icons/xtra_AddCapability65x.png"
+                  ThumbnailUrl: "widgets/MutualAid/images/esri_icons/xtra_AddCapability65x.png"
               });
 
               this.capabilityIcons(this.capArr); 
@@ -683,10 +684,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         this.displayBookmarks(this.capArr);// after creating the Icon Array
 
-        if(capArr.length==1){
 
-          alert("No Capabilities!");
-        }
       },
 
 
@@ -711,7 +709,14 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
           }
           else{
 
-              alert("This planning layer has no records.  Would you like to initialize this layer?")
+            // ***********************************************************
+            // This is where the new geography code detects an empty plan!
+            // ***********************************************************
+             
+              var newPlan = new Add_NewPlan_GeographyDialog();
+
+                  newPlan.initializeNewPlan("newPlan", this.config,this.config.capabilitiesUrl);
+
 
           }
 
@@ -1047,7 +1052,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         if (coreCapItem.ThumbnailUrl) {
             thumbnail = coreCapItem.ThumbnailUrl;
         } else {
-            thumbnail = this.folderUrl + 'images/defaultThumbnail.png';
+            thumbnail = this.folderUrl + 'images/esri_icons/xtra_UndefinedCapability65x.png';
         }
 
         node = new ImageNode({
@@ -1457,6 +1462,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
          // var val = document.getElementById("capInfoId");
          // val.remove();
+
 
         var createForm = new Add_Edit_Delete_CapabilityDialog();
             //createForm._insertEditPanel("editCap", this.config);

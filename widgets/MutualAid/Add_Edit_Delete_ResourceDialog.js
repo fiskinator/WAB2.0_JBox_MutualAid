@@ -91,97 +91,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     },
 
 
-/*
-
-//  ********************************************
-//  Create Edit panel depending on type of edit
-//      editCap - Edit Capabity Form
-//      addCap -  Add Capability Form
-//      editRes - Edit Resource
-//      addRes -  Add Resource
-//      editPar - Edit Partner Committment
-//      addPar -  Add Partner Committment
-//  ********************************************
-    _insertEditPanel: function(formType,config){
-      // capInfoId is removed on edit button click
-      this.inherited(arguments);
-
-      var inspectorDiv = dom.byId("capEditId")
-          if(inspectorDiv){
-             inspectorDiv.remove();
-          }
-
-      // *************************************************
-      // Place anchor DOM elements for various edit forms
-      // *************************************************
-
-
-      // Place edit Capability Inspector 
-      if(formType=="editCap"){
-
-          var  content="";
-               content+='<div class="inspectorPanelTextContainer" id="capEditId">';
-               content+=    '<div id="formPanelId"></div>';
-               content+='</div>';
-
-          var newDIV = domConstruct.toDom(content);
-          //domConstruct.place(newDIV, dom.byId('capInfoEditPanel'), 'after');// could be "after" or "last"
-          domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
-
-      }
-
-      // Place ADD CAPABILITY Inspector at the top of the panel
-      if(formType=="addCap"){
-
-          var  content="";
-               content+='<div class="inspectorPanelTextContainer" id="capEditId">';
-               content+=    '<div id="formPanelId"></div>';
-               content+='</div>';
-
-          var newDIV = domConstruct.toDom(content);
-          domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
-      }
-
-
-      // Place ADD RESOURCE Inspector
-      if(formType=="addRes"){
-
-          var  content="";
-               content+='<div class="inspectorPanelTextContainer" id="capEditId">';
-               content+=    '<div id="formPanelId" class="inspectorPanelTextContainer" ></div>';
-               content+='</div>';
-
-          var newDIV = domConstruct.toDom(content);
-          domConstruct.place(newDIV, dom.byId('placeAttrInsp_addRes'), 'after');// could be "after" or "last"
-      }
-
-
-
-              this.createFormComponents(formType, config);
-
-
-
-    },
-
-    removeEditPanel: function(){
-
-      var inspectorDiv = dom.byId("capEditId")
-          if(inspectorDiv){
-             inspectorDiv.remove();
-          }
-
-    },
-
-    removeInspectorParent: function(){
-
-      var inspectorDiv = dom.byId("inspector_parent")
-          if(inspectorDiv){
-             inspectorDiv.remove();
-          }
-
-    },
-
- */ 
     removeDijitBtns: function(){
 
       var removeCapBtn = dijit.byId("maEditCAP");
@@ -274,17 +183,21 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     },
 
 
-    // *********************************************************************
+
+    // ***********************************************************************
     // Check to make sure the person wants to 
-    // Remove edit panel
-    // *********************************************************************
+    // This will interupt the applyEdits process so that a delete is not made
+    // ***********************************************************************
+
     checkDeletes: function(results){
 
         var ok = true;  
 
         if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
 
-              if(confirm("Delete this capability and all of its resources?")){ 
+              if(confirm("Delete this resource and its partnership commitments?")){ 
+
+                  /** treatement for attributes **/  
 
                   } else{  
                             ok=false;  
@@ -297,6 +210,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       
 
     },
+
 
     _createCustomDomains:function(formType, config){
 
@@ -336,156 +250,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       var updateFeature;
 
 
-     // var formDiv= dom.byId("formPanelId");
-
-     // if(formDiv){
-
-     //   var edContent = '';
-     //p       edContent += '<div id="inspector_parent"> </div>';
-          
-     //   var editDialogNode = domConstruct.create('div', {innerHTML: edContent});
-     //       domConstruct.place(editDialogNode, dom.byId("formPanelId"), 'last');
-
-     // }
-
-//    ******************************
-/*      if(formType== "editCap"){
-
-        //add a save button next to the delete button
-        var saveButton = new Button({ label: "Save", "class": "saveButton"},domConstruct.create("div"));
-        var cancelEditButton = new Button({ label: "Cancel", "class": "cancelEditButton"},domConstruct.create("div"));
-
-
-        var resArr = config.relates.filter(function(item) { return item.queryTableName === 'Mission_AssistingOrgs' && item.origin === 'Capabilities'});
-        var resURL = resArr[0].originURL;
-
-        var cap_flayer = new FeatureLayer(resURL, {
-              mode: FeatureLayer.MODE_ONDEMAND,
-              id: 'capResources_flayer',
-              outFields: ["*"]
-            }); 
-
-
-
-        var q = new Query();
-            q.where = "GlobalId = '" + current_config.selectedCap.GlobalID + "'"; 
-
-
-            cap_flayer.selectFeatures(q, FeatureLayer.SELECTION_NEW, lang.hitch(this, function(features){
-                if (features.length > 0) {
-                  //store the current feature
-                  updateFeature = features[0];
-                  console.log("Features have been found");
-                }
-                else {
-                  console.log('no features to update');
-                }
-            }));
-
-            // ******************************************************
-            // create listener to intercept deletes to allow a cancel
-            //  *****************************************************
-            cap_flayer.on('before-apply-edits', this.checkDeletes); 
-
-
-
-
-          var layerInfos = [
-            {
-              'featureLayer': cap_flayer,
-              'showAttachments': false,
-              'isEditable': true,
-              'fieldInfos': [
-                {'fieldName': 'Threat_Hazard', 'isEditable': true, 'label': 'Threat/Hazard:'},
-                {'fieldName': 'Capability', 'isEditable': true, 'tooltip': 'Capability name', 'label': 'Core Capability:'},
-                {'fieldName': 'Targets', 'isEditable': true, 'label': 'Targets:', "stringFieldOption": "textarea"},
-                {'fieldName': 'Outcomes', 'isEditable': true, 'tooltip': 'List of desired outcomes', 'label': 'Outcomes','width': '100%', "stringFieldOption": "textarea"},
-                {'fieldName': 'Impacts', 'isEditable': true, 'label': 'Impacts'},
-                {'fieldName': 'Jurisdiction', 'isEditable': true, 'label': 'Jurisdiction:'},
-                {'fieldName': 'ESF', 'isEditable': true, 'label': 'ESF:'}
-              ]
-            }
-          ];
-
-          var attInspector = new AttributeInspector({
-            layerInfos: layerInfos
-          }, domConstruct.create("div"));
-
-          domConstruct.place(attInspector.domNode, dom.byId("inspector_parent"), 'last');
-          domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
-
-          domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
-          domConstruct.place(cancelEditButton.domNode, attInspector.domNode, "after");
-
-
-          // ***********************************************************
-          // Store the updates to apply when the save button is clicked
-          // *********************************************************** 
-          attInspector.on("attribute-change", function(evt) {
-            updateFeature.attributes[evt.fieldName] = evt.fieldValue;
-          });
-
-          // *************************************************************
-          // Save Button has been clicked.  Clear edit panel and refresh
-          // ************************************************************* 
-          saveButton.on("click", lang.hitch(this, function() {
-            updateFeature.getLayer().applyEdits(null, [updateFeature], null,
-              lang.hitch(this, function(adds,updates,deletes) {
-                console.log('updated record: ' + updates[0].objectId);
-
-                    this.afterCapabilityIsSaved();
-
-                  }), function(err){
-                          console.log(err);
-                      }
-                  );
-            }));
-
-          // *************************************************************
-          // Cancel Button has been clicked.  Clear edit panel and refresh
-          // ************************************************************* 
-          cancelEditButton.on("click", lang.hitch(this, function() {
-            this.removeEditPanel();
-            updateFeature = [];
-          }));
-
-
-          // ****************************************************************
-          // Delete Button is clicked.  Intercept delete to verify with user
-          // **************************************************************** 
-          attInspector.on("delete", lang.hitch(this, function() {
-            updateFeature.getLayer().applyEdits(null, null, [updateFeature],
-              lang.hitch(this, function(adds,updates,deletes) {
-                console.log('removed record: ' + deletes[0].objectId);
-                  
-                  this.afterCapabilityIsDeleted();
-
-                  }), function(err){
-                          console.log(err.message);
-                      }
-                  );
-          }));
-
-            //setTimeout(lang.hitch(this, function() {
-
-            //}), 500);
-
-      }
-
-    // *************************************************************
-    // Add Capability Target
-    //
-    //
-    // ************************************************************* 
-
-
-      else if(formType== "addCap"){
-
-          this._getGeometry(config.capabilitiesUrl, current_config);
-
-
-      }
-   */   
     // ******************************
     // ADD NEW RESOURCE ENTRY FORM
     // 
@@ -588,260 +352,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
   },
 
-//    *******************************      
-//      else if(formType=="editRes"){
-
-         // msgHeader.innerHTML="Edit Resource & Partner Updates";
-
-//          alert("Yay - AttrFormsManager - create the edit resource Form")
-
-
-
-
-
-/*
-
-   var myDialog = new Dialog({
-            id:    "newDialogId",
-            title: "Programmatic Dialog Creation",
-            style: "width: 300px"
-        });
-
-            domStyle.set(myDialog.containerNode, {
-              position: 'relative'
-            })
-
-        var edContent = '';
-            edContent += '<div id="inspector_parent">Testing</div>';
-          
-        var editDialogNode = domConstruct.create('div', {innerHTML: edContent});
-            domConstruct.place(editDialogNode, dom.byId("newDialogId"), 'last');
-
-
-
-               // myDialog.set("content", "Hey, I wasn't there before, I was added at " + new Date() + "!");
-                myDialog.show();
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
- //     }
-
-
- //   },
-
-
-/*
-    qSelectionComplete: function(event){
-
-      console.log("THIS DOES NOT GET CALLED");
-
-      alert("qSelectionComplete")
-
-
-        if (event.features.length > 0) {
-            //store the current feature
-            this.updateFeature = event.features[0];
-            console.log("Features have been found");
-        }
-
-        else {
-            console.log('no features to update');
-        }
-
-
-    },
-
-    // *************************************************************
-    // *************************************************************
-
-    // Functions for Add Capability Target
-
-    // Create this.featLayer
-    // *************************************************************
-    // ************************************************************* 
-     _getGeometry: function(capUrl, config){
-          var geomURL = capUrl;
-          var getGeometryTask = new QueryTask(geomURL);
-          var query = new Query();
-            query.where = '1=1';
-            query.returnGeometry = true;
-            query.returnCount = '1';
-          getGeometryTask.execute(query).then(lang.hitch(this,this._addCapability));
-
-          this.featLayer = new FeatureLayer(capUrl, {
-              mode: FeatureLayer.MODE_ONDEMAND,
-              id: 'featLayer',
-              outFields: ["*"]
-            }); 
-       
-    },
-
-    _addCapability: function(response){
-
-          var polygon = new Polygon(response.features[0].geometry);
-
-          var capAttributes = {
-             "attributes":{
-             'Capability': 'Cs',
-             'Outcomes': 'Os',
-             'Impacts': 'Is',
-             'Targets': 'Ts',
-             'Jurisdiction': 'Js',
-             'ESF': 'Fs',
-             'Threat_Hazard': 'Hs'
-           }};
-
-          var graphic = new esri.Graphic(polygon, null, capAttributes);
-
-          this.featLayer.applyEdits([graphic], null, null, 
-            lang.hitch(this, function(addResults) {
-
-              console.log('inserted record: '); 
-              console.log(addResults[0].objectId);
-              this._capabilityUpdateForm(addResults[0].objectId);
-            }), function(err){
-                    console.log(err);
-                }
-            );
-
-    },
-
-    _capabilityUpdateForm: function (oid) {
-
-          //add a save button next to the delete button
-          var saveButton = new Button({ label: "Save", "class": "saveButton"},domConstruct.create("div"));
-          var cancelEditButton = new Button({ label: "Cancel", "class": "cancelEditButton"},domConstruct.create("div"));
-
-          var edContent = '';
-              edContent += '<div id="inspector_parent"> </div>';
-            
-          var editDialogNode = domConstruct.create('div', {innerHTML: edContent});
-              domConstruct.place(editDialogNode, dom.byId("formPanelId"), 'last');
-
-
-
-          var updateFeature;
-
-          var objectID = oid;
-          var query = new Query();
-          query.where = "ObjectID = '" + objectID + "'"; 
-
-          this.featLayer.selectFeatures(query, FeatureLayer.SELECTION_NEW, function(features){
-              if (features.length > 0) {
-                //store the current feature
-                updateFeature = features[0];
-              }
-              else {
-                console.log('no features to update');
-              }
-          });
-
-
-
-
-
-
-
-            // ******************************************************
-            // create listener to intercept deletes to allow a cancel
-            //  *****************************************************
-            this.featLayer.on('before-apply-edits', this.checkDeletes); 
-
-
-
-
-          var layerInfos = [
-            {
-              'featureLayer': this.featLayer,
-              'showAttachments': false,
-              'isEditable': true,
-              'fieldInfos': [
-                {'fieldName': 'Threat_Hazard', 'isEditable': true, 'label': 'Threat/Hazard:'},
-                {'fieldName': 'Capability', 'isEditable': true, 'tooltip': 'Capability name', 'label': 'Core Capability:'},
-                {'fieldName': 'Targets', 'isEditable': true, 'label': 'Targets:', "stringFieldOption": "textarea"},
-                {'fieldName': 'Outcomes', 'isEditable': true, 'tooltip': 'List of desired outcomes', 'label': 'Outcomes','width': '100%', "stringFieldOption": "textarea"},
-                {'fieldName': 'Impacts', 'isEditable': true, 'label': 'Impacts'},
-                {'fieldName': 'Jurisdiction', 'isEditable': true, 'label': 'Jurisdiction:'},
-                {'fieldName': 'ESF', 'isEditable': true, 'label': 'ESF:'}
-              ]
-            }
-          ];
-
-          var attInspector = new AttributeInspector({
-            layerInfos: layerInfos
-          }, domConstruct.create("div"));
-
-
-
-          domConstruct.place(attInspector.domNode, dom.byId("inspector_parent"), 'last');
-          domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
-
-          domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
-          domConstruct.place(cancelEditButton.domNode, attInspector.domNode, "after"); 
-
-
-          // ***********************************************************
-          // Store the updates to apply when the save button is clicked
-          // *********************************************************** 
-          attInspector.on("attribute-change", function(evt) {
-            updateFeature.attributes[evt.fieldName] = evt.fieldValue;
-          });
-
- 
-          // *************************************************************
-          // Save Button has been clicked.  Clear edit panel and refresh
-          // ************************************************************* 
-          saveButton.on("click", lang.hitch(this, function() {
-            updateFeature.getLayer().applyEdits(null, [updateFeature], null,
-              lang.hitch(this, function(adds,updates,deletes) {
-                console.log('updated record: ' + updates[0].objectId);
-
-                    this.afterCapabilityIsAdded();
-
-                  }), function(err){
-                          console.log(err);
-                      }
-                  );
-            }));
-
-          // *************************************************************
-          // Cancel Button has been clicked.  Clear edit panel and refresh
-          // ************************************************************* 
-          cancelEditButton.on("click", lang.hitch(this, function() {
-            this.removeEditPanel();
-            updateFeature = [];
-          }));
-
-
-          // ****************************************************************
-          // Delete Button is clicked.  Intercept delete to verify with user
-          // **************************************************************** 
-          attInspector.on("delete", lang.hitch(this, function() {
-            updateFeature.getLayer().applyEdits(null, null, [updateFeature],
-              lang.hitch(this, function(adds,updates,deletes) {
-                console.log('removed record: ' + deletes[0].objectId);
-                  
-                  this.afterCapabilityIsDeleted();
-
-                  }), function(err){
-                          console.log(err.message);
-                      }
-                  );
-          }));
-
-      },
-*/
 
     //  ***************************************************
     //  Create Attribute Inspector for adding NEW RESOURCE
@@ -849,9 +359,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     configureResDialog: function (oid, config, edit_flayer, rtltData) {
 
       var updateFeature;   
-
-
-
 
       // Check for previous comboBox dijits
       var cbox = dijit.byId("rtltCmbBox");
@@ -875,7 +382,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
       }
 
-      // Create query for 
+      // Create query for newly created records using OBJECTID
       else{
 
         var query = new Query();
@@ -986,26 +493,18 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           var saveButton = new Button({ label: "Save", "class": "saveButton"},domConstruct.create("div"));
           var cancelButton = new Button({ label: "Cancel", "class": "cancelButton"},domConstruct.create("div"));
 
- //         domConstruct.place(attInspector.domNode, dom.byId("inspector_parent"), 'last');
-
- //         domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
- //         domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
- //         domConstruct.place(cancelAddResButton.domNode, attInspector.domNode, "after"); 
-
-// --------------INSERT POPUP
 
           var myDialog = new Dialog({
             id:    "newDialogId",
             title: dialogTitle,
-            style: "width: 500px; background-color:#FFF;",
+            style: "width: 400px; background-color:#FFF;",
             onHide: function() {
                     myDialog.destroyRecursive();}
           });
 
 
-            //domStyle.set(myDialog.containerNode, {
-            //  position: 'relative'
-            //})
+         domStyle.set(myDialog.domNode, 'visibility', 'hidden');// this is necessary to keep the dialog from jumping when repositioning near the top with dialog.show().then
+
 
           var edContent = '';
               edContent += '<div class="dialog-content" id="edContent">';
@@ -1021,10 +520,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             domConstruct.place(attInspector.deleteBtn.domNode, attInspector.domNode, "after");
             domConstruct.place(saveButton.domNode, attInspector.domNode, "after");
             domConstruct.place(cancelButton.domNode, attInspector.domNode, "after"); 
-
-
-
-
 
 
 // --------------------END INSERT POPUP
@@ -1119,19 +614,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }));
 
 
-          // saveButton.on("click", lang.hitch(this, function() {
-          //   updateFeature.getLayer().applyEdits(null, [updateFeature], null,
-          //     lang.hitch(this, function(adds,updates,deletes) {
-          //       console.log('saved record: ' + updates[0].objectId);
-
-          //      // this.hideRADialog();
-          //         }), function(err){
-          //                 console.log(err);
-          //             }
-          //         );
-          //   }));
-
-
 
          // attInspector.on("next", function(evt) {
          //   updateFeature = evt.feature;
@@ -1154,36 +636,13 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }));
 
 
-        myDialog.show();
+        myDialog.show().then(function () {
+          domStyle.set(myDialog.domNode, "top", "100px");
+          domStyle.set(myDialog.domNode, 'visibility', 'visible');
+        });
 
       },
 
-    // ***********************************************************************
-    // Check to make sure the person wants to 
-    // This will interupt the applyEdits process so that a delete is not made
-    // ***********************************************************************
-
-    checkDeletes: function(results){
-
-        var ok = true;  
-
-        if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
-
-              if(confirm("Delete this resource and all of its partners?")){ 
-
-                  /** treatement for attributes **/  
-
-                  } else{  
-                            ok=false;  
-                        }  
-        }  
-
-        if(!ok){  
-            throw new Error();  
-        }  
-      
-
-    }
 
 
 

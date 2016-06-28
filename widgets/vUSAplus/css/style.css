@@ -107,7 +107,7 @@
 .groupOption .groupTitle{
   padding-top: 12px;
   padding-left: 8px;
-  float:left;
+  /*float:left;*/
   color: #000;
   font-weight: bold;
   font-size: 12px;
