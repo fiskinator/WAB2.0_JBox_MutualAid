@@ -334,8 +334,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 style: "padding-bottom: 5px;",
                 onClick: lang.hitch(this,function(){
                 // Do something:
-                  //this._openSlideShow("feedback");
-
+                
                   this._getWidgetWhenLoaded("widgets_Splash_Widget_30");// ID from config.json.  splash is an Onscreen widget and it requires that ID does not change
             })
             }, "appBtn4").startup();
