@@ -30,7 +30,7 @@
         <!--    ******************** -->
         <!--    DRAWER MENU BUTTON 3 -->
         <!--    ******************** -->
-        <div class="item" id="planPickerMenuId">
+        <div class="item" id="settingsMenuId">
             <div class="item-container" title="Shared Resource Plans">
                 <div class="title">
                     <div class="icon-cog"></div>
@@ -88,6 +88,7 @@
                         <div class="node-box"><img id="selectedCoreCapImg" stylesrc=""></div>
 
                     </div>
+                    <div id="CapInfoDivId"></div>
 
                 </div>
             </div>
@@ -104,6 +105,7 @@
                     <span class="AboutThisAppBtn"><button id="appOverviewBtn" baseClass="AboutThisAppBtn" type="button"></button></span>
                     <span class="AboutThisAppBtn"><button id="appDeployConfigBtn" baseClass="AboutThisAppBtn" type="button"></button></span>
                     <span class="AboutThisAppBtn"><button id="appBtn3" baseClass="AboutThisAppBtn" type="button"></button></span>
+                    <span class="AboutThisAppBtn"><button id="appBtn4" baseClass="AboutThisAppBtn" type="button"></button></span>
                 </div>
             </div>
         </div>
@@ -112,11 +114,16 @@
         <!--    DRAWER MENU PANEL 3 -->
         <!--    ******************** -->
         <div class="panel" id="drawer-menu-panel-3">
-                <div id="map_groupheader2"></div>
-                <div data-dojo-attach-point="resultItemListNode"></div>
-                <div id="itemDetailHider" style="display:none"> 
-                    <div id="itemDetails" class="summary">This is test</div>
+
+            <div class="Settings-Panel-Header">Your Sharing Groups:</div>
+
+            <div class="panel-container">
+                <div class="Settings-Group-Container" id="settingsGroupId" style="width:100%">
+                    <div id="map_groupheader2"></div>
+                    
                 </div>
+            </div>
+
         </div>
 
     </div>

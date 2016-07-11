@@ -50,46 +50,61 @@
   */
 }
 
+/*Used for the select menu for planning layers and groups*/
+
 .ma-select-title{
-  /*
-  padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 63px;
-  color: #000;
-  font-weight: normal;
-  font-size: 14px;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-  max-width: 320px
-*/
     padding-top: 13px;
     padding-bottom: 13px;
     padding-left: 5px;
     color: #000;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
     word-wrap: break-word;
     text-overflow: ellipsis;
     max-width: 300px;
     overflow: hidden;
-
 }
 
+
 .ma-select-option img{
-line-height: normal;
-height:40px;
-/* width:40px; */	
-vertical-align: middle;
-float:left;
-padding-top: 2px;
+    line-height: normal;
+    height:40px;
+    /* width:40px; */	
+    vertical-align: middle;
+    float:left;
+    padding-top: 2px;
 }
 
 .ma-select-option:hover{
-  color: #333;
+    color: #333;
 }
 
 
+
+.groupOption .groupTitle{
+  padding-top: 12px;
+  padding-left: 8px;
+  /*float:left;*/
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+
+.groupOption img{
+  height:40px;
+  width:40px; 
+  vertical-align: middle;
+  float:left;
+}
+
+.groupOption:hover{
+  background-color: #eee;
+  color: #333;
+}
 
 

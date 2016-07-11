@@ -2,6 +2,7 @@
 	background-color:#508dca;
 	position:relative;
 }
+/*
 #main-loading #app-loading{
 	position: absolute;
 	background-image: url('images/background.png');
@@ -12,6 +13,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
+*/
 #main-loading #loading-gif{
 	position: absolute;
 	background-image: url('images/predefined_loading_1.gif');

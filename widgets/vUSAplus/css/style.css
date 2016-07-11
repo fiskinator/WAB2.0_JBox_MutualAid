@@ -130,6 +130,35 @@ float:left;
   color: #333;
 }
 
+/*Used to create a divider between Orgs and Groups */
+.groupOptionWithBorder .groupTitle{
+  border-top: 3px solid; 
+  padding-top: 12px;
+  padding-left: 8px;
+  /*float:left;*/
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.groupOptionWithBorder img{
+  border-top: 3px solid; 
+  height:40px;
+  width:40px; 
+  vertical-align: middle;
+  float:left;
+}
+
+.groupOptionWithBorder:hover{
+  background-color: #eee;
+  color: #333;
+}
+
+
 .jimu-widget-vusa-plus .btn-search{
   position: absolute;
   right: 1px;

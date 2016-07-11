@@ -258,7 +258,7 @@
       "right": 0,
       "bottom": 0
     },
-    "itemId": "d16d53126f1243a3a7a7f1d0dff39662",
+    "itemId": "c9d2ca434fc04286a2b825b2369e1d5c",
     "mapOptions": {},
     "id": "map",
     "portalUrl": "http://www.arcgis.com"
@@ -507,8 +507,8 @@
   "loadingPage": {
     "backgroundColor": "#508dca",
     "backgroundImage": {
-      "visible": true,
-      "uri": "configs/loading/images/background.png",
+      "visible": false,
+      "uri": "",
       "width": 762,
       "height": 454
     },

@@ -1,12 +1,12 @@
 {
   "portalLogin": true,
 
-  "defaultLayerItemId": "411803298fa64e43a715c4dde50bae4d",
+  "defaultMARPItemId": "411803298fa64e43a715c4dde50bae4d",
   "defaultGroupId": "cdbc676652d44883a642edfcb0c10e27",
   "capabilitiesLayerName": "Capabilities",
+  "capabilitiesRESTLyrId": "2",
   "capabilitiesColorBoundary": [255,50,90],
   "capabilitiesWidth": "3",
-
 
 
   "defaultOrgSymbol": "./images/defaultOrgImage64x.png",

@@ -43,11 +43,12 @@ define([
 
   'dijit/_WidgetBase',
   'dijit/Dialog',
+  'dijit/ConfirmDialog',
   'dojo/dom-style'
 ],
 function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic,
           Memory, ComboBox, Polygon, Extent, Button, FeatureLayer, RelationshipQuery, QueryTask, Query, AttributeInspector, Add_NewPlan_GeographyDialog,
-          _WidgetBase,Dialog,domStyle) {
+          _WidgetBase,Dialog, ConfirmDialog, domStyle) {
   
           return declare("", null, {
 
@@ -203,12 +204,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     // Send Message to widget to call function that performs total refresh
     // Remove edit panel
     // *********************************************************************
-    afterCapabilityIsDeleted: function(){
-      
-      this.removeEditPanel();
-      topic.publish('DELETED_CAPABILITY');
 
-    },
 
     afterCapabilityIsAdded: function(){
 
@@ -232,6 +228,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                 thisDialog.destroyRecursive();
             }
       topic.publish('ADDED_CAPABILITY');
+
+      alert("deleted")
     },
 
     afterExistingCapabilityIsEdited: function(){
@@ -240,10 +238,12 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       topic.publish('REFRESH_CAPINFO');
     },
 
-    afterCapDelete: function(){
+
+    afterCapabilityIsDeleted: function(){
       this.removeDijitBtns();
       this.refreshCapInfoId();
-      topic.publish('CAP_DELETED');
+      topic.publish('DELETED_CAPABILITY');
+
     },
 
     removeAddResPanel:function(){
@@ -500,7 +500,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             domConstruct.place(cancelButton.domNode, attInspector.domNode, "after"); 
 
 
-
           // ***********************************************************
           // Store the updates to apply when the save button is clicked
           //  Detect when user has not entered a name for the capability
@@ -514,7 +513,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }
 
           });
-
 
  
           // *************************************************************
@@ -535,7 +533,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
                    //myDialog.hide;
                    //myDialog.destroyRecursive();
-
 
                   }), function(err){
                           console.log(err);
@@ -578,7 +575,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             updateFeature.getLayer().applyEdits(null, null, [updateFeature],
               lang.hitch(this, function(adds,updates,deletes) {
 
-                   this.afterCapDelete();
+                   this.afterCapabilityIsDeleted();
 
                    myDialog.hide;
                    myDialog.destroyRecursive();
@@ -601,7 +598,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
 
 
-    // ***************************************************
+// ***************************************************
     // Create Attribute Inspector for editing a CAPABILITY
     // ***************************************************
     configureEditCapDialog: function (config, edit_flayer) {
@@ -615,9 +612,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
       var q = new Query();
             q.where = "GlobalId = '" + config.selectedCap.GlobalID + "'"; 
-
-          
-
 
             edit_flayer.selectFeatures(q, FeatureLayer.SELECTION_NEW, lang.hitch(this, function(features){
                 if (features.length > 0) {
@@ -738,22 +732,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
               myDialog.hide
               myDialog.destroyRecursive();
 
-            // delete the record just added, if cancel is clicked after "Add Resource"
-            // else{
-            //   updateFeature.getLayer().applyEdits(null, null, [updateFeature],
-            //   lang.hitch(this, function(adds,updates,deletes) {
-            //       this.removeAddResPanel();
-            //       updateFeature = [];
-
-            //       myDialog.hide
-            //       myDialog.destroyRecursive();
-
-            //       }), function(err){
-            //               console.log(err.message);
-            //           }
-            //       );
-            //   }
-
 
             }));
 
@@ -762,7 +740,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             updateFeature.getLayer().applyEdits(null, null, [updateFeature],
               lang.hitch(this, function(adds,updates,deletes) {
 
-                   this.afterCapDelete();
+                  this.afterCapabilityIsDeleted();
 
                    myDialog.hide;
                    myDialog.destroyRecursive();

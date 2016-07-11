@@ -720,17 +720,21 @@ define([
                         console.log(groups);
 
 
-                        array.forEach(groups, function(group) {
-
+                        array.forEach(groups, function(group, i) {
 
                             thumb = group.thumbnailUrl;
-
 
                             if (!thumb) {
                                 thumb = self.folderUrl + 'images/folder.png';
                             }
 
-                            var item = '<div class="groupOption"><img src=' + thumb + '>' + '<div class="groupTitle">' + group.title + '</div></div>'
+                            if(i==0){
+                                var item = '<div class="groupOptionWithBorder"><img src=' + thumb + '>' + '<div class="groupTitle">' + group.title + '</div></div>'
+                            }
+                            else{
+                                var item = '<div class="groupOption"><img src=' + thumb + '>' + '<div class="groupTitle">' + group.title + '</div></div>'
+                            }
+ 
 
                             self.config.myGroups.push({
                                 name: group.title,

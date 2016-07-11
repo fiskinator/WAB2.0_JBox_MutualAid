@@ -88,15 +88,23 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
             this.inherited(arguments);
 
+            //use config to store groups array
+            this.config.myGroups = [];
+            // this is reset every time a user changes the planning layer
+            this.config.capabilitiesUrl="";
+            this.config.thiraExtent="";
+            this.config.capabilitiesLayerName="";
+            this.config.capabilitiesDefExpression="1=1";   //start with a default that can be changed later
+            this.config.selectedGroupId="";
              
-            //topic.subscribe("REFRESH_CAPINFO", lang.partial(this._insertCapInfo, this.config.selectedCap));                                   
+                                
             topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
-            topic.subscribe("CAP_DELETED", lang.hitch(this, this._onBackBtnClicked));
-            //topic.subscribe("DELETED_ONLY_CAPABILITY", lang.hitch(this, this._getDefaultThiraLayer));
-
             topic.subscribe("DELETED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
             topic.subscribe("ADDED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
-            //topic.subscribe("REFRESH_CAP_ARRAY", lang.hitch(this, this.onCapSaved));
+
+
+   
+
 
             // *********************************************************************************************
             // 1st TileLayout Containter digit s used for listing Core Capabilities of Planning Layer
@@ -173,7 +181,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
             // *********************************************************************************************
-            // Since this app assumes that Check to see if vUSA widget is already logged in
+            // -NOT SURE ABOUT THIS  . . . Check to see if vUSA widget is already logged in
 
             //auto login on startup (occurs after webmap switching) if login existed
             //JF todo     
@@ -183,24 +191,21 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
-// JF Insert Divs for table and slideshow.
-//  to make this visible must add class="esriMapContainer" when the button is clicked.
+        // JF Insert Divs for table and slideshow.
 
             var insertDIV="";   
                 insertDIV = '<div id="slideShowDiv"></div>';// JF Inserted to contain alternate window to replace mapDiv -->
-
             var newDIV = domConstruct.toDom(insertDIV);
                 domConstruct.place(newDIV, dom.byId('main-page'), 'before');// could be "after" or "last"
 
             var insertTable="";
                 insertTable+=   '<div id="formParentDiv" dir="ltr"></div';
-
             var newDIV = domConstruct.toDom(insertTable);
                 domConstruct.place(newDIV, dom.byId('map'), 'first');
 
     },
 
-
+    
 
 
     onOpen: function(){
@@ -238,24 +243,24 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             var capContent = dom.byId("thiraMenuId");
 
                 on(capContent, 'click', lang.hitch(this, function(menuId){
-                    console.log('click-event');
-                    this.showDrawerMenu("thiraContent"); //located in RES_AddRecordDialog;
+                    console.log('capabilities-click-event');
+                    this.showDrawerMenu("thiraContent"); 
                 }));
 
 
             var aboutContent = dom.byId("aboutMenuId");
 
                 on(aboutContent, 'click', lang.hitch(this, function(menuId){
-                    console.log('click-event');
-                    this.showDrawerMenu("aboutContent"); //located in RES_AddRecordDialog;
+                    console.log('about-click-event');
+                    this.showDrawerMenu("aboutContent"); 
                 }));
 
 
-            var planPicker = dom.byId("planPickerMenuId");
+            var settingsContent = dom.byId("settingsMenuId");
 
-                on(planPicker, 'click', lang.hitch(this, function(menuId){
-                    console.log('click-event');
-                    this.showDrawerMenu("planPicker"); //located in RES_AddRecordDialog;
+                on(settingsContent, 'click', lang.hitch(this, function(menuId){
+                    console.log('settings-click-event');
+                    this.showDrawerMenu("settingsContent"); 
                 }));
 
 
@@ -301,8 +306,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             })
             }, "appDeployConfigBtn").startup();
 
+
             // *********************************
-            // Insert Using This App Button - 
+            // Insert Feedback Button - 
             // *********************************
             var appDemoBtn = new Button({
                 label: "Feedback",
@@ -315,6 +321,24 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                   this._openSlideShow("feedback");
             })
             }, "appBtn3").startup();
+
+
+            // *********************************
+            // Insert Using This App Button - 
+            // *********************************
+            var appSplashBtn = new Button({
+                label: "Show Spash Screen",
+                id:"appBtn4",
+                baseClass: "AboutThisAppBtn",
+                iconClass: "playScreenIcon",
+                style: "padding-bottom: 5px;",
+                onClick: lang.hitch(this,function(){
+                // Do something:
+                  //this._openSlideShow("feedback");
+
+                  this._getWidgetWhenLoaded("widgets_Splash_Widget_30");// ID from config.json.  splash is an Onscreen widget and it requires that ID does not change
+            })
+            }, "appBtn4").startup();
 
 
 
@@ -333,7 +357,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         var drawerMenuPanel_1 = dom.byId("drawer-menu-panel-1");
         var drawerMenu_2=dom.byId("aboutMenuId");
         var drawerMenuPanel_2 = dom.byId("drawer-menu-panel-2");
-        var drawerMenu_3=dom.byId("planPickerMenuId");
+        var drawerMenu_3=dom.byId("settingsMenuId");
         var drawerMenuPanel_3 = dom.byId("drawer-menu-panel-3");
           
 
@@ -358,13 +382,16 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
           }
 
-          else if(menu=="planPicker"){
+          else if(menu=="settingsContent"){
               drawerMenu_1.className = "item";
               drawerMenuPanel_1.className = "panel";
               drawerMenu_2.className = "item";
               drawerMenuPanel_2.className = "panel ";
               drawerMenu_3.className = "item item-selected";
               drawerMenuPanel_3.className = "panel panel-selected"; 
+
+
+              this.groupSelect2.attr('value', this.config.defaultGroupSelection,false);
 
           }
 
@@ -401,14 +428,94 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 this.portal.signIn().then(lang.hitch( this, function(loggedInUser) {
 
                     this.config.token = loggedInUser.credential.token;
+                    this.config.curentUser = loggedInUser.userName;
+
+                    // ********************************************
+                    // Get all groups that the user belongs to
+                    // ********************************************
+
+                    loggedInUser.getGroups().then(lang.hitch( this,function(groups) {
+                        console.log("create group array");
+                        var groupSelection;
+
+                        array.forEach(groups, lang.hitch( this,function(group, i) {
+
+                            if(group.id==this.config.defaultGroupId){
+
+                              this.config.defaultGroupSelection = group.id + ", group";
+                              groupSelection==true;
+                            }
+                            else{
+                              groupSelection==false;
+                            }
+
+
+                            thumb = group.thumbnailUrl;
+
+                            if (!thumb) {
+                                thumb = self.folderUrl + 'images/folder.png';
+                            }
+
+                            var item = '<div class="ma-select-option"><img src=' + thumb + '>' + '<div class="ma-select-title">' + group.title + '</div></div>'
+
+                            this.config.myGroups.push({
+                                name: group.title,
+                                id: group.id + ",group",
+                                label: item
+                                //selected: groupSelection // necesary to show the default group in the list.
+                            });
+
+                            // only place drop down after it has been loaded.  Does not count array proplerly outside of this loop
+                            if(i == groups.length-1){
+                                this._placeGroupSelect(); // this will be in the settings section
+                            } 
+
+                        }));
+
+                         this._showUserName();
+
+                    }));
+
+
                     // ********************************
                     // 1 - load default planning layer from config
                     this._getDefaultThiraLayer();
                     // ********************************
                     // 2 - load default planning group from config
-                    this._getGroupDetails();
+
+                   // this._getGroupContents();
+
+                    //this._getSharedMARP();
                 }))
       },
+
+
+            // Here is a sample for swapping memory store of a select dijit
+
+            // _updateGroupList: function() {
+            //   console.log("updateGroupList");
+
+            //     var groupArray = this.config.myGroups;
+
+            //     var groupStore = new Memory({
+            //         idProperty: "id",
+            //         data: groupArray
+            //     });
+
+            //     this.groupSelect.setStore(groupStore);
+
+            // },
+
+            _showUserName: function() {
+
+                console.log("Show User Name in Settings Panel")
+                //domConstruct.destroy("LoginButton");
+
+                //domConstruct.place("<div class='userLabel' id='userName'>" + this.config.userName + "</div>", "userName", "replace");
+
+
+
+            },
 
 
    
@@ -418,17 +525,15 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 // ***************************************************************************************
 
       _getDefaultThiraLayer: function (){
-            console.log("get thira layer")        
+            console.log("getting new MARP layer")        
             //this._getDefaultGroup();// get details of the default group
         
-            esri.arcgis.utils.getItem(this.config.defaultLayerItemId).then(lang.hitch(this,function (results) {
-              //console.log("handleWebmapIdResults");
-                //this.thiraLayers=results.item;
-                //hard code the capabilities layer position
+            esri.arcgis.utils.getItem(this.config.defaultMARPItemId).then(lang.hitch(this,function (results) {
 
 
-                this.config.capabilitiesUrl="";
-                this.config.capabilitiesUrl=results.item.url +"/2";
+                this.config.capabilitiesUrl=results.item.url + "/" + this.config.capabilitiesRESTLyrId;
+                this.config.defaultMARPUrl=results.item.url + "/" + this.config.capabilitiesRESTLyrId;
+                this.config.defaultMARPTitle=results.item.title;
                 console.log(this.config.capabilitiesUrl);
 
                 // this value is not ready by the time I need it in setGlobalQueryParams
@@ -441,6 +546,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                 // *************************************************************
                 // 1 - Dynamically create Hazard array from data
+
                 this._createHazArray(this.config.capabilitiesUrl);
 
                 // *************************************************************            
@@ -455,7 +561,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // 4 - Create thumbnailUrl from default layer item
                 //     Sample format for Url:  http://www.arcgis.com/sharing/rest/content/items/5bb8c221afb547c4ac642045f9d85b79/info/thumbnail/S_26T_RESCON_Logo.png?token=
                 //var createImgUrlAtLogin = "http://www.arcgis.com/sharing/rest/content/items/";
-                //    createImgUrlAtLogin += this.config.defaultLayerItemId;
+                //    createImgUrlAtLogin += this.config.defaultMARPItemId;
                 //    createImgUrlAtLogin += "/info/" + results.item.thumbnail;
                 //    createImgUrlAtLogin += "?token=" + this.config.token;
 
@@ -566,11 +672,13 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             this.queryCapabilitiesLayer2(this.config.capabilitiesUrl, defQuery);
           }));
 
+
           //insert hazard dropdown in dom
           domConstruct.place(this.hazardSelect.domNode, "placeHazardFilterId", "after");
           this.hazardSelect.startup();
 
-          this.hazardSelect.attr('value', "All Hazards");
+          this.hazardSelect.attr('value', "All Hazards",false); // "false" parameter changes the selection, but does not trigger an onchange@
+
 
       },
 
@@ -599,7 +707,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       // 1) List Core Capabilities from specified Capabilities layer
       // ************************************************************
       queryCapabilitiesLayer2: function(url, defQuery) {
-      //    console.log('queryCapabilitiesLayer - task defined ' + url);
+      //    console.log("QueryCapabilitiesLayer");
           var whereQuery = defQuery; // 1=1 is the default set at handleItemResults()
           var queryTask = new QueryTask(url);
           var query = new esri.tasks.Query();
@@ -723,13 +831,13 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       },
 
 
-
+/*
 
 // **********************************************************************************************************
 //  POPULATE DEFAULT GROUP with shared:thira featureLayers within that group from groupId in the config.json
 // **********************************************************************************************************
-      _getGroupDetails: function(){
-        console.log("get group details");
+      _getGroupContents: function(){
+        console.log("get group contents");
 
               this.config.myGroups=[];
 
@@ -767,16 +875,30 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                 }));// end loop of configured groups;
 
+
+
+
       },
 
 
-
+*/
 
 // ***********************************************************************************************************************
 //  PLACE GROUP Selection Menu.  Eventually this will have orgs to search for data with the necessary tag - "Shared:thira"
 // ***********************************************************************************************************************
 
-            //place group info to create select
+// *******************************
+//  TODO
+//  Get groups with shared:MARP tag from portal user
+//  put groups in a combobox
+//  pass selected group ID to the function that creates the list of shared layers.
+//  update the memory store of the planningLayer Selection Box
+//  update
+
+//  2 selectBoxes:
+//    # 1 is not needed until after the app has loaded--> MARP Groups
+//    # 2 requires a default groupID --> Default Group Contents
+
             _placeGroupSelect: function() {
                 console.log("Place Group Select " + this.config.myGroups);
 
@@ -804,35 +926,40 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         },
                         store: groupStore,
                         sortByLabel: false,
-                        labelAttr: "label"
+                        labelAttr: "label",
+                        displayedValue: this.config.defaultGroupSelection
+                        //value: this.config.defaultGroupSelection,
+                        //display: this.config.defaultGroupSelection
+
                     }, "groupSelectBox2");
 
-                    //dojo.style(dijit.byId("groupSelect").closeButtonNode,"display","none");
+                    // ********************************************************************************
+                    // Select different group - Capture GroupID - Search for layer with shared:MARP tag
+                    // ********************************************************************************
 
                     this.groupSelect2.on("change", lang.hitch(this, function(value) {
                         var update = value.split(",");
 
-                        this.bookmarks = [];
-                        this.currentIndex = -1;
+                        //this.bookmarks = [];
+                        //this.currentIndex = -1;
 
-                        console.log("selected " + update[0]);
-                        //this.config.defaultGroupId = update[0];// set selected group
-                        this._getGroupItems(update[0]);// this is not connected to the menu yet!
+                        this.config.selectedGroupId=update[0];// this sets the value of the last selected GroupId
 
-                        this._createSelectionLayerArray() // 
-
-
-//JF possble issue here with gettiing group items twice
-
+                        // these is called when a user selects a group in the group menu;        
+                        this._getGroupItems(update[0]); // first value contains the groupId;
 
                     }));
 
-                    //initiate hazard dropdown
+                    // show default group id when the app is first opened.
+
                     domConstruct.place(this.groupSelect2.domNode, "map_groupheader2", "replace");
                     this.groupSelect2.startup();
 
-                    this._getGroupItems(this.config.defaultGroupId);// this is not connected to the menu yet!
+                    var content='<div class="userLabel" id="currentUserId"></div>';
+                    var groupMSG = domConstruct.toDom(content);
+                        domConstruct.place(groupMSG, dom.byId('settingsGroupId'), 'last');// could be "after" or "last"
 
+                    this._getGroupItems(this.config.defaultGroupId);// this is only called once when app is opened
 
                 }
             },
@@ -847,6 +974,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 // **********************************************************************
       _getGroupItems: function(groupId){
             console.log("get Group items")
+
 
             // Example query filters
             //var qTemp = "+type:\"Web Map\" AND\"" + "" + "\" -type:\"Web Mapping Application\"";
@@ -868,88 +996,115 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     console.log(params);
                     this.portal.queryItems(params).then(lang.hitch(this, function(response) {
 
+                      if(response.total==0){
+                        dom.byId("currentUserId").innerHTML="0 Resource planning layers in this group";
+                        dom.byId("currentUserId").style.color = "red";
+                        dom.byId("currentUserId").style.fontWeight = "bold";
+                      }
+
+                      if(response.total>1){
+                        dom.byId("currentUserId").innerHTML= response.total + " resource planning layers in this group";
+                        dom.byId("currentUserId").style.color = "black";
+                        dom.byId("currentUserId").style.fontWeight = "normal";
+                      }
+
+                      if(response.total==1){
+                        dom.byId("currentUserId").innerHTML="1 Resource planning layer in this group";
+                        dom.byId("currentUserId").style.color = "black";
+                        dom.byId("currentUserId").style.fontWeight = "normal";
+                      }
+
+                      // *********************************************************************
+                      // only populate layer selection
+                      // pass selected group and check to see if it is the configured group
+                      if(response.total>0){
+                        dom.byId("thiraMenuId").click();// this 
                         this.config.defaultGroupItems = response.results;// reset items in the selected group
+                        this._createMARPSelectionLayerArray(response.results, groupId);
+                      }
 
-                        //this.bookmarks = [];
-
-                        //this._readItemResultList();
-
-                        this._createSelectionLayerArray();
-
-
-           })); // END RESULTS HANDLING     
+                   })); // END RESULTS HANDLING     
       },
-
-            //read the results and build the new bookmark array  
+            // ************************************************************************************
+            // read the results and build the new bookmark array that contains target capabilities
             // create array of planning layers for the dropdown menu.
-            _createSelectionLayerArray: function(){
+            // If selected group does not have MARP layers this function is never called
+            // ************************************************************************************
+            _createMARPSelectionLayerArray: function(sharedMARPLyrs, selectedGroupId){
 
-                this.config.planningLayersInGroup = [];
+
+                this.config.planningLayersMenuArr = [];
                 var defaultLyrUrl="";
                 var defaultLyrTitle="";
-
-                array.forEach(this.config.defaultGroupItems, lang.hitch(this, function(lyrItem) {
-
-
-                    if(lyrItem.id==this.config.defaultLayerItemId){
-                      defaultLyrUrl= lyrItem.url + "/2";
-                      defaultLyrTitle = lyrItem.title;
-                    }
+                var idString="";
+                array.forEach(sharedMARPLyrs, lang.hitch(this, function(lyrItem,i) {                
 
                     // create uniqueId for layers in the dropdown list, including the url and thumbnails
                     var item = '<div class="ma-select-option"><img src=' + lyrItem.thumbnailUrl + '>' + '<div class="ma-select-title">' + lyrItem.title + '</div></div>';
-                    var thiraLyr = lyrItem.url + "/2";
+                    var thiraLyrUrl = lyrItem.url + "/" + this.config.capabilitiesRESTLyrId;
 
-                    this.config.planningLayersInGroup.push({
+                    this.config.planningLayersMenuArr.push({
                       name: lyrItem.title,
-                      id: lyrItem.id + "," + thiraLyr + "," + lyrItem.title,
+                      id: lyrItem.id + "," + thiraLyrUrl + "," + lyrItem.title,
                       label: item,
                       owner: lyrItem.owner,
-                      url:  thiraLyr, 
+                      url:   thiraLyrUrl, 
                       title: lyrItem.title
                       //urlKey: gData("portal").urlkey,
                       //hostName:gData.portal.portalHostname
                     });
 
+                    // If default MARP layer is ever in a group that is selected, autoselected that layer as the default
+                    if(lyrItem.id==this.config.defaultMARPItemId){
+                      defaultItemId = lyrItem.id;
+                      defaultLyrUrl= lyrItem.url + "/" + this.config.capabilitiesRESTLyrId;
+                      defaultLyrTitle = lyrItem.title;
+                      idString = defaultItemId + "," + defaultLyrUrl + "," + defaultLyrTitle;
+
+                    }
+                    else if(i==0){
+                      defaultItemId = lyrItem.id;
+                      defaultLyrUrl = lyrItem.url + "/" + this.config.capabilitiesRESTLyrId;
+                      defaultLyrTitle = lyrItem.title;
+                      idString = defaultItemId + "," + defaultLyrUrl + "," + defaultLyrTitle;
+                    }
+
                 }), this);
 
-
                       // Only place drop down after it has been loaded.  Does not count array proplerly outside of this loop
-                      if(this.config.planningLayersInGroup.length==this.config.defaultGroupItems.length){
-                        this._placeLayerSelectionMenu(this.config.planningLayersInGroup, defaultLyrUrl, defaultLyrTitle); // this shows the current planning layer
+                      if(this.config.planningLayersMenuArr.length==this.config.defaultGroupItems.length){
+                        this._placeLayerSelectionMenu(selectedGroupId, this.config.planningLayersMenuArr, idString); // this shows the current planning layer
                       } 
 
             },
 
 
 
-// ***********************************************************************************************************************
-//  PLACE Layer selection Menu.  Eventually this will have orgs to search for data with the necessary tag - "Shared:thira"
-// ***********************************************************************************************************************
+            // **************************************************************************
+            //  PLACE MARP LAYER SELECT DIJIT  
+            //  If selected group does not have MARP layers this function is never called
+            // **************************************************************************
+            // DOM elemet to attach selection dijit
+            // Array of items from selected Group
+            // show Selected Layer as selected 
 
-// I need: DOM elemet to attach selection dijit
-// I need: Array of items from selected Group
-// I need: show Selected Layer as selected 
-
-            //place group info to create select
-
-            _placeLayerSelectionMenu: function(planLayers, defaultLyr, defaultLyrTitle) {
+            _placeLayerSelectionMenu: function(selectedGroupId, marpLayers, selectValueIdString) {
 
                 this.inherited(arguments);
 
-                console.log("Populate Layers Selection Menu " + planLayers);
+                console.log("Populate Layers Selection Menu " + marpLayers);
 
-                var idString="";
-                    idString=this.config.defaultLayerItemId + "," + defaultLyr + "," +  defaultLyrTitle;
+                //var idString="";
+                //    idString=this.config.defaultMARPItemId + "," + defaultLyr + "," +  defaultLyrTitle;
 
-                console.log("idString: " + idString); // Note: this.config.capabilitiesUrl is not ready to use.  had to pass URL from previous function
+                //console.log("idString: " + idString + "---" + selectValueIdString); // Note: this.config.capabilitiesUrl is not ready to use.  had to pass URL from previous function
 
-                if (!this.planningSelect) {
-                    var groupArray = planLayers;
+                if (!this.marpSelect) {
+                    var groupArray = marpLayers;
 
                     groupArray.reverse();
 
-                    var groupNode = dijit.byId('planningSelectBox');
+                    var groupNode = dijit.byId('marpSelectBox');
                     if (groupNode) {
                         groupNode.destroyRecursive();
                     }
@@ -961,27 +1116,18 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     // groupSelect is the new dijit name for group select.
                     // dijit ID is assigned at the end.
-                    this.planningSelect = new Select({
-                        id: "planSelectionDijit",
+                    this.marpSelect = new Select({
+                        id: "marpSelectionDijit",
                         style: {
                             width: '100%'
                         },
                         store: groupStore,
                         sortByLabel: false,
                         labelAttr: "label",
-                        value: idString
-                    }, "planningSelectBox");
+                        value: selectValueIdString
+                    }, "marpSelectBox");
 
-                    //dojo.style(dijit.byId("groupSelect").closeButtonNode,"display","none");
-
-                    // Select the default layer set in the configuration.  The id value must match exactly.  This does not always fire soon enough. 
-
-                    //this.planningSelect.attr('value', String(idString.trim()));
-
-
-
-
-                    this.planningSelect.on("change", lang.hitch(this, function(value) {
+                    this.marpSelect.on("change", lang.hitch(this, function(value) {
                         var selection = value.split(",");
 
                         this.currentIndex = -1;
@@ -989,24 +1135,68 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         var planLyrUrl   = selection[1];
                         var planLyrTitle = selection[2];
 
+                        // !Important! - reset the config for a New MARP layer selection
+
+
+                        this.config.capabilitiesUrl=planLyrUrl;
 
                         this.setGlobalQueryParameters(planLyrUrl);
 
+                        this.newLayer(planLyrUrl, this.config.token, planLyrTitle);//
 
-                        this.newLayer(planLyrUrl, this.config.token, planLyrTitle);// add featureLayer to webmap.  Featurelayer seems to be added automatically when webmap changes.
-// Important - New layer selection
-                        this.config.capabilitiesUrl=planLyrUrl;
 
                     }));
 
+
+
                     //initiate hazard dropdown
-                    domConstruct.place(this.planningSelect.domNode, "planningLayer_groupheader", "replace");
-                    this.planningSelect.startup();
+                    domConstruct.place(this.marpSelect.domNode, "planningLayer_groupheader", "replace");
+                    this.marpSelect.startup();
 
 
-                    // Must create a string that mirrors the selection id for the dijit.  
-                    // Use this value to preset the menu the first time it opens.
 
+                }
+
+                else{
+
+                    console.log("refresh MARP Layer select box");
+
+                    var MARPArray = marpLayers;
+                        MARPArray.reverse();
+
+                    var marpStore = new Memory({
+                        idProperty: "id",
+                        data: MARPArray
+                    });
+                    
+                    this.marpSelect.setStore(marpStore);
+
+                    // *********************************************************
+                    // If selected group is the default group, reset the default  
+                    // *********************************************************
+                    if(selectedGroupId==this.config.defaultGroupId){
+                        var defaultMARPString="";
+                            defaultMARPString=this.config.defaultMARPItemId + "," + this.config.defaultMARPUrl + "," +  this.config.defaultMARPTitle;
+                        
+                            this.marpSelect.attr("value", defaultMARPString);
+
+                       // Add new layer to the map and refresh capabiliites, etc after layer is added.
+                       //this.newLayer(defaultLyr, this.config.token, defaultLyrTitle);// add featureLayer to webmap.  Featurelayer seems to be added automatically when webmap changes.
+
+                    }
+
+                    // *******************************************************************************
+                    // If selected group is NOT the default group, select the first layer in the list 
+                    // *******************************************************************************
+                    else{
+                        var defaultMARPString="";
+                            defaultMARPString=this.config.capabilitiesUrl + "," + this.config.defaultMARPUrl + "," +  this.config.defaultMARPTitle;
+
+                        this.marpSelect.attr("value", selectValueIdString);
+
+                       //this.newLayer(defaultLyr, this.config.token, defaultLyrTitle);// add featureLayer to webmap.  Featurelayer seems to be added automatically when webmap changes.
+
+                    }
 
                 }
             },
@@ -1019,6 +1209,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
     displayBookmarks: function(coreCaps) {
         // summary:
         //    remove all and then add
+
+        console.log("SHOWIMG CAPABILITIES" + coreCaps)
         var items = [];
         this.coreCapList.empty();
         array.forEach(coreCaps, function(coreCap) {
@@ -1123,13 +1315,15 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
           this.createCapResourceArray_0(coreCap.ObjectID);// create summaryArray
 
+          //document.getElementById.TitleNode.set('NEW TITLE');
 
+          var temp=document;
         }
 
       // possible way to change the title of the viewer.
       // onAppConfigChanged: function(appConfig, reason, changedData){
       // topic.publish("appConfigChanged", lang.hitch(this, this.onAppConfigChanged)));
-      // this.TitleNode.set('value', new Date());
+
     
     },
 
@@ -1144,6 +1338,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
     removeCapInfoDijitBtns: function(){
 
       this._removeTitleListDijit(this.capResourceArray.length);    
+
+               // removing CapInfo TP Dijit
+      var rmCapInfoTP = dijit.byId("capTitlePane_Id1")
+          if(rmCapInfoTP){
+              rmCapInfoTP.destroyRecursive();
+          }
 
       var removeCapBtn = dijit.byId("maEditCAP");
           if(removeCapBtn){
@@ -1180,22 +1380,18 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
     _removeTitleListDijit: function(resCount){
 
-
         for (i = 0; i < resCount; i++) {
-
           var rmItem = "tpId_" + i;
               console.log("removeLoop   " + rmItem)
           var rmElement = dijit.byId(rmItem)
             if(rmElement){
 
-              rmElement.destroyRecursive();
+                rmElement.destroyRecursive();
 
-              console.log("removing " + rmItem);
-           }
+                console.log("removing " + rmItem);
+            }
 
         }
-
-
     },
 
       // ******************************************************************************************
@@ -1292,23 +1488,15 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
            }
 
 
-    //      <img style="width:45px;float:right;" id="addResourceImg" src="./widgets/MutualAid/images/esri_icons/xtra_AddCapability65x.png"/>
 
 
-                  var content="";
+                 var content="";
                      content+='<div class="capInfoTextContainer" id="capInfoId">'
-                     content+=   '<p><div id="capInfoEditPanel" class="cap-info-btn-heading" style="padding:2px"><span class="ma-jimu-btn-blue"><button id="maEditCAP" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Capability Target</div></p>';
-                     content+=   '<div class="cap-info-text">' +coreCap.Target + '</div>';
-                     content+=   '<div class="cap-info-heading">Threats / Hazards</div>';
-                     content+=   '<div class="cap-info-text">' + coreCap.Threat_Hazard  +'</div>';
-                     content+=   '<div class="cap-info-heading">Jurisdiction</div>';
-                     content+=   '<div class="cap-info-text">' + coreCap.Jurisdiction + '</div>';
-                     content+=   '<div class="cap-info-heading">ESF</div>';
-                     content+=   '<div class="cap-info-text">' + coreCap.ESF + '</div>';
-                     content+=   '<div class="cap-info-heading">Impacts</div>';
-                     content+=   '<div class="cap-info-text">' +  coreCap.Impact  + '</div>';
-                     content+=   '<div class="cap-info-heading">Outcomes</div>';
-                     content+=   '<div class="cap-info-text-bottom-border">' + coreCap.Outcome + '</div>';
+                      // Create 2 parts here. Add parents to DOM before creating the TP
+                     content+='<p><div id="capInfoEditPanel" class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maEditCAP" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Target Capability</div></p>';
+
+                     content+='<div class="cap-info-text">' +coreCap.Target + '</div>';
+                     content+='<div id="capInfoSection_A"></div>';
                      content+=   '<p><div id="placeAttrInsp_addRes" class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maReqResTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="reqResCountId" style="display:inline"></div>&nbsp;Required Resources<span style:"float:right" class="ma-jimu-btn-green"><button  id="maAddResource" type="button"></button></span></div></p>';
                      content+=   '<div id="capInfo-resources" class="cap-info-resources"></div>';
                      content+=   '<div class="cap-info-text"></div>';
@@ -1317,9 +1505,52 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                      content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Resource Gaps</div></p>';
                      content+=   '<div id="capInfo-gap-graph" class="cap-info-text"></div>';
                      content+='</div>';
+                    
+                 var newDIV = domConstruct.toDom(content);
+                     domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
 
-                var newDIV = domConstruct.toDom(content);
-                    domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
+                     capContent="";
+                     capContent+=   '<div class="cap-info-heading">Threats / Hazards</div>';
+                     capContent+=   '<div class="cap-info-text">' + coreCap.Threat_Hazard  +'</div>';
+                     capContent+=   '<div class="cap-info-heading">Jurisdiction</div>';
+                     capContent+=   '<div class="cap-info-text">' + coreCap.Jurisdiction + '</div>';
+                     capContent+=   '<div class="cap-info-heading">ESF</div>';
+                     capContent+=   '<div class="cap-info-text">' + coreCap.ESF + '</div>';
+                     capContent+=   '<div class="cap-info-heading">Impacts</div>';
+                     capContent+=   '<div class="cap-info-text">' +  coreCap.Impact  + '</div>';
+                     capContent+=   '<div class="cap-info-heading">Outcomes</div>';
+                     capContent+=   '<div class="cap-info-text-bottom-border">' + coreCap.Outcome + '</div>';
+
+                 var capInfo_TPID = "capTitlePane_Id1"; 
+
+                    // Create TilePane for each Resource Item
+                    var capTP = new TitlePane({
+                        id: capInfo_TPID,
+                        title:"Show More . . .", 
+                        content:capContent,
+                        onClick: lang.hitch(this,function(){
+
+                          var newTitle = dijit.byId("capTitlePane_Id1");
+
+                              if(newTitle.title=="Show More . . ."){
+                                 newTitle.set("title", "Show Less . . .");
+                              }
+                              else{
+                                  newTitle.set("title", "Show More . . .");
+                              }
+                        })
+
+                    });
+
+                    dom.byId("capInfoSection_A").appendChild(capTP.domNode);
+
+                     capTP.attr('open', false);
+                     capTP.startup();
+
+
+                // Original Panel
+                //var newDIV = domConstruct.toDom(content);
+                //    domConstruct.place(newDIV, dom.byId('selectedCoreCap'), 'after');// could be "after" or "last"
 
 
                 // *************************************************************************
@@ -1416,6 +1647,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
         this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
+        this.queryCapabilitiesLayer2(this.config.capabilitiesUrl, "1=1");
         this.removeCapInfoDijitBtns();// removes dijit btns for refreshing the info pane after every update
 
         // removes edit panel if it was open
@@ -1435,6 +1667,14 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                       gridsAndGraph.remove();
                 }
          }
+
+         // removing CapInfo TP Dijit
+         var rmCapInfoTP = dijit.byId("capTitlePane_Id1")
+            if(rmCapInfoTP){
+
+                rmCapInfoTP.destroyRecursive();
+            }
+
 
           document.getElementById("showerId").className="showingDiv";
           document.getElementById("hiderId").className="hiddenDiv";
@@ -1488,8 +1728,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
     _clickCapTableBtn:function(){
 
-        this.inherited(arguments);
-        this._hideDivElementsOnTheMap();
+            this.inherited(arguments);
+            this._hideDivElementsOnTheMap();
 
 
               console.log("SelectedCAP: " + this.config.selectedCap);
@@ -1550,6 +1790,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
     _hideDivElementsOnTheMap: function(){
+
+        // remove grid elment before creating another one
+        var gridsAndGraph = dom.byId("gridsAndGraph");
+            if (gridsAndGraph) {
+                  gridsAndGraph.remove();
+                }
 
         // hide actual map element and show the parent Element for table
         var hide = dom.byId("map_root")
@@ -1904,10 +2150,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         },
 
-
-
-
-
         // **************************************************
         // Create Event on Edit Resource Table Cell
         //
@@ -2043,7 +2285,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     var pContent="";
                         pContent+='<div class="edit-partner-item-node">';
-                        pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:10px;">';
+                        pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:5px;">';
                         pContent+=        '<div id="' + parEditClickedId + '" class="icon-pencil-edit-btn"></div>';
                         pContent+=     '</div>';
                         
@@ -2629,7 +2871,19 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
-        }
+        },
+
+        
+
+
+        _getWidgetWhenLoaded: function(id) {  
+          //WidgetManager.getInstance().appConfig.widgetOnScreen.widgets[4].id
+
+          var splashWidget = registry.byId(id);  
+
+              splashWidget.startup();
+
+        } 
 
 
 

@@ -111,10 +111,19 @@ define([
             // ********************************************************
             // Insert Parent DOM Elements for Resource Table and Graph
             // ********************************************************
-                str += '<div id="gridsAndGraph" class="gridsAndGraphDIV">';
-                str +=      '<div class="capSubHeaderContainer"/>' 
-                str +=          '<div id="capTableTitle" class="capSubHeader">Required Resources</div>';
-                str +=      '</div>';
+                  str +='<div id="gridsAndGraph" class="gridsAndGraphDIV">';
+
+
+                  str+=    '<div id="tableHeaderId_2" class="tableHeader">';
+                  str+=       '<div class="horizontal-text-with-table-icon" id="tableHeaderId">Required Resources</div>';// Used for title of slide
+                  str+=       '<div class="icon-cancel-circle-tableHeader" id="closeTableId"></div>';// <div class="horizontal-right-content" id="AddPartnerBtnId_EMACBtn">
+                  str+=       '<div class="horizontal-cont-clear"></div>';
+                  str+=    '</div>';
+
+
+            //    str +=      '<div class="capSubHeaderContainer"/>' 
+            //    str +=          '<div id="capTableTitle" class="capSubHeader">Required Resources</div>';
+             //   str +=      '</div>';
 
 
                 str +=      '<div id="rTableParent" class="rTableParentDiv"></div>';
@@ -122,6 +131,26 @@ define([
 
             var newNode2 = domConstruct.toDom(str);
             domConstruct.place(newNode2, dom.byId("formParentDiv"), 'first');
+
+
+            var closeTableReport = dom.byId("closeTableId");
+
+                on(closeTableReport, 'click', lang.hitch(this, function(close){
+                    console.log('click-event-close-tableReport');
+
+                    //remove grid element
+                    var gridsAndGraph = dom.byId("gridsAndGraph");
+                        if (gridsAndGraph) {
+                            gridsAndGraph.remove();
+                    }
+
+                    this._displayDivElementsOnTheMap();
+
+                    //document.getElementById("showerId").className="showingDiv";
+                    //document.getElementById("hiderId").className="hiddenDiv";
+
+
+                }));
  
             // ********************************************************
             // Inserting Buttons on CAP Header - Edit This Capability!
@@ -175,8 +204,6 @@ define([
             })
             }, "editCAP_menuIcon4").startup();
 
-*/
-
 
         // **********************************************
         // Insert the Green Add Resource Button into DOM
@@ -217,6 +244,8 @@ define([
                     var redirectWindow = window.open('http://www.emacweb.org/', '');
                     //redirectWindow.location; : EGE - not sure what this line is doing
                 }));
+*/
+
 
             // **************************************************************************
             //  Get Capabilities Details from the service.  Update Form requires refresh
@@ -227,10 +256,36 @@ define([
 
         },
 
- 
+// This same function also appears in widget.js
 
+    _displayDivElementsOnTheMap:function(){
 
+        // return visibility to map element and hide the parent Element containing mutual aid table
+          var hide = dom.byId("map_root")
+              hide.style.display="block";
+          var show = dom.byId("formParentDiv");
+              show.style.display="none";
 
+          //  Classnames of elements on the map div.  this does not hide using widgetId that can change
+          var classesToHide=["onscreen","mylocation","homebutton", "search", "overview", "scalebar","zoomslider","coordinate"];
+
+          var c = document.getElementById("map").children;
+
+          for (i = 0; i < c.length; i++) {
+
+              var str=c[i].className;
+
+              array.forEach(classesToHide, function(keyword) {
+
+                  if(str.indexOf(keyword)!=-1){
+
+                        c[i].style.display="block";
+                  }
+            
+              }, this);
+
+          }// end loop of child elements
+    },
 
         // ********************************************************************
         //  JF Pure CSS Table for resources - adding to domID "rTableParent"
@@ -1374,7 +1429,9 @@ define([
                     //  CSS assigns first-child properties to bold field names etc.
                     var table="";
                         table += '<div class="pGroupHeader" id="pHeaderId-' + i + '">';
-                        table +=   '<div class="pGroupHeader resColumn1"><div class="icon-users"></div></div>';
+
+                        //table +=   '<div class="pGroupHeader resColumn1"><div class="icon-users"></div></div>';
+
                         table +=   '<div class="pGroupHeader resColumn2" id="pName-' + item.attributes.Organization + '">' + item.attributes.Organization + '</div>';
                             //rTable +=   '<div class="resColumn5"></div>';
 
@@ -1479,10 +1536,10 @@ define([
                         pTable +=   '<div class="resColumn35"></div>';
                         pTable +=   '<div class="resColumn135">' + resItem.NmbCommitted + ' of ' + resItem.NmbNeeded + ' Committed </div>'; //(' + resItem.NmbCommitted +')                                     
                         pTable +=   '<div class="resColumn2">' + resItem.Name + '-' + resItem.Type + '</div>';
-                        pTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
+                       // pTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
                         //rTable +=   '<div class="resColumn4" id="rCount-' + resItem.attributes.ObjectID + '">' + resItem.attributes.NmbCommitted  +' </div>';
                         pTable +=   '<div class="resColumn6" id="rTypeDef-' + i + '">' + '<div class="icon-books"></div>' + '</div>';
-                        pTable +=   '<div class="resColumn7" id="rPartner-' + i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
+                       // pTable +=   '<div class="resColumn7" id="rPartner-' + i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
                         pTable += '</div>';
 
 
@@ -1494,17 +1551,17 @@ define([
                         var pTableNode = domConstruct.toDom(pTable);
                             domConstruct.place(pTableNode, dom.byId('pHeaderNoPartner'), 'last');
 
-                        var clickNode1 = dom.byId(clickEdit);
-                            this.ccEditResNodes.push(clickNode1);                      
-                            this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
+                        //var clickNode1 = dom.byId(clickEdit);
+                        //    this.ccEditResNodes.push(clickNode1);                      
+                        //    this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
 
                         var clickNode2 = dom.byId(clickType);
                             this.ccResTypeNodes.push(clickNode2);
                             this._ccEventResTypeInfo(this.capIdx, i);
 
-                        var clickNode3 = dom.byId(clickPartner);
-                            this.ccResPartnerNodes.push(clickNode3);
-                            this._ccEventResPartner(i, resItem.Name, resItem.Type, resItem.ObjectID, resItem.GlobalID, clickedFrom);
+                        //var clickNode3 = dom.byId(clickPartner);
+                        //    this.ccResPartnerNodes.push(clickNode3);
+                        //    this._ccEventResPartner(i, resItem.Name, resItem.Type, resItem.ObjectID, resItem.GlobalID, clickedFrom);
 
 
                     _i=i;// continnue the index value to the next loop
@@ -1521,9 +1578,9 @@ define([
                         pTable +=   '<div class="resColumn35"></div>';
                         pTable +=   '<div class="resColumn135">' + pItem.PNmbCommitted +' Committed</div>';
                         pTable +=   '<div class="resColumn2">' + pItem.RName + '-' + pItem.RType + '</div>';
-                        pTable +=   '<div class="resColumn5" id="rEditIdx-' + _i + '" resglobalKey="'+ pItem.RGlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
+                    //    pTable +=   '<div class="resColumn5" id="rEditIdx-' + _i + '" resglobalKey="'+ pItem.RGlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
                         pTable +=   '<div class="resColumn6" id="rTypeDef-' + _i + '">' + '<div class="icon-books"></div>' + '</div>';
-                        pTable +=   '<div class="resColumn7" id="rPartner-' + _i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
+                    //    pTable +=   '<div class="resColumn7" id="rPartner-' + _i + '">' + '<div class="icon-users" id="iconUsersId"></div>' + '</div>';
                         pTable += '</div>';
 
                     var clickEdit = "rEditIdx-" + _i;
@@ -1537,18 +1594,18 @@ define([
                     var pTableNode = domConstruct.toDom(pTable);
                         domConstruct.place(pTableNode, dom.byId(pElem), 'after');
 
-                    var clickNode1 = dom.byId(clickEdit);
-                        this.ccEditResNodes.push(clickNode1);                      
-                        this._ccEvent_EditRes(_i, pItem.RName, pItem.ROID, pItem.RGlobalID, clickedFrom);
+                   // var clickNode1 = dom.byId(clickEdit);
+                   //     this.ccEditResNodes.push(clickNode1);                      
+                   //     this._ccEvent_EditRes(_i, pItem.RName, pItem.ROID, pItem.RGlobalID, clickedFrom);
 
                     var clickNode2 = dom.byId(clickType);
                         this.ccResTypeNodes.push(clickNode2);
                         this._ccEventResTypeInfo(this.capIdx, _i);
  
 
-                    var clickNode3 = dom.byId(clickPartner);
-                        this.ccResPartnerNodes.push(clickNode3);
-                        this._ccEventResPartnerDirect(_i, pItem.RName, pItem.POrg, pItem.PGID, clickedFrom);
+                  //  var clickNode3 = dom.byId(clickPartner);
+                  //      this.ccResPartnerNodes.push(clickNode3);
+                  //      this._ccEventResPartnerDirect(_i, pItem.RName, pItem.POrg, pItem.PGID, clickedFrom);
 
             }))
         }
