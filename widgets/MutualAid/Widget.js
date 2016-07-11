@@ -95,7 +95,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             this.config.thiraExtent="";
             this.config.capabilitiesLayerName="";
             this.config.capabilitiesDefExpression="1=1";   //start with a default that can be changed later
-            this.config.selectedGroupId="";
+            this.config.previousGroupSelection="";
              
                                 
             topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
@@ -391,7 +391,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
               drawerMenuPanel_3.className = "panel panel-selected"; 
 
 
-              this.groupSelect2.attr('value', this.config.defaultGroupSelection,false);
+              this.groupSelect2.attr('value', this.config.previousGroupSelection,false);
 
           }
 
@@ -436,17 +436,16 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     loggedInUser.getGroups().then(lang.hitch( this,function(groups) {
                         console.log("create group array");
-                        var groupSelection;
 
                         array.forEach(groups, lang.hitch( this,function(group, i) {
 
                             if(group.id==this.config.defaultGroupId){
 
-                              this.config.defaultGroupSelection = group.id + ", group";
-                              groupSelection==true;
+                              // This is important for showing the group that is seleted in the list.
+                              // previousGroupSelection is reset every time the groupSelection "change" event is fired.
+                              this.config.previousGroupSelection = group.id// + ", group";
                             }
                             else{
-                              groupSelection==false;
                             }
 
 
@@ -460,9 +459,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                             this.config.myGroups.push({
                                 name: group.title,
-                                id: group.id + ",group",
+                                id:  group.id,// + ",group",
                                 label: item
-                                //selected: groupSelection // necesary to show the default group in the list.
                             });
 
                             // only place drop down after it has been loaded.  Does not count array proplerly outside of this loop
@@ -831,57 +829,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       },
 
 
-/*
 
-// **********************************************************************************************************
-//  POPULATE DEFAULT GROUP with shared:thira featureLayers within that group from groupId in the config.json
-// **********************************************************************************************************
-      _getGroupContents: function(){
-        console.log("get group contents");
-
-              this.config.myGroups=[];
-
-              array.forEach(this.config.configuredGroups, lang.hitch(this, function(group) {
-
-                var q3 =  "+id:\"" +  group.id + "\"";
-                var params = {
-                    q:  q3,
-                    sortField:'modified',
-                    sortOrder:'desc',
-                    num:20  //find 20 items - max is 100
-                  };
-
-                  this.portal.queryGroups(params).then(lang.hitch(this, function (response) {
-
-                      var gData = response.results;
-
-                      var item = '<div class="ma-select-option"><img src=' + gData[0].thumbnailUrl + '>' + '<div class="ma-select-title">' + gData[0].title + '</div></div>';
-
-                      this.config.myGroups.push({
-                        name: gData[0].title,
-                        id: gData[0].id + "," + "group",
-                        label: item,
-                        owner: gData[0].owner
-                        //urlKey: gData("portal").urlkey,
-                        //hostName:gData.portal.portalHostname
-                      });
-
-                      // only place drop down after it has been loaded.  Does not count array proplerly outside of this loop
-                      if(this.config.myGroups.length==this.config.configuredGroups.length){
-                          this._placeGroupSelect(); // this will be in the settings section
-                      } 
-
-                  }))
-
-                }));// end loop of configured groups;
-
-
-
-
-      },
-
-
-*/
 
 // ***********************************************************************************************************************
 //  PLACE GROUP Selection Menu.  Eventually this will have orgs to search for data with the necessary tag - "Shared:thira"
@@ -907,53 +855,35 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     groupArray.reverse();
 
-                    var groupNode = dijit.byId('groupSelectBox2');
-                    if (groupNode) {
-                        groupNode.destroyRecursive();
-                    }
+                    //var groupNode = dijit.byId('groupSelectBox2');
+                    //if (!groupNode) {
+                        //groupNode.destroyRecursive();
+                   
 
-                    var groupStore = new Memory({
-                        idProperty: "id",
-                        data: groupArray
-                    });
+                        var groupStore = new Memory({
+                            idProperty: "id",
+                            data: groupArray
+                        });
 
                     // groupSelect is the new dijit name for group select.
                     // dijit ID is assigned at the end.
-                    this.groupSelect2 = new Select({
-                        id: "thiraGroupSelect",
-                        style: {
-                            width: '100%'
-                        },
-                        store: groupStore,
-                        sortByLabel: false,
-                        labelAttr: "label",
-                        displayedValue: this.config.defaultGroupSelection
-                        //value: this.config.defaultGroupSelection,
-                        //display: this.config.defaultGroupSelection
+                        this.groupSelect2 = new Select({
+                            id: "thiraGroupSelect",
+                            style: {
+                                width: '100%'
+                            },
+                            store: groupStore,
+                            sortByLabel: false,
+                            labelAttr: "label",
+                            //displayedValue: this.config.previousGroupSelection
+                            //value: this.config.previousGroupSelection
 
-                    }, "groupSelectBox2");
-
-                    // ********************************************************************************
-                    // Select different group - Capture GroupID - Search for layer with shared:MARP tag
-                    // ********************************************************************************
-
-                    this.groupSelect2.on("change", lang.hitch(this, function(value) {
-                        var update = value.split(",");
-
-                        //this.bookmarks = [];
-                        //this.currentIndex = -1;
-
-                        this.config.selectedGroupId=update[0];// this sets the value of the last selected GroupId
-
-                        // these is called when a user selects a group in the group menu;        
-                        this._getGroupItems(update[0]); // first value contains the groupId;
-
-                    }));
-
-                    // show default group id when the app is first opened.
+                        }, "groupSelectBox2");
 
                     domConstruct.place(this.groupSelect2.domNode, "map_groupheader2", "replace");
+
                     this.groupSelect2.startup();
+
 
                     var content='<div class="userLabel" id="currentUserId"></div>';
                     var groupMSG = domConstruct.toDom(content);
@@ -961,7 +891,35 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     this._getGroupItems(this.config.defaultGroupId);// this is only called once when app is opened
 
+
+
+
+                    // ********************************************************************************
+                    // Select different group - Capture GroupID - Search for layer with shared:MARP tag
+                    // ********************************************************************************
+                    this.groupSelect2.on("change", lang.hitch(this, function(value) {
+                        //var update = value.split(",");
+
+                        this.config.previousGroupSelection=value;
+                        //this.bookmarks = [];
+                        // this.currentIndex = -1;
+                        
+                        //this.groupSelect2.attr('value', this.config.previousGroupSelection,false); // "false" parameter changes the selection, but does not trigger an onchange@
+
+                        this.config.selectedGroupId=value; //update[0];// this sets the value of the last selected GroupId
+
+                        // these is called when a user selects a group in the group menu;   
+                        this._getGroupItems(value);    
+                        //this._getGroupItems(update[0]); // first value contains the groupId;
+
+                    }));
+
+                }// end if
+                else{
+
+                  alert("group select was called a second time!");
                 }
+
             },
 
 

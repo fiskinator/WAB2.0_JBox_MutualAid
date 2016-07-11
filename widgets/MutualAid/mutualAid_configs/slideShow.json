@@ -265,7 +265,7 @@
         "bullet2" : "",
         "bullet3" : "",
         "html_list_type_ul_ol": "ul",
-        "slide" : "widgets/mutualAid/http://vusa.maps.arcgis.com/home/group.html?id=cdbc676652d44883a642edfcb0c10e27",
+        "slide" : "http://vusa.maps.arcgis.com/home/group.html?id=cdbc676652d44883a642edfcb0c10e27",
         "optional_link" :""
     },
 
