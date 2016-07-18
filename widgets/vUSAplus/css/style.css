@@ -119,12 +119,12 @@
 }
 
 .groupOption img{
-
-height:40px;
-width:40px;	
-vertical-align: middle;
-float:left;
+  height:40px;
+  width:40px;	
+  vertical-align: middle;
+  float:left;
 }
+
 .groupOption:hover{
   background-color: #eee;
   color: #333;

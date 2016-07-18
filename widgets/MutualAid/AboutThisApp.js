@@ -78,6 +78,8 @@ define([
                       domConstruct.place(content, dom.byId("slideShowContainerDivId"), 'first');
 
 
+
+
                   var closeSlides = dom.byId("closeSlideShowId");
 
                       on(closeSlides, 'click', lang.hitch(this, function(close){

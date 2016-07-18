@@ -635,7 +635,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                   );
             }));
 
-
+        // adjust position of dialog near the top so it is not cut off on smaller devices
         myDialog.show().then(function () {
           domStyle.set(myDialog.domNode, "top", "100px");
           domStyle.set(myDialog.domNode, 'visibility', 'visible');

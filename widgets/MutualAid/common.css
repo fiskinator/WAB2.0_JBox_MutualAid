@@ -87,12 +87,12 @@
     width: 80%;
     height: 35px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
 }
 .edit-partner-item-table{
     width: 280px;
     height: 35px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .edit-resource-item-status40px{
@@ -104,12 +104,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .edit-partner-item-status60px{
+    font-size: 12px;
     vertical-align: middle;
-    width: 50px;
+    width: 45px;
     padding-right: 10px;
     display: table-cell;
     text-align: center;
@@ -757,7 +758,7 @@ margin: 3px;
 .claro .dijitTitlePaneTitleClosed{
 background-color: #d3d3d3;
 font-size:13px ;
-padding: 8px;
+padding: 5px;
 
 }
 
@@ -767,7 +768,7 @@ padding: 8px;
 .claro .dijitTitlePaneTitleFixedOpen{
 background-color: #d3d3d3;
 font-size:13px ;
-padding: 8px;
+padding: 5px;
 margin-left: 0px;
 
 

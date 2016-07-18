@@ -1051,11 +1051,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                 console.log("Populate Layers Selection Menu " + marpLayers);
 
-                //var idString="";
-                //    idString=this.config.defaultMARPItemId + "," + defaultLyr + "," +  defaultLyrTitle;
-
-                //console.log("idString: " + idString + "---" + selectValueIdString); // Note: this.config.capabilitiesUrl is not ready to use.  had to pass URL from previous function
-
                 if (!this.marpSelect) {
                     var groupArray = marpLayers;
 
@@ -1296,6 +1291,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
       this._removeTitleListDijit(this.capResourceArray.length);    
 
+      this._removePartnerTitlePaneDijits(this.config.tpPartnerCount);
+
                // removing CapInfo TP Dijit
       var rmCapInfoTP = dijit.byId("capTitlePane_Id1")
           if(rmCapInfoTP){
@@ -1350,6 +1347,30 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         }
     },
+
+   
+    // ******************************************************
+    // loop though  title pane dijits for the Partner Report
+    _removePartnerTitlePaneDijits: function(uniquePartnerCount){
+          //this.config.tpPartnerCount
+
+          for (i = 0; i < uniquePartnerCount; i++) {
+              var rmItem = "tpCapParId_" + i;
+                  console.log("removePartnerTPDijits   " + rmItem)
+              var rmElement = dijit.byId(rmItem)
+              if(rmElement){
+                  rmElement.destroyRecursive();
+                  console.log("removing " + rmItem);
+              }
+
+          }
+          
+
+    },
+
+
+
+
 
       // ******************************************************************************************
       //  FUNCTION: onEditCapSaved
@@ -1633,6 +1654,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             }
 
 
+
           document.getElementById("showerId").className="showingDiv";
           document.getElementById("hiderId").className="hiddenDiv";
 
@@ -1855,6 +1877,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         //    if(resourceCount){
                         //        resourceCount.innerHTML="No resources allocated.";
                         //    }
+
                         var resourceCount2 = dom.byId("reqResCountId");
                           if(resourceCount2){resourceCount2.innerHTML =  "0";  }
 
@@ -2078,7 +2101,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                                 //  Must create uniqueID for each partnerEdit Button within each resource
                                 //  partnerResourceTileId is used in  createSingleResPartnerList() 
                                 // *********************************************************************************
-
                                 this.partnerResourceTileId = i;
 
                                 this.getSingleResPartnerList(item.GlobalID)
@@ -2519,7 +2541,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // Update Capability Summary with partner count
 
                 var uPartnersArr=results.features;// save for layer use
-                    if(uPartnersArr.length){// if 
+                    if(uPartnersArr.length){// 
+
+                      this.config.tpPartnerCount=uPartnersArr.length;
 
                       //console.log(uPartnersArr.length)
                       //console.log(results);
@@ -2540,72 +2564,189 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                       // ZERO PARTNERS is the default
                       console.log("unassigned resource in partner results")
                    
-
-
                     }
 
 
                 //var val = dom.byId("capInfo-partners");
                 // *********************************************
                 // list partners at the bottom of the info panel
-                array.forEach(uPartnersArr, lang.hitch(this, function(item) {
+                array.forEach(uPartnersArr, lang.hitch(this, function(item, i) {
+                    var tpTitle=item.attributes.Organization;
+                    var tpCapFK=item.attributes.CapabilityFK;
                     var content="";
-                        content='<div class="cap-info-text">' + item.attributes.Organization + '</div>';
+                        content='<div class="cap-info-text">Requesting Content . . .</div>';
+              
+                    var tpCapParId = "tpCapParId_" + i; 
 
-                    var newDIV = domConstruct.toDom(content);
-                                 domConstruct.place(newDIV, dom.byId('capInfo-partners'), 'last');// could be "after" or "last"
+                    // Create TilePane for each Resource Item
+                    var tp = new TitlePane({
+                        id: tpCapParId,
+                        title:tpTitle, 
+                        content:content,
+                        
+                        onClick: lang.hitch(this,function(value){
+
+                          var clickedParTitlePane = dijit.byId(value.currentTarget.id);
+                          var str = clickedParTitlePane.containerNode.innerHTML;
+
+                          // search for content that indictates the pane was not previously clicked.  
+                          var n = str.search("Requesting Content . . .");
+                          if(n!= -1){
+                                  this.getResourcesForCap_AND_Partner(value.currentTarget.id, tpTitle, this.config.selectedCap.GlobalID);
+                              }
+                            else{
+                              alert("NO but must remove listeners and reset content to Requesting Content . . .")
+                              //newTitle.set("title", "Show More . . .");
+                          }
+
+                          // save for posible later use
+                          // this.config.lastClickedPartnerPaneId=getClickedPane.id;
+                          //var clickedParTitlePane = dijit.byId(getClickedPane.id);
+                          //    clickedParTitlePane.set("content", "THIS IS CLICKED!");// reset the selected panel
+
+                        }),
+                        
+
+                      /* **********************************************************************************  
+                      /* This does not pass a click event to know which dijit was clicked! and is not used
+                      /* **********************************************************************************
+                        onShow: lang.hitch(this,function(value){
+                              var getClickedPane=value.currentTarget
+                              alert("Pane was previouly closed, attempting to open")
+                              this.getResourcesForCap_AND_Partner(getClickedPane.id, tpTitle, this.config.selectedCap.GlobalID);
+                        }),
+
+                        onHide:lang.hitch(this,function(){
+
+                              alert("Pane was closed, Now closing and removing listeners.")
+
+                        })
+                      */
+
+                      });
+
+                        dom.byId("capInfo-partners").appendChild(tp.domNode);
+                        tp.attr('open', false);
+                        tp.startup();
+
                 }))
+      },
+
+      // **************************************************************************
+      //  Get list of resources that a partner has committed for a given capability
+      //  Requires current Capability ID and Name of Partner Organization, which must be unique.  
+      //  Capabilty is set in onBookmarkClick
+
+      // TODO:    Add the edit button to this report
+      //          Create listeners, create way to destroy listeners
+      //          Add query to replace Resource Names
+      //          Call query every time Title pane is opened.
+
+      getResourcesForCap_AND_Partner: function(clickedTP_DijitId, PartnerOrg, CapFk){
+
+          // This filter could be elimitated if partner queryURL was re-set 
+
+          var resTabl = this.config.relates.filter(function(item) { return item.queryTableName === 'Capability_Resources' && item.origin === 'Mission_AssistingOrgs'; });   
+              parTableUrl = resTabl[0].originURL;
+              relID = resTabl[0].queryRelId;
+
+
+          var whereQuery = "CapabilityFK='" + CapFk + "' AND Organization='" + PartnerOrg + "'" ;
+          var queryTask = new QueryTask(parTableUrl);
+          var query = new esri.tasks.Query();
+              query.outFields = ['*'];
+              query.orderByFields=['Organization'];
+              query.where = whereQuery;
+              query.returnGeometry = false;
+
+              //alert(whereQuery);
+
+              // Create new content string for Title Pane
+              queryTask.execute(query).then(lang.hitch(this, function(response){
+
+                    // check for length
+                    if(response.features.length>0){
+                      // create new content string
+                      var pContent="";
+                      var loopCounter=0; 
+                      array.forEach(response.features, lang.hitch(this, function(item,i) {
+                        loopCounter=loopCounter+1
+                        //alert(item.attributes.Agreement);
+                            resParReportId="resParReport-" + item.attributes.Organization + "_" + i;
+                            pContent+='<div class="edit-partner-item-node">';
+                            //pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:5px;">';
+                            //pContent+=        '<div id="' + parEditClickedId + '" class="icon-pencil-edit-btn"></div>';
+                            //pContent+=     '</div>';
+                            
+                            pContent+=     '<table class="edit-partner-item-table">';
+                            pContent+=         '<tr><td class="edit-partner-item-status60px"><b>' + item.attributes.NmbCommited +'</b></td><td class="edit-partner-item" id="' + resParReportId + '"><b>' + item.attributes.CapabilityFK + '</b></td></b></tr>';
+                            pContent+=     '</table>';                   
+
+                            //pContent+=     '<p><div class="cap-info-text">Agreement: '  + item.attributes.Agreement +'</div></p>';
+                            pContent+=     '<p><div class="cap-info-text">Details: '  + item.attributes.AgreementDetails +'</div></p>';
+                            pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + item.attributes.Comments +'</div></p>';
+                            
+                            pContent+='</div>';
+
+
+                      
+                      }));
+
+                      if(response.features.length==loopCounter){
+                        //lert("DONE! Call new QueryFunction to get Resources")
+                          var updateParTitlePane = dijit.byId(clickedTP_DijitId);
+                              updateParTitlePane.set("content", pContent);// reset the selected panel
+
+                      }
 
 
 
-        },
 
-// *****************************************************************************************************************
-// List Core Capabilities with Images
-// ToDo:  From this list, user should click item and selected item appears on a new page with tools and information
-// ***************************************************************************************************************** 
-
-
-/*
-        maximizeWidget: function(widget) {
-          if (typeof widget === 'string') {
-            widget = this.getWidgetById(widget);
-            if (!widget) {
-              return;
-            }
-          }
-          if (widget.state === 'closed') {
-            this.openWidget(widget);
-          }
-
-          widget.setWindowState('maximized');
-          try {
-            widget.onMaximize();
-          } catch (err) {
-            console.log(console.error('fail to maximize widget ' + widget.name + '. ' + err.stack));
-          }
-        },
+                    }
+                    else{
+                      alert("No partner committments for this capability")
+                    }
 
 
-        //normal, minimized, maximized
-        changeWindowStateTo: function(widget, state) {
-          if (state === 'normal') {
-            this.normalizeWidget(widget);
-          } else if (state === 'minimized') {
-            this.minimizeWidget(widget);
-          } else if (state === 'maximized') {
-            this.maximizeWidget(widget);
-          } else {
-            console.log('error state: ' + state);
-          }
-        },
-
-
-*/
+                  }), function(err){
+                        alert("THERE IS AN ERROR WITH Query" + err);
+                        console.log(err);
+                      }
+              );
 
 
 
-// Set Related Tables as application variables
+
+
+                          
+
+
+
+
+
+        //returns a list of Partner Committments, and the ResourceFK that is needed for the name and required totals
+
+        // 1) query Committments Table for partner that was clicked
+        //       CapabilityFK = "ZZZ" AND Organization="YYY" gets list of committments, but missing name of resource
+        //          AND returns list of ResourceFK that are used to get the name and required count
+
+        // 2) query resource table for all resources with selectedCAP AND PartnerID
+        //       GlobalID IN('b1ce8f3b-9ba4-4ae6-b7f5-95b34099d95d', '3180ae5a-1905-4737-9a5f-364af2519d37','cc7ca22d-6a71-49ef-b9f1-b7858ee21b4a')
+
+
+
+
+      },
+
+      getResourceNamesForSelectedPartner: function(){
+        // returns list of resources
+ 
+
+      },
+
+
+
+      // Set Related Tables as application variables
       setGlobalQueryParameters:function(srcUrl){
           var requestHandle = esriRequest({
               "url": srcUrl,
@@ -2625,9 +2766,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 var trimURL = this.config.capabilitiesUrl;
                     trimURL = trimURL.substring(0, trimURL.length - 2); // JF not necessary for capabilities layer
 
-                // var resTableName = this.config.relatedResourceTableName;
-                // var parTableName = this.config.relatedPartnerTableName;
-                // var hazTableName = this.config.relatedHazardsTableName;
 
                 this.config.keyTables =[];
                 this.config.relates = [];
@@ -2703,7 +2841,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
       }));// end loop through keyTables    
 
-      console.log(this.config.relates);
+      //console.log(this.config.relates);
 
       },
 
