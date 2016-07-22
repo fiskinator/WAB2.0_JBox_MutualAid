@@ -1461,6 +1461,7 @@ span.myButtons:hover{
 }
 
 .row:first-child .resColumn1{
+  font-size: 13px;  
   cursor: default;
   font-weight: bold;
   display: table-cell; 
@@ -1489,6 +1490,7 @@ span.myButtons:hover{
 .row:first-child .resColumn100    
 { /* needed to turn off hand cursor in column header (first child of row)
     And used to make header bold */
+  font-size: 13px;  
   cursor: default;
   font-weight: bold;
   border-left: 1px solid #434343;
@@ -1504,7 +1506,7 @@ span.myButtons:hover{
 }
 
 .resColumn1 {
-  width:85px;
+  width:75px;
   vertical-align:middle;
 
   display: table-cell; 
@@ -1529,7 +1531,7 @@ span.myButtons:hover{
 
 .resColumn3 {
   vertical-align:middle;
-  width:90px;
+  width:80px;
   border-left: 1px solid #434343;
   padding: .2em .2em .2em .2em;
   display: table-cell; 
@@ -1541,7 +1543,7 @@ span.myButtons:hover{
 
 .resColumn4 {
   vertical-align:middle;
-  width:70px;
+  width:85px;
   border-left: 1px solid #434343;
   display: table-cell; 
   padding: .2em .2em .2em .2em;
@@ -1554,8 +1556,8 @@ span.myButtons:hover{
 .resColumn5 {
   vertical-align:middle;
   cursor: pointer;
-  width:70px;
-/*border-left: 1px solid #434343; */
+  width:45px;
+  /*border-left: 1px solid #434343; */
   display: table-cell; 
   padding: .2em .2em .2em .2em;
     text-align: center;
