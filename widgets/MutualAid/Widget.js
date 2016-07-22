@@ -1516,7 +1516,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                      content+=   '<p><div id="placeAttrInsp_addRes" class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maReqResTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="reqResCountId" style="display:inline"></div>&nbsp;Required Resources<span style:"float:right" class="ma-jimu-btn-green"><button  id="maAddResource" type="button"></button></span></div></p>';
                      content+=   '<div id="capInfo-resources" class="cap-info-resources"></div>';
                      content+=   '<div class="cap-info-text"></div>';
-                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maPartnerTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="partnerCountId" style="display:inline">0</div>&nbsp; Total Partnerships</div></p>';
+                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maPartnerTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="partnerCountId" style="display:inline">0</div>&nbsp;Resource Partnerships</div></p>';
                      content+=   '<div id="capInfo-partners" class="cap-info-fix"></div>';
                      content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Chart Resource Gaps</div></p>';
                      content+=   '<div id="capInfo-gap-graph" class="cap-info-text"></div>';
