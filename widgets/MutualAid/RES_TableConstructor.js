@@ -115,7 +115,7 @@ define([
 
 
                   str+=    '<div id="tableHeaderId_2" class="tableHeader">';
-                  str+=       '<div class="horizontal-text-with-table-icon" id="tableHeaderId">Required Resources</div>';// Used for title of slide
+                  str+=       '<div class="horizontal-text-with-table-icon" id="tableHeaderId"></div>';// Used for title of slide
                   str+=       '<div class="icon-cancel-circle-tableHeader" id="closeTableId"></div>';// <div class="horizontal-right-content" id="AddPartnerBtnId_EMACBtn">
                   str+=       '<div class="horizontal-cont-clear"></div>';
                   str+=    '</div>';
@@ -1072,8 +1072,11 @@ define([
                 document.getElementById("capGraphId").style.display = 'none';
            }
 
-           document.getElementById("capTableTitle").innerHTML="Resource Partner Report";
-           document.getElementById("capTableTitle").className="capSubHeaderHandshake";
+
+ 
+
+           //document.getElementById("capTableTitle").innerHTML="Resource Partner Report";
+           //document.getElementById("capTableTitle").className="capSubHeaderHandshake";
 
            this.createCapResourceArray("partnerSummary");// recalculate new totals before generating report
            //this.partnerQuerySetup();
@@ -1351,6 +1354,9 @@ define([
         partnerQuerySetup:function(){
 
             this.getUniquePartnerList();
+
+             document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/partnerButtonBlue.png"><div>' + " Resource Partner Report</div>";
+
             // resource queries begin in createPHeaders() to insure DOM is ready.
         },
 
