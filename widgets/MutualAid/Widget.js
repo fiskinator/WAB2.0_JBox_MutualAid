@@ -2293,7 +2293,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     // *******************************************************
                     var clickPartnerNode = dom.byId(parEditClickedId);// made unique with ResourceCount + partnerCount
                         this.ccPanelPartnerEditNodes.push(clickPartnerNode);
-                        this._ccPanelPartnerEditBtn(i, editpGID, editpOrg, resGID, "clickedFrom");
+                        this._ccPanelPartnerEditBtn(i, editpGID, editpOrg, resGID, "NO REFRESH");
               }  
           
         },
