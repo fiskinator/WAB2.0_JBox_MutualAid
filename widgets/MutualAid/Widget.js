@@ -225,14 +225,15 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       this.resize();
     },
 
-
     destroy: function(){
  //     this.bookmarkList.destroy();
-
         this.inherited(arguments);
-
-
     },
+
+    _getWidgetWhenLoaded: function(id) {  
+        var splashWidget = registry.byId(id);  
+              splashWidget.startup();
+    }, 
 
     createDrawerMenus: function(){
 
@@ -334,7 +335,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 onClick: lang.hitch(this,function(){
                 // Do something:
                 
-                  this._getWidgetWhenLoaded("widgets_Splash_Widget_30");// ID from config.json.  splash is an Onscreen widget and it requires that ID does not change
+                var splashWidget = this.widgetManager.getWidgetsByName("Splash");  
+
+                if(splashWidget){
+                   this._getWidgetWhenLoaded(splashWidget[0].id);// ID from config.json.  splash is an Onscreen widget and it requires that ID does not change
+                }
+                 
             })
             }, "appBtn4").startup();
 
@@ -389,7 +395,10 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
               drawerMenuPanel_3.className = "panel panel-selected"; 
 
 
-              this.groupSelect2.attr('value', this.config.previousGroupSelection,false);
+              if(this.config.curentUser){
+                this.groupSelect2.attr('value', this.config.previousGroupSelection,false);
+              }
+
 
           }
 
@@ -1484,7 +1493,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 newCoreCap.GlobalID = results.features[i].attributes.GlobalID,
                 newCoreCap.ObjectID = results.features[i].attributes.OBJECTID,
                 newCoreCap.ThumbnailUrl = ""
-
 
           } // end loop
 
@@ -3109,15 +3117,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
         
 
-
-        _getWidgetWhenLoaded: function(id) {  
-          //WidgetManager.getInstance().appConfig.widgetOnScreen.widgets[4].id
-
-          var splashWidget = registry.byId(id);  
-
-              splashWidget.startup();
-
-        } 
 
 
 

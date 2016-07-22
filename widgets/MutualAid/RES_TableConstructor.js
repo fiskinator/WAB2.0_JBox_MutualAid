@@ -619,7 +619,7 @@ define([
                 rTable +=   '<div class="resColumn2">Resource Name</div>';
                 rTable +=   '<div class="resColumn5"></div>';
                 rTable +=   '<div class="resColumn3">Required</div>';
-                rTable +=   '<div class="resColumn4">Secured</div>';
+                rTable +=   '<div class="resColumn4">Committed</div>';
                 rTable +=   '<div class="resColumn6">Definition</div>';
                 //rTable +=   '<div class="resColumn7">Partners</div>';
                 rTable += '</div>';
