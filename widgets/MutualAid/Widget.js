@@ -1480,7 +1480,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                      content+=   '<div class="cap-info-text"></div>';
                      content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maPartnerTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="partnerCountId" style="display:inline">0</div>&nbsp; Total Partnerships</div></p>';
                      content+=   '<div id="capInfo-partners" class="cap-info-text"></div>';
-                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Resource Gaps</div></p>';
+                     content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Chart Resource Gaps</div></p>';
                      content+=   '<div id="capInfo-gap-graph" class="cap-info-text"></div>';
                      content+='</div>';
                     
@@ -2586,6 +2586,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         id: tpCapParId,
                         title:tpTitle, 
                         content:loadingContent,
+                        //toggleable:true
                         
                         onClick: lang.hitch(this,function(value){
 
@@ -2594,7 +2595,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                           // refresh content from the service every time it is clicked
                           if(this.showingTP){
-                              clickedParTitlePane.set("content", '<div class="loadingElipsis">Refreshing Content</div>');// reset the selected panel
+                              //clickedParTitlePane.set("content", '<div class="loadingElipsis">Refreshing Content</div>');// reset the selected panel
 
                               this.getResourcesForCap_AND_Partner(value.currentTarget.id, tpTitle, this.config.selectedCap.GlobalID);
                           }
@@ -2602,7 +2603,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                           // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
                           if(!this.showingTP){
 
-                            clickedParTitlePane.set("content", "");
+                            //clickedParTitlePane.set("content", "");
                               
                           }
 
@@ -2838,7 +2839,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                             pContent+=     '</table>';                   
                             pContent+=     '<p><div class="cap-info-text">Agreement: '  + item.attributes.Agreement +'</div></p>';
                             pContent+=     '<p><div class="cap-info-text">Details: '  + item.attributes.AgreementDetails +'</div></p>';
-                            pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + item.attributes.Comments +'</div></p>';
+                            pContent+=     '<p><div class="cap-info-text">Comments: '  + item.attributes.Comments +'</div></p>';
                             
                             pContent+='</div>';
 
