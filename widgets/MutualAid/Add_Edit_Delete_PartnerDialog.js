@@ -207,7 +207,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 //  pass what you need to create a fLayer Object  
 //   resGID,capID,rName
 //  ************************************************
-    _createParFormComponents: function(formType, config, resGID, capID, parGID){
+    _createParFormComponents: function(formType, config, resGID, capID, parGID, clickedFrom){
 
       this.inherited(arguments);
 
@@ -310,7 +310,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                       // **************************************************************
                       if(formType=="editPar"){
                           
-                          this.configureParDialog(null, config, edit_flayer, resGID, capID, parGID);
+                          this.configureParDialog(null, config, edit_flayer, resGID, capID, parGID, clickedFrom);
 
                       }
 
@@ -335,7 +335,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     // ***************************************************
     // Create Attribute Inspector for adding NEW RESOURCE
     // ***************************************************
-    configureParDialog: function (oid, config, edit_flayer, resGID, capID, parGID) {
+    configureParDialog: function (oid, config, edit_flayer, resGID, capID, parGID, clickedFrom) {
 
       var updateFeature;   
 
@@ -460,7 +460,14 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
               lang.hitch(this, function(adds,updates,deletes) {
                 console.log('updated record: ' + updates[0].objectId);
 
-                   this.afterAddEditDelete();
+                  if(clickedFrom=="NO REFRESH"){
+
+                  }
+                  else{
+                    this.afterAddEditDelete();
+                  }
+
+                   
 
                    myDialog.hide;
                    myDialog.destroyRecursive();

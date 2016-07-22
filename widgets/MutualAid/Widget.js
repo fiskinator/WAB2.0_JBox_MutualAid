@@ -2141,6 +2141,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         //
         // Used to create clickable list for the resources 
         // **************************************************
+
+
         _ccPanelEditResBtn: function(i, rName, rOID, rID, clickedFrom){
 
             var resName =  rName;
@@ -2328,7 +2330,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 var createForm = new Add_Edit_Delete_PartnerDialog();
                     //TODO - add code to create a domain of partners already entered.
                     //createForm._createCustomDomains("editPar", this.config, resGID, capID, rName);
-                    createForm._createParFormComponents("editPar", this.config, resGID, capID, parGID);
+                    createForm._createParFormComponents("editPar", this.config, resGID, capID, parGID, clickedFrom);
         },
 
 
@@ -2376,10 +2378,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                        var findBalance = "resBalanceID-" + item.ObjectID;
                        var findCommitted = "resCommittedID-" + item.ObjectID;
-
-
-
-
 
                       // ***********************************************************************
                       // 
@@ -2503,7 +2501,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         //  Get list of unique Partners from Partner Table for specified capability.  
         //  This is called after
         // ****************************************************************************** 
-        //! possible replace with uniqueArrayFunction from basic partner table query      
+        //! possible replace with uniqueArrayFunction from basic partner table query   
+        //  Show More . . . and Show Less could limit partner loop to 5 or less 
         getUniquePartnerList:function(capID){
 
                 var qTable = this.config.relates.filter(function(item) { return item.origin === 'Mission_AssistingOrgs'; });
@@ -2527,33 +2526,27 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     query.groupByFieldsForStatistics = ["Organization"];
                     query.outStatistics = [ statDef ];
                     query.returnGeometry = false;
-                    query.orderBy = "SummaryCount DESC";
+                    ///query.orderBy = "SummaryCount";
                     queryTask.execute(query).then(lang.hitch(this, this.qComplete_UniquePartners));
 
         },
 
         // ********************************************************
         // This provides the summary of partners in the left panel 
+
         // ********************************************************
         qComplete_UniquePartners: function(results) {
-
-                // *********************************************
-                // Update Capability Summary with partner count
+                // *****************************************************
+                // this is used in getResourceNamesForSelectedPartner()
+                this.config.tpPartnerResFK_ID_String="";// the array here is used by back button to remove listeners from edit partner button.  i.e var array = string.split(',');
 
                 var uPartnersArr=results.features;// save for layer use
                     if(uPartnersArr.length){// 
 
                       this.config.tpPartnerCount=uPartnersArr.length;
 
-                      //console.log(uPartnersArr.length)
-                      //console.log(results);
-
-                     // if(dom.byId("capInfo-pCount")){
-                     //     dom.byId("capInfo-pCount").innerHTML= uPartnersArr.length + " partners supporting this capability";
-                     // }
-
-                     // **********************
-                     // More than 0 Partners
+                     // ********************************************************************
+                     // More than 0 Partners - update the partner count in the left header
                       if(dom.byId("partnerCountId")){
                        dom.byId("partnerCountId").innerHTML=uPartnersArr.length;// overwrite the "0"
                       }
@@ -2567,14 +2560,24 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     }
 
 
-                //var val = dom.byId("capInfo-partners");
                 // *********************************************
                 // list partners at the bottom of the info panel
                 array.forEach(uPartnersArr, lang.hitch(this, function(item, i) {
+
+                    // *********************************************************************************************************************
+                    // Create tpPartnerArr
+                    // BackButton at top of panel uses this array to remove listeners for edit and delete buttons that are inside the panels
+                    // this.config.tpPartnerArr.push({
+                    //     pGUID: item.attributes.GlobalID,
+                    //     pName: item.attributes.Organization,
+                    //     resCount:"",
+                    //     resArr: []
+                    // });
+
                     var tpTitle=item.attributes.Organization;
                     var tpCapFK=item.attributes.CapabilityFK;
-                    var content="";
-                        content='<div class="cap-info-text">Requesting Content . . .</div>';
+                    var loadingContent='<div class="loadingElipsis">Refreshing Content</div>';
+                        //content='<div class="cap-info-text" status="NoRecord">No Specified Resource Committment</div>';
               
                     var tpCapParId = "tpCapParId_" + i; 
 
@@ -2582,46 +2585,40 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     var tp = new TitlePane({
                         id: tpCapParId,
                         title:tpTitle, 
-                        content:content,
+                        content:loadingContent,
                         
                         onClick: lang.hitch(this,function(value){
 
                           var clickedParTitlePane = dijit.byId(value.currentTarget.id);
                           var str = clickedParTitlePane.containerNode.innerHTML;
 
-                          // search for content that indictates the pane was not previously clicked.  
-                          var n = str.search("Requesting Content . . .");
-                          if(n!= -1){
-                                  this.getResourcesForCap_AND_Partner(value.currentTarget.id, tpTitle, this.config.selectedCap.GlobalID);
-                              }
-                            else{
-                              alert("NO but must remove listeners and reset content to Requesting Content . . .")
-                              //newTitle.set("title", "Show More . . .");
+                          // refresh content from the service every time it is clicked
+                          if(this.showingTP){
+                              clickedParTitlePane.set("content", '<div class="loadingElipsis">Refreshing Content</div>');// reset the selected panel
+
+                              this.getResourcesForCap_AND_Partner(value.currentTarget.id, tpTitle, this.config.selectedCap.GlobalID);
                           }
 
-                          // save for posible later use
-                          // this.config.lastClickedPartnerPaneId=getClickedPane.id;
-                          //var clickedParTitlePane = dijit.byId(getClickedPane.id);
-                          //    clickedParTitlePane.set("content", "THIS IS CLICKED!");// reset the selected panel
+                          // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
+                          if(!this.showingTP){
+
+                            clickedParTitlePane.set("content", "");
+                              
+                          }
 
                         }),
                         
 
                       /* **********************************************************************************  
                       /* This does not pass a click event to know which dijit was clicked! and is not used
-                      /* **********************************************************************************
-                        onShow: lang.hitch(this,function(value){
-                              var getClickedPane=value.currentTarget
-                              alert("Pane was previouly closed, attempting to open")
-                              this.getResourcesForCap_AND_Partner(getClickedPane.id, tpTitle, this.config.selectedCap.GlobalID);
+                      /* ***********************************************************************************/
+                        onShow: lang.hitch(this,function(event){
+                          this.showingTP=true;
                         }),
 
-                        onHide:lang.hitch(this,function(){
-
-                              alert("Pane was closed, Now closing and removing listeners.")
-
+                        onHide:lang.hitch(this,function(event){
+                          this.showingTP=false;
                         })
-                      */
 
                       });
 
@@ -2636,22 +2633,27 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       //  Get list of resources that a partner has committed for a given capability
       //  Requires current Capability ID and Name of Partner Organization, which must be unique.  
       //  Capabilty is set in onBookmarkClick
+      //  Query Committments Table for partner that was clicked
+      //       CapabilityFK = "ZZZ" AND Organization="YYY" gets list of committments, but missing name of resource
+      //       Returns list of ResourceFK that are used to get the name and required count
 
       // TODO:    Add the edit button to this report
       //          Create listeners, create way to destroy listeners
-      //          Add query to replace Resource Names
+      //          Add query to insert Resource Names, since resource Name that is not in the partner table
       //          Call query every time Title pane is opened.
 
-      getResourcesForCap_AND_Partner: function(clickedTP_DijitId, PartnerOrg, CapFk){
+      //  Add edit button only after the ResourceID has been matched.
+      //  Any Unmatched Resources should be labled as "Resource was removed."  Perhaps they should be 
+      getResourcesForCap_AND_Partner: function(clickedTP_DijitId, partnerOrg, CapFk){
 
-          // This filter could be elimitated if partner queryURL was re-set 
+          // This filter may be able to be elimitated if partner queryURL was re-set 
 
           var resTabl = this.config.relates.filter(function(item) { return item.queryTableName === 'Capability_Resources' && item.origin === 'Mission_AssistingOrgs'; });   
               parTableUrl = resTabl[0].originURL;
               relID = resTabl[0].queryRelId;
 
 
-          var whereQuery = "CapabilityFK='" + CapFk + "' AND Organization='" + PartnerOrg + "'" ;
+          var whereQuery = "CapabilityFK='" + CapFk + "' AND Organization='" + partnerOrg + "'" ;
           var queryTask = new QueryTask(parTableUrl);
           var query = new esri.tasks.Query();
               query.outFields = ['*'];
@@ -2664,87 +2666,240 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
               // Create new content string for Title Pane
               queryTask.execute(query).then(lang.hitch(this, function(response){
 
-                    // check for length
-                    if(response.features.length>0){
-                      // create new content string
-                      var pContent="";
-                      var loopCounter=0; 
-                      array.forEach(response.features, lang.hitch(this, function(item,i) {
-                        loopCounter=loopCounter+1
-                        //alert(item.attributes.Agreement);
-                            resParReportId="resParReport-" + item.attributes.Organization + "_" + i;
-                            pContent+='<div class="edit-partner-item-node">';
-                            //pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:5px;">';
-                            //pContent+=        '<div id="' + parEditClickedId + '" class="icon-pencil-edit-btn"></div>';
-                            //pContent+=     '</div>';
-                            
-                            pContent+=     '<table class="edit-partner-item-table">';
-                            pContent+=         '<tr><td class="edit-partner-item-status60px"><b>' + item.attributes.NmbCommited +'</b></td><td class="edit-partner-item" id="' + resParReportId + '"><b>' + item.attributes.CapabilityFK + '</b></td></b></tr>';
-                            pContent+=     '</table>';                   
+                    if(response.features.length>0){  // check for length
+                      this.config.clickedPartnerPaneAR=[];// used in checkForOrphanResources() in real time.  Overwritten each tp click.
+                      this.config.tpPartnerResPaneArr=[]; // used to record last opened partner tp with resource name and type.
+                                                          // not needed if reource name and type is in the partner table.
 
-                            //pContent+=     '<p><div class="cap-info-text">Agreement: '  + item.attributes.Agreement +'</div></p>';
-                            pContent+=     '<p><div class="cap-info-text">Details: '  + item.attributes.AgreementDetails +'</div></p>';
-                            pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + item.attributes.Comments +'</div></p>';
-                            
-                            pContent+='</div>';
-
-
+                      var ResourceFK_String="";// used to query Resource table since resource Name is not also in the partner Table. Overwritten each tp click.
+                                               // ResFK is also used as a DomID for edit partner edit buttons to make it easier to clean up listeners
                       
+                      array.forEach(response.features, lang.hitch(this, function(item,i) {
+
+                        var pContent="";// do not concatenate HTML, since some resource items in partner table may be orphaned
+                                        // orphan is determined when resourceFK in PartnerTable can not be found in resource Table
+
+                           ResourceFK_String=ResourceFK_String + ",'" + item.attributes.ResourceFK + "'";
+                           
+                            this.config.clickedPartnerPaneAR.push({
+                                pOrg: item.attributes.Organization,
+                                capFK: item.attributes.CapabilityFK,
+                                resFK: item.attributes.ResourceFK,
+                                attributes: item.attributes
+                            });
+
+
                       }));
 
-                      if(response.features.length==loopCounter){
-                        //lert("DONE! Call new QueryFunction to get Resources")
-                          var updateParTitlePane = dijit.byId(clickedTP_DijitId);
-                              updateParTitlePane.set("content", pContent);// reset the selected panel
-
-                      }
-
-
-
+                      
+                      this.getResourceNamesForSelectedPartner(ResourceFK_String, clickedTP_DijitId, partnerOrg);
+                      
 
                     }
+                    // No resource records for Partner.
                     else{
-                      alert("No partner committments for this capability")
+
+                    //    content='<div class="cap-info-text" status="NoRecord">No Specified Resource Committment</div>';
+
+                    //    var updateParTitlePane = dijit.byId(clickedTP_DijitId);
+                    //        updateParTitlePane.set("content", content);// reset the selected panel
+
                     }
 
 
                   }), function(err){
-                        alert("THERE IS AN ERROR WITH Query" + err);
-                        console.log(err);
+                        //alert("THERE IS AN ERROR WITH the Query" + err);
+                        //console.log(err);
+
+
+                        content='<div class="cap-info-text" status="NoRecord">Data error detected with the query</div>';
+
+                        var updateParTitlePane = dijit.byId(clickedTP_DijitId);
+                            updateParTitlePane.set("content", content);// reset the selected panel
                       }
               );
 
 
 
-
-
-                          
-
-
-
-
-
-        //returns a list of Partner Committments, and the ResourceFK that is needed for the name and required totals
-
-        // 1) query Committments Table for partner that was clicked
-        //       CapabilityFK = "ZZZ" AND Organization="YYY" gets list of committments, but missing name of resource
-        //          AND returns list of ResourceFK that are used to get the name and required count
-
         // 2) query resource table for all resources with selectedCAP AND PartnerID
         //       GlobalID IN('b1ce8f3b-9ba4-4ae6-b7f5-95b34099d95d', '3180ae5a-1905-4737-9a5f-364af2519d37','cc7ca22d-6a71-49ef-b9f1-b7858ee21b4a')
-
-
-
-
       },
 
-      getResourceNamesForSelectedPartner: function(){
+      getResourceNamesForSelectedPartner: function(resGlobalID_String, clickedTP_DijitId, pOrg){
         // returns list of resources
- 
+
+          var newStr = resGlobalID_String.replace(/^,/, '');
+          var pOrgId = pOrg + "_id"; // used for domId of removePartnerBtn
+
+          // this.config.tpPartnerResFK_ID_String=this.config.tpPartnerResFK_ID_String + "," + newStr
+          // this could be concat indefinately and then unduplicated when back button is clicked to remove listeners
+
+          var resTabl = this.config.relates.filter(function(item) { return item.queryTableName === 'Capabilities' && item.origin === 'Capability_Resources'; });   
+              resTableUrl = resTabl[0].originURL;
+              relID = resTabl[0].queryRelId;
+
+
+          var whereQuery = "GlobalID IN(" + newStr + ")" ;
+          //alert(whereQuery);
+          var queryTask = new QueryTask(resTableUrl);
+          var query = new esri.tasks.Query();
+              query.outFields = ['*'];
+              //query.orderByFields=['Organization'];
+              query.where = whereQuery;
+              query.returnGeometry = false;
+
+              queryTask.execute(query).then(lang.hitch(this, function(response){
+
+                  if(response.features.length>0){  // check for length
+                      var nonOrphanedResHTML="";
+                      var rmPartnerElem = "";
+                      //var newContent="";
+                      var noResources="";
+
+                      array.forEach(response.features, lang.hitch(this, function(item,i) {
+                          nonOrphanedResHTML= nonOrphanedResHTML + this.checkForOrphanResources(item.attributes.GlobalID, item.attributes.ResourceName,item.attributes.ResourceType);                 
+                      }));
+
+                        var updateParTitlePane = dijit.byId(clickedTP_DijitId);
+                            updateParTitlePane.set("content", nonOrphanedResHTML);// reset the selected panel
+
+                            console.log("Inserting " + nonOrphanedResHTML);
+
+                            this.createListenersForPartnerReportEditBtns();
+
+
+                    }
+                    else{
+                        //content='<div class="cap-info-text" status="NoRecord">No Specified Resource Committments</div>';
+
+                            noResources='<table class="remove-partner-item">';
+                            noResources+=     '<tr><td class="cap-info-text"><b>No Specified Resource Committments</b></td></tr>';
+                            noResources+='</table>';
+
+                            noResources+='<div class="remove-partner-item-node">';
+                            noResources+=    '<div tooltip="Remove Partner" class="node-box" style="float:right;padding-right:5px;">';
+                            noResources+=        '<div id="' + pOrgId + '" class="icon-cross-remove-btn"></div>';
+                            noResources+=     '</div>';
+                            
+                            noResources+=     '<table class="edit-partner-item-table">';
+                            noResources+=         '<tr><td class="remove-partner-item">Remove this partner and its resources</td></tr>';
+                            noResources+=     '</table>';                   
+                            noResources+='</div>';
+
+
+
+                        var updateParTitlePane = dijit.byId(clickedTP_DijitId);
+                            updateParTitlePane.set("content", noResources);
+
+                            //this.createListenersForPartnerReportEditBtns();
+
+                        }
+
+
+                  }), function(err){
+                        alert("THERE IS AN ERROR WITH THE QUERY - " + err);
+                        console.log(err);
+                      }
+              );
 
       },
 
 
+
+        
+
+
+
+
+
+      // *********************************************************************************************************************************************
+      // Create HTML object of the resouce committment(with with Resource Name + Type) for the partner when resoureID is found in the resource Table
+      // *********************************************************************************************************************************************
+      checkForOrphanResources: function(resFK, resName, resType){
+
+          var pContent="";
+
+          array.forEach(this.config.clickedPartnerPaneAR, lang.hitch(this, function(item,i) {
+
+              // resourceFK was found in ResourceTable
+              // create Array of non orphaned Resources
+              if(resFK==item.resFK){
+
+                        var editParBtn="editParBtn-" + item.attributes.GlobalID;// used to remove listener
+                        var resItemHTML="";
+
+                            pContent+='<div class="edit-partner-item-node">';
+                            pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:5px;">';
+                            pContent+=        '<div id="' + editParBtn + '" class="icon-pencil-edit-btn"></div>';
+                            pContent+=     '</div>';
+                            
+                            pContent+=     '<table class="edit-partner-item-table">';
+                            pContent+=         '<tr><td class="edit-partner-item-status60px"><b>' + item.attributes.NmbCommited +'</b></td><td class="edit-partner-item"><b>' + resName + '(' + resType + ')</b></td></b></tr>';
+                            pContent+=     '</table>';                   
+                            pContent+=     '<p><div class="cap-info-text">Agreement: '  + item.attributes.Agreement +'</div></p>';
+                            pContent+=     '<p><div class="cap-info-text">Details: '  + item.attributes.AgreementDetails +'</div></p>';
+                            pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + item.attributes.Comments +'</div></p>';
+                            
+                            pContent+='</div>';
+
+                        this.config.tpPartnerResPaneArr.push({
+                                pOrg: item.attributes.Organization,
+                                capFK: item.attributes.CapabilityFK,
+                                resFK: item.attributes.ResourceFK,
+                                pGlobalID: item.attributes.GlobalID,
+                                resName: resName,
+                                resType: resType,
+                                attributes: item.attributes
+                        });
+
+
+              }
+
+          }))
+
+          return pContent
+          
+
+      },
+
+
+      // called by getResourceNamesForSelectedPartner()
+      createListenersForPartnerReportEditBtns: function(){
+              this.ccPartnerReportEditResNodes=[];
+
+              array.forEach(this.config.tpPartnerResPaneArr, lang.hitch(this, function(item,i) {
+                  
+                      // *******************************************************
+                      // Create listeners for an edit button for each resource
+                      // *******************************************************
+                      var clickParReportResNode = dom.byId("editParBtn-"+item.pGlobalID);
+
+                      if(clickParReportResNode){
+                          this.ccPartnerReportEditResNodes.push(clickParReportResNode);
+                          this._ccTP_EditParReportBtn(i, item.pGlobalID, item.pOrg, item.resFK, "NO REFRESH");
+
+                      }
+              }))
+
+      },
+
+      // **************************************************
+      // Create Event on Edit Partner Table Cell
+      // Used to create clickable list for Partners
+      // **************************************************
+      _ccTP_EditParReportBtn: function(i, parGID, pOrg, resGID, clickedFrom){
+
+                on(this.ccPartnerReportEditResNodes[i], 'click', lang.hitch(this, function(){
+                     this._panelPartnerEditClicked(i, parGID, pOrg, resGID, clickedFrom);                  
+                }));
+      },
+
+
+      // called by clicking the _onBackBtnClicked()
+      removeListenersForPartnerEditBtns: function(parBtn){
+
+
+      },
 
       // Set Related Tables as application variables
       setGlobalQueryParameters:function(srcUrl){

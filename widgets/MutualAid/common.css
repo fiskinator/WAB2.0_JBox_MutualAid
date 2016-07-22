@@ -90,9 +90,10 @@
     font-size: 12px;
 }
 .edit-partner-item-table{
-    width: 280px;
-    height: 35px;
-    font-size: 12px;
+    /*width: 280px;*/
+    /*height: 35px;*/
+    font-size: 13px;
+    color:#000;
 }
 
 .edit-resource-item-status40px{
@@ -144,7 +145,6 @@
     width: 100%;
     padding: 5px;
     border-top:1px solid  #3E536C;
-
     background-color: #FFF;
     overflow: hidden;
 }
@@ -160,6 +160,17 @@
     /* white-space: nowrap;*/
 }
 
+.remove-partner-item{
+    vertical-align: middle;
+    /*max-width: 255px;*/
+    padding-left:5px;
+    display: table-cell;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap;*/
+}
+
 .edit-partner-item-node{
     width: 100%;
     padding-top: 5px;
@@ -167,6 +178,17 @@
     overflow: hidden;
     cursor: default;
 }
+
+
+.remove-partner-item-node{
+    border-top:1px solid  #3E536C;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
+    overflow: hidden;
+    cursor: default;
+}
+
 
 .edit-partner-item-node:nth-child(odd) {
     /*background-color:#d4d9de;*/
@@ -315,6 +337,16 @@
   cursor:pointer;
 }
 
+.icon-cross-remove-btn:before {
+  color: #b30000;
+  font-family: 'icomoon'; /* BYO icon font, mapped smartly */
+  content: "\e61a";
+  speak: none; /* Not to be trusted, but hey. */
+  font-size: 20px;
+  cursor:pointer;
+  padding-right: 7px;
+}
+
 
 .icon-pencil-btn:before {
   color: #e0e0e0;
@@ -444,8 +476,9 @@
 
 }
 
+
 .cap-info-text{
-  color:#383a3f;
+  color:#272727;
   /*color::#565E69;*/
   font-size:13px;
   text-rendering:auto;
@@ -455,9 +488,11 @@
 }
 
 .resource-info-heading{
-    padding: 10px;
+    padding-top: 7px;
+    padding-left: 5px;
+    padding-bottom: 15px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 }
 
@@ -751,14 +786,15 @@ margin: 3px;
 
 
 .claro .dijitTitlePane:hover{
-  border: 1px solid #000;
+  border: 1.5px solid #000;
 }
 
-
+/* Controls the color of the Dijit Title in closed position*/
 .claro .dijitTitlePaneTitleClosed{
-background-color: #d3d3d3;
-font-size:13px ;
-padding: 5px;
+  background-color: #d3d3d3;
+  font-size:13px ;
+  padding: 5px;
+  color:#272727;
 
 }
 
@@ -766,10 +802,11 @@ padding: 5px;
 
 .claro .dijitTitlePaneTitleOpen,
 .claro .dijitTitlePaneTitleFixedOpen{
-background-color: #d3d3d3;
-font-size:13px ;
-padding: 5px;
-margin-left: 0px;
+  background-color: #d3d3d3;
+  font-size:13px ;
+  padding: 5px;
+  margin-left: 0px;
+  color:#000;
 
 
 }
@@ -915,5 +952,33 @@ margin-left: 0px;
   font-weight: 300;
   vertical-align: middle;
 
+}
+.loadingElipsis {
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.loadingElipsis:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4,end) 900ms infinite;      
+  animation: ellipsis steps(4,end) 900ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+  font-size: 14px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.95em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.95em;    
+  }
 }
 
