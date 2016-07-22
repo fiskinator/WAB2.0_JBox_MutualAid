@@ -546,18 +546,29 @@ define([
                                 // ****************************************************************************
                                 if(updateBalance){
 
-                                    if((balance)>=0 && rCount!=0){
-                                        updateBalance.innerHTML='<div class="icon-checkmark-green"></div>';
 
+                                    if((balance)>=0 && rCount!=0){
+                                        if(balance==0){
+                                            updateBalance.innerHTML='<div class="icon-checkmark-green"></div>';  
+                                        }
+                                        else{
+                                            updateBalance.innerHTML="+" + balance;
+                                            updateBalance.style.color="#009900";
+                                            this.capResourceArray[i].Gap = "Green"
+                                        }
                                     }
 
                                     if(balance<0 && rCount!=0){
-                                        updateBalance.innerHTML = balance;
+                                        //updateBalance.innerHTML = balance;
+                                        updateBalance.innerHTML=balance;
+                                        updateBalance.style.color="red";
+                                        this.capResourceArray[i].Gap = "Red"
                                      }
 
                                     if(balance<0 && rCount==0){
                                         updateBalance.innerHTML='<div class="icon-warning-orange"></div>';
                                     }
+
 
                                 }
 
@@ -606,7 +617,7 @@ define([
                 rTable += '<div class="row">';
                 rTable +=   '<div class="resColumn1">Balance</div>';
                 rTable +=   '<div class="resColumn2">Resource Name</div>';
-            //    rTable +=   '<div class="resColumn5"></div>';
+                rTable +=   '<div class="resColumn5"></div>';
                 rTable +=   '<div class="resColumn3">Required</div>';
                 rTable +=   '<div class="resColumn4">Secured</div>';
                 rTable +=   '<div class="resColumn6">Definition</div>';
@@ -624,12 +635,11 @@ define([
         // ********************************************************************
         refreshResourceTable:function(){
 
-            var clickedFrom = "requiredResources"// used to know which table to refresh at countPartnerResources();
+            var clickedFrom = "REFRESH RESOURCE TABLE VIEW"// used to know which table to refresh at countPartnerResources();
 
-            // insert a count of records in the header
+            // Insert responsive count of records in the header
 
-            //document.getElementById("app_Title").innerHTML = this.capName + " (" + this.capResourceArray.length + " total resource items)";
-
+            document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/tableButtonBlue.png"><div>' + this.capResourceArray.length +  " Required Resources</div>";
 
             this.ccEditResNodes = [];
             this.ccResTypeNodes = [];
@@ -645,7 +655,7 @@ define([
                 rTable += '<div class="row">';
                 rTable +=   '<div class="resColumn1" id="resBalance-' + resItem.ObjectID + '">' + (resItem.NmbCommitted - resItem.NmbNeeded) + '</div>';
                 rTable +=   '<div class="resColumn2">' + resItem.Name + '-' + resItem.Type + '</div>';
-            //    rTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
+                rTable +=   '<div class="resColumn5" id="rEditIdx-' + i + '" resGlobalKey="'+ resItem.GlobalID +'">' + '<div class="icon-pencil" id="iconPencilId"></div>' + '</div>';
 
                 rTable +=   '<div class="resColumn3">' + resItem.NmbNeeded +' </div>';
                 rTable +=   '<div class="resColumn4" id="resCount-' + resItem.ObjectID + '">' + resItem.NmbCommitted  +' </div>';
@@ -657,13 +667,12 @@ define([
                 var clickType = "rTypeDef-" + i;
                 var clickPartner = "rPartner-" + i;
 
-
                 var rTableNode = domConstruct.toDom(rTable);
                     domConstruct.place(rTableNode, dom.byId('rTableParent'), 'last');
 
-            //    var clickNode1 = dom.byId(clickEdit);
-            //        this.ccEditResNodes.push(clickNode1);
-            //        this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
+                var clickNode1 = dom.byId(clickEdit);
+                    this.ccEditResNodes.push(clickNode1);
+                    this._ccEvent_EditRes(i, resItem.Name, resItem.ObjectID, resItem.GlobalID, clickedFrom);
 
                 var clickNode2 = dom.byId(clickType);
                     this.ccResTypeNodes.push(clickNode2);
@@ -708,12 +717,15 @@ define([
         // *****************************************************
         _editResClicked: function(resName,resGID, clickedFrom){
 
+            // ************************************************
+            // Call ResourceDialog to edit Resource 
+            // ************************************************
 
-            // ************************************************
-            // Call ResourceDialog to create AddResource Form
-            // ************************************************
+            this.this_config.selectedResGID=resGID; 
+            this.this_config.selectedResName=resName;
+          
                 var createForm = new Add_Edit_Delete_ResourceDialog();
-                    createForm._createCustomDomains("editRes", this.config);
+                    createForm._createCustomDomains("editRes", this.this_config, clickedFrom);
 
         },
 

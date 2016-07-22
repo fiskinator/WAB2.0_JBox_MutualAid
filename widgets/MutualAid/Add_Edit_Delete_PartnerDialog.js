@@ -289,7 +289,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                             edit_flayer.applyEdits([graphic], null, null,lang.hitch(this, function(addResults) {
                                 var oid = addResults[0].objectId;
                                 console.log('inserted record: ' + oid); 
-                                this.configureParDialog(oid, config, edit_flayer, resGID, capID, parGID);
+                                this.configureParDialog(oid, config, edit_flayer, resGID, capID, parGID, clickedFrom);
                               }), function(err){
                                       alert("ERROR UPDATING");
                                       console.log(err);
@@ -514,7 +514,12 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             updateFeature.getLayer().applyEdits(null, null, [updateFeature],
               lang.hitch(this, function(adds,updates,deletes) {
 
-                   this.afterAddEditDelete();
+                  if(clickedFrom=="NO REFRESH"){
+
+                  }
+                  else{
+                    this.afterAddEditDelete();
+                  }
 
                    myDialog.hide;
                    myDialog.destroyRecursive();

@@ -145,6 +145,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     // Send Message to widget to call function that performs total refresh
     // Remove edit panel
     // *********************************************************************
+   
+/*
     afterCapabilityIsDeleted: function(){
       
       this.removeEditPanel();
@@ -165,18 +167,21 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       this.refreshCapInfoId();
       topic.publish('REFRESH_CAPINFO');
     },
-
-    afterAddEditDelete: function(){
+*/
+    afterAddEditDelete: function(clickedFrom){
       this.removeDijitBtns();
-  //    this.removeInspectorParent();
       this.refreshCapInfoId();
       topic.publish('REFRESH_CAPINFO');
+
+      if(clickedFrom=="REFRESH RESOURCE TABLE VIEW"){
+        topic.publish('REFRESH RESOURCE TABLE VIEW');
+      }
+
     },
 
 
     removeAddResPanel:function(){
       this.removeDijitBtns();
-      //this.removeInspectorParent();
       this.refreshCapInfoId();
       topic.publish('REFRESH_CAPINFO');
 
@@ -212,7 +217,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     },
 
 
-    _createCustomDomains:function(formType, config){
+    _createCustomDomains:function(formType, config, clickedFrom){
 
         // GET RTLT DATA FROM JSON
 
@@ -223,7 +228,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             load: lang.hitch(this, function(obj) {
                 /* here, obj will already be a JS object deserialized from the JSON response */
                 rtltData = obj;
-                this._createFormComponents(formType, config, rtltData)
+                this._createFormComponents(formType, config, rtltData, clickedFrom)
             }),
             error: function(err) {
               /* this will execute if the response couldn't be converted to a JS object,
@@ -240,7 +245,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 //  pass what you need to create a fLayer Object  
 //
 //  ************************************************
-    _createFormComponents: function(formType,config,rtltData){
+    _createFormComponents: function(formType,config,rtltData, clickedFrom){
 
       this.inherited(arguments);
 
@@ -332,7 +337,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                       // **************************************************************
                       if(formType=="editRes"){
                           
-                          this.configureResDialog(null, config, edit_flayer, rtltData);
+                          this.configureResDialog(null, config, edit_flayer, rtltData, clickedFrom);
 
                       }
 
@@ -356,7 +361,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     //  ***************************************************
     //  Create Attribute Inspector for adding NEW RESOURCE
 
-    configureResDialog: function (oid, config, edit_flayer, rtltData) {
+    configureResDialog: function (oid, config, edit_flayer, rtltData, clickedFrom) {
 
       var updateFeature;   
 
@@ -569,7 +574,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
               lang.hitch(this, function(adds,updates,deletes) {
                 console.log('updated record: ' + updates[0].objectId);
 
-                   this.afterAddEditDelete();
+                    this.afterAddEditDelete(clickedFrom);
 
                    myDialog.hide;
                    myDialog.destroyRecursive();

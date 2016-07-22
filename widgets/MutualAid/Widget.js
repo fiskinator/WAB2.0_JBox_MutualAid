@@ -101,11 +101,10 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             topic.subscribe("REFRESH_CAPINFO", lang.hitch(this, this.onEditCapSaved));
             topic.subscribe("DELETED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
             topic.subscribe("ADDED_CAPABILITY", lang.hitch(this, this._onBackBtnClicked));
+            topic.subscribe("REFRESH RESOURCE TABLE VIEW", lang.hitch(this, this._onResTableViewEdit));
 
 
-   
-
-
+  
             // *********************************************************************************************
             // 1st TileLayout Containter digit s used for listing Core Capabilities of Planning Layer
             // Uses coreCapListNode in widget.html because igit must be parsed with dojo parser at login.
@@ -1370,6 +1369,61 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
 
+    //  *********************************************************************************************
+    //    Clears ALL left hand elements and resource table.
+    //    Back button restores map visibility
+    //    Refreshes refreshes all aspects of Capability List, including rebuilding the Hazards Array.
+    //  *********************************************************************************************
+
+    _onBackBtnClicked: function(){
+
+
+        this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
+        this.queryCapabilitiesLayer2(this.config.capabilitiesUrl, "1=1");
+        this.removeCapInfoDijitBtns();// removes dijit btns for refreshing the info pane after every update
+
+        // removes edit panel if it was open
+         var inspectorDiv = dom.byId("capEditId")
+             if(inspectorDiv){
+               inspectorDiv.remove();
+             }
+
+         var val = document.getElementById("capInfoId");
+         if(val){
+            val.remove();
+            this._displayDivElementsOnTheMap();
+
+            //remove grid element
+            var gridsAndGraph = dom.byId("gridsAndGraph");
+                if (gridsAndGraph) {
+                      gridsAndGraph.remove();
+                }
+         }
+
+         // removing CapInfo TP Dijit
+         var rmCapInfoTP = dijit.byId("capTitlePane_Id1")
+            if(rmCapInfoTP){
+
+                rmCapInfoTP.destroyRecursive();
+            }
+
+          document.getElementById("showerId").className="showingDiv";
+          document.getElementById("hiderId").className="hiddenDiv";
+
+          document.getElementById("selectedCoreCapImg").src="";
+          document.getElementById("selectedCoreCapTitle").innerHTML="";
+
+          this.resize();
+
+    },
+
+    //  Automate the refresh of table view after editing it.
+    _onResTableViewEdit: function(){
+
+      this._clickCapTableBtn();
+
+    },
+
 
 
       // ******************************************************************************************
@@ -1591,81 +1645,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     })
                 }, "maGapTable").startup();
 
-                
-
-
-
-                // Add clickEvent to AddResource Image.  This is an alternative way
-
-
-
-  //        }
-
-  //         else{// 
-
-  //              val.remove();
-
-  //              alert("Capability Info Panel was not removed")
-  //        }
-
-
+              
 
     },
-
-
-
-
-    //  *********************************************************************************************
-    //  Clears ALL left hand elements and resource table.
-    //    Back button restores map visibility
-    //    Refreshes refreshes all aspects of Capability List, including rebuilding the Hazards Array.
-    //  *********************************************************************************************
-
-    _onBackBtnClicked: function(){
-
-
-        this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
-        this.queryCapabilitiesLayer2(this.config.capabilitiesUrl, "1=1");
-        this.removeCapInfoDijitBtns();// removes dijit btns for refreshing the info pane after every update
-
-        // removes edit panel if it was open
-         var inspectorDiv = dom.byId("capEditId")
-             if(inspectorDiv){
-               inspectorDiv.remove();
-             }
-
-         var val = document.getElementById("capInfoId");
-         if(val){
-            val.remove();
-            this._displayDivElementsOnTheMap();
-
-            //remove grid element
-            var gridsAndGraph = dom.byId("gridsAndGraph");
-                if (gridsAndGraph) {
-                      gridsAndGraph.remove();
-                }
-         }
-
-         // removing CapInfo TP Dijit
-         var rmCapInfoTP = dijit.byId("capTitlePane_Id1")
-            if(rmCapInfoTP){
-
-                rmCapInfoTP.destroyRecursive();
-            }
-
-
-
-          document.getElementById("showerId").className="showingDiv";
-          document.getElementById("hiderId").className="hiddenDiv";
-
-          document.getElementById("selectedCoreCapImg").src="";
-          document.getElementById("selectedCoreCapTitle").innerHTML="";
-
-          this.resize();
-
-    },
-
-
 
     // *********************************
     // Create Edit Capability Form
@@ -2115,14 +2097,14 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     // *******************************************************
                     var clickResNode = dom.byId(resClickId);
                         this.ccPanelResEditNodes.push(clickResNode);
-                        this._ccPanelEditResBtn(i, item.Name, item.ObjectID, item.GlobalID, "clickedFrom");
+                        this._ccPanelEditResBtn(i, item.Name, item.ObjectID, item.GlobalID, "NO REFRESH");
 
                     // *******************************************************
                     // Create listeners for an edit button for each resource
                     // *******************************************************
                     var clickAddParNode = dom.byId(addParClickId);
                         this.ccPanelAddPartnerNodes.push(clickAddParNode);
-                        this._ccPanelAddParBtn(i, item.Name, item.ObjectID, item.GlobalID, "clickedFrom");
+                        this._ccPanelAddParBtn(i, item.Name, item.ObjectID, item.GlobalID, "NO REFRESH");
 
                 }))
 
@@ -2157,9 +2139,10 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         },
 
 
-        // *****************************************************
+        // ******************************************************************************
         // EDIT RESOURCE ICON HAS BEEN CLICKED
-        // *****************************************************
+        // NO REFRESH DOES NOT RESET LEFT PANEL and lose track of where you were editing!
+        // ******************************************************************************
         _panelEditResClicked: function(resName,resGID, clickedFrom){
 
             this.config.selectedResGID=resGID; 
@@ -2169,7 +2152,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // Call ResourceDialog to create AddResource Form
             // ************************************************
                 var createForm = new Add_Edit_Delete_ResourceDialog();
-                    createForm._createCustomDomains("editRes", this.config);
+                    createForm._createCustomDomains("editRes", this.config, clickedFrom);
 
         },
 
@@ -2203,7 +2186,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // Call AttrFormManager to create AddResource Form
             // ************************************************
                 var createForm = new Add_Edit_Delete_PartnerDialog();
-                    createForm._createParFormComponents("addPar", this.config, resGID, this.config.selectedCap.GlobalID, null);
+                    createForm._createParFormComponents("addPar", this.config, resGID, this.config.selectedCap.GlobalID, null, clickedFrom);
 
 
 
