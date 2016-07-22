@@ -562,16 +562,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                 // 3 - add default layer to map
                 this.newLayer(this.config.capabilitiesUrl, this.config.token, results.item.title)// add featureLayer to webmap.  Featurelayer seems to be added automatically when webmap changes.
 
-                // *************************************************************
-                // 4 - Create thumbnailUrl from default layer item
-                //     Sample format for Url:  http://www.arcgis.com/sharing/rest/content/items/5bb8c221afb547c4ac642045f9d85b79/info/thumbnail/S_26T_RESCON_Logo.png?token=
-                //var createImgUrlAtLogin = "http://www.arcgis.com/sharing/rest/content/items/";
-                //    createImgUrlAtLogin += this.config.defaultMARPItemId;
-                //    createImgUrlAtLogin += "/info/" + results.item.thumbnail;
-                //    createImgUrlAtLogin += "?token=" + this.config.token;
-
-                // required to get thumbnail on login, without using preset image
-                // this.insertSelectedLayerAsHeader(thiraUrl, createImgUrlAtLogin, results.item.title)
 
           })); // END RESULTS HANDLING
 
@@ -619,8 +609,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
           hazString = hazString.replace(/^[,\s]+|[,\s]+$/g, '').replace(/,[,\s]*,/g, ',');
           hazArr = hazString.split(',');
           hazArr.getUnique(); 
-
-          //console.log(hazArr);
 
           //now loop through temp hazard array and populate name/id object pairs into new array
           for (var j = 0; j < hazArr[0].length; j++) {    
@@ -1275,7 +1263,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
           this.createCapResourceArray_0(coreCap.ObjectID);// create summaryArray
 
-          //document.getElementById.TitleNode.set('NEW TITLE');
 
           var temp=document;
         }
@@ -1360,7 +1347,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
     // ******************************************************
     // loop though  title pane dijits for the Partner Report
     _removePartnerTitlePaneDijits: function(uniquePartnerCount){
-          //this.config.tpPartnerCount
 
           for (i = 0; i < uniquePartnerCount; i++) {
               var rmItem = "tpCapParId_" + i;
@@ -1370,9 +1356,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                   rmElement.destroyRecursive();
                   console.log("removing " + rmItem);
               }
-
           }
-          
 
     },
 
@@ -1444,7 +1428,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
     onEditCapSaved: function(){
         this.inherited(arguments);
         this.removeCapInfoDijitBtns();
-
         this._createHazArray(this.config.capabilitiesUrl);// refreshes all aspects of the capability table.
         this._refreshCapInfo();
 
@@ -1503,10 +1486,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
     },
 
 
-
-
-
-
     // ***********************************************************************************************
     // Called by _onBookmarkClick. - with click of Capability.  
     //
@@ -1527,9 +1506,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
            }
 
-
-
-
                  var content="";
                      content+='<div class="capInfoTextContainer" id="capInfoId">'
                       // Create 2 parts here. Add parents to DOM before creating the TP
@@ -1541,7 +1517,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                      content+=   '<div id="capInfo-resources" class="cap-info-resources"></div>';
                      content+=   '<div class="cap-info-text"></div>';
                      content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maPartnerTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;<div id="partnerCountId" style="display:inline">0</div>&nbsp; Total Partnerships</div></p>';
-                     content+=   '<div id="capInfo-partners" class="cap-info-text"></div>';
+                     content+=   '<div id="capInfo-partners" class="cap-info-fix"></div>';
                      content+=   '<p><div class="cap-info-btn-heading"><span class="ma-jimu-btn-blue"><button id="maGapTable" baseClass="ma-jimu-btn-blue" type="button"></button></span>&nbsp;Chart Resource Gaps</div></p>';
                      content+=   '<div id="capInfo-gap-graph" class="cap-info-text"></div>';
                      content+='</div>';

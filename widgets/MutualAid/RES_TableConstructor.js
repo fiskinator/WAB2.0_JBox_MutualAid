@@ -639,7 +639,7 @@ define([
 
             // Insert responsive count of records in the header
 
-            document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/tableButtonBlue.png"><div>' + this.capResourceArray.length +  " Required Resources</div>";
+            document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/buttonBlueTable.png"><div>' + this.capResourceArray.length +  " Required Resources</div>";
 
             this.ccEditResNodes = [];
             this.ccResTypeNodes = [];
@@ -1107,6 +1107,8 @@ define([
 
         generateGraphs: function(){
 
+            document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/buttonBlueGraph.png"><div>' + "Resource Gaps</div>";
+
 
             // getHeaderHeight NOT USED
             // *********************************************************************************
@@ -1355,8 +1357,7 @@ define([
 
             this.getUniquePartnerList();
 
-             document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/partnerButtonBlue.png"><div>' + " Resource Partner Report</div>";
-
+ 
             // resource queries begin in createPHeaders() to insure DOM is ready.
         },
 
@@ -1394,6 +1395,10 @@ define([
         //! possible replace with uniqueArrayFunction
         // Calling createPHeaders
         qComplete_UniquePartners: function(results) {
+
+                document.getElementById("tableHeaderId").innerHTML='<img style="float:left;padding-top:5px;padding-right:5px;width:40px" src="./widgets/MutualAid/images/buttonBluePartner.png"><div>' + results.features.length + " partnerships for this capability</div>";
+
+
                 var uPartnersArr=results.features;// save for layer use
                     if(uPartnersArr.length){// if 
                         this.createPHeaders(true, uPartnersArr); // parter list is passed to createPHeaders to create Partner DOM pHeader Elements first

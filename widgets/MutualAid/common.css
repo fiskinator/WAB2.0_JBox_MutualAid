@@ -486,6 +486,14 @@
   padding-top: 2px;
   cursor: default;
 }
+.cap-info-fix{
+  color:#272727;
+  /*color::#565E69;*/
+  font-size:13px;
+  text-rendering:auto;
+  padding-top: 2px;
+  cursor: default;
+}
 
 .resource-info-heading{
     padding-top: 7px;
