@@ -2171,9 +2171,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // ************************************************
                 var createForm = new Add_Edit_Delete_PartnerDialog();
                     createForm._createParFormComponents("addPar", this.config, resGID, this.config.selectedCap.GlobalID, null, clickedFrom);
-
-
-
         },
         // ************************************************************************************
         // resPartnerToggleDiv HAS BEEN CLICKED!
@@ -2238,12 +2235,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         pContent+=     '</div>';
                         
                         pContent+=     '<table class="edit-partner-item-table">';
-                        pContent+=         '<tr><td class="edit-partner-item-status60px">' + results.features[i].attributes.NmbCommited +'</td><td class="edit-partner-item">' + results.features[i].attributes.Organization + '</td></tr>';
+                        pContent+=         '<tr><td class="edit-partner-item-status60px"><b>' + results.features[i].attributes.NmbCommited +'</b></td><td class="edit-partner-item"><b>' + results.features[i].attributes.Organization + '</b></td></tr>';
                         pContent+=     '</table>';                   
 
-                        pContent+=     '<p><div class="cap-info-text">Committed Resources: '  + results.features[i].attributes.NmbCommited + '</div></p>';
-                        pContent+=     '<p><div class="cap-info-text">Agreement Type: '  + results.features[i].attributes.Agreement +'</div></p>';
-                        pContent+=     '<p><div class="cap-info-text">Agreement Details: '  + results.features[i].attributes.AgreementDetails +'</div></p>';
+                        //pContent+=     '<p><div class="cap-info-text">Committed Resources: '  + results.features[i].attributes.NmbCommited + '</div></p>';
+                        pContent+=     '<p><div class="cap-info-text">Agreement: '  + results.features[i].attributes.Agreement +'</div></p>';
+                        pContent+=     '<p><div class="cap-info-text">Details: '  + results.features[i].attributes.AgreementDetails +'</div></p>';
                         pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + results.features[i].attributes.Comments +'</div></p>';
                         
                         pContent+='</div>';
