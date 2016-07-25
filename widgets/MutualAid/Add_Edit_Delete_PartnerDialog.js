@@ -113,10 +113,10 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           } 
 
       // Check for previous comboBox dijits placed in popups
-      var cbox = dijit.byId("rtltCmbBox");
-            if(cbox){ cbox.destroyRecursive();}// remove dijit if it already exists
-      var cbox2 = dijit.byId("rtltCmbBox2");
-            if(cbox2){cbox2.destroyRecursive();}// remove dijit if it already exists
+ //     var cbox = dijit.byId("rtltCmbBox");
+ //           if(cbox){ cbox.destroyRecursive();}// remove dijit if it already exists
+ //     var cbox2 = dijit.byId("rtltCmbBox2");
+ //           if(cbox2){cbox2.destroyRecursive();}// remove dijit if it already exists
 
     },
 
@@ -132,7 +132,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           if(capInfo){
              capInfo.remove();
           }
-
 
     },
 
@@ -179,6 +178,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
 
 
+
     _createParCustomDomains:function(formType, config){
 
         // GET RTLT DATA FROM JSON
@@ -201,13 +201,76 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
         });
 
     },
+
+
+
+    _createPartnerDomainFromPlan:function(formType, config, resGID, capID, parGID, clickedFrom){
+
+
+
+                 var entirePartnerArr=[];
+
+                    var qTable = config.relates.filter(function(item) { return item.origin === 'Mission_AssistingOrgs'; });
+                      if (qTable.length){
+                          var qTableUrl = qTable[0].originURL;
+
+                          console.log('getUniquePartnerListFOR_ENTIRE_PLAN - task defined');
+
+                          var whereQuery = "1=1";
+                          var query = new esri.tasks.Query();
+
+                              // Set statistic to create unique list of Partners for a capability
+                              var statDef = new esri.tasks.StatisticDefinition();
+                                  statDef.statisticType = "count";
+                                  statDef.onStatisticField = "Organization";
+                                  statDef.outStatisticFieldName = "SummaryCount";
+
+                              // Define query to group by Organization and sort in decending order 
+                              var queryTask = new QueryTask(qTableUrl);
+                                  //query.outFields = ['SummaryCount','Organization'];
+                                  query.where = whereQuery;
+                                  query.groupByFieldsForStatistics = ["Organization"];
+                                  query.outStatistics = [ statDef ];
+                                  query.returnGeometry = false;
+                                  query.orderBy = "SummaryCount";
+                                  queryTask.execute(query).then(lang.hitch(this, function(response, i) {
+
+                                      //this.config.partnersAddedToEntirePlan=response.features;
+                                      array.forEach(response.features, lang.hitch(this, function(item,i) {
+                                        if ((item.attributes.Organization!=null) && (item.attributes.Organization!="")){
+                                          entirePartnerArr.push({
+                                              name: item.attributes.Organization,
+                                              Organization:item.attributes.Organization,
+                                              SummaryCount: item.attributes.SummaryCount,
+                                              id: item.attributes.Organization
+                                          });
+                                        }// End if to remove blanks
+                                      }));// end loop
+
+                                      //console.log(entirePartnerArr)
+
+                                      this._createParFormComponents(formType, config, resGID, capID, parGID, clickedFrom, entirePartnerArr)
+
+                                      }), function(err){
+                                          console.log("Error Creating Partner Array " + err);
+                                          //alert("Error Creating Partner Domain")
+                                        }   
+                                  );
+                      }
+                      else{
+                        console.log("Error determining URL to Partner committments Table")
+                        alert("Error determining URL to Partner Committments Table")
+                      }
+
+
+    },
   
 
 //  ************************************************
 //  pass what you need to create a fLayer Object  
 //   resGID,capID,rName
 //  ************************************************
-    _createParFormComponents: function(formType, config, resGID, capID, parGID, clickedFrom){
+    _createParFormComponents: function(formType, config, resGID, capID, parGID, clickedFrom, entirePartnerArr){
 
       this.inherited(arguments);
 
@@ -215,6 +278,16 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
       // Create INSPECTOR_PARENT Anchor for placing each attribute inspector
 
       var updateFeature;
+          this.partnerStoreArr=[];
+          this.partnerStoreArr=entirePartnerArr;
+
+
+      //for (var i=0; i < entirePartnerArr.length; i++){
+      //    this.partnerStoreArr.push({
+      //      "name": entirePartnerArr[i].Organization,
+      //      "id": entirePartnerArr[i].id
+      //      });
+      //}    
 
 
     // ******************************
@@ -339,16 +412,15 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
       var updateFeature;   
 
+    // Check for previous comboBox dijits
+      var pPick = dijit.byId("partnerPickList");
 
 
-      // Check for previous comboBox dijits
-      //var cbox = dijit.byId("rtltCmbBox");
       //var cbox2 = dijit.byId("rtltCmbBox2");
 
-      //if(cbox){// Must catch this in more than one place
-      //  cbox.destroyRecursive();}// remove dijit if it already exists
+      if(pPick){// Must catch this in more than one place
+        pPick.destroyRecursive();}// remove dijit if it already exists
       //if(cbox2){cbox2.destroyRecursive();}// remove dijit if it already exists
-
 
 
       // Create Query for editing selected partner Resource using GlobalID
@@ -388,6 +460,20 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }
         });
 
+          this.parStoreMem = new Memory({
+              idProperty: "id",
+              data: this.partnerStoreArr
+          }); 
+
+          var partnerPickList = new ComboBox({
+            id: "partnerPickList",
+            name:  "partnerPickList",
+            store: this.parStoreMem,
+            placeHolder: "Select a resource partner"
+          }, "partnerPickList");
+
+
+          partnerPickList.startup();
 
                 var layerInfos = [
                   {
@@ -395,7 +481,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                     'showAttachments': false,
                     'isEditable': true,
                     'fieldInfos': [
-                        {'fieldName': 'Organization', 'isEditable': true, 'tooltip': 'Organization', 'label': 'Organization'},
+                        {'fieldName': 'Organization', 'isEditable': true, 'customField': partnerPickList, 'label': 'Resource Partner'},
                         {'fieldName': 'JurisdictionType', 'isEditable': true, 'tooltip': 'Jurisdiction Type', 'label': 'Jurisdiction Type'},
                         {'fieldName': 'NmbCommited', 'isEditable': true, 'tooltip': 'Total # of Resources Commited', 'label': '# Commited'},
                         {'fieldName': 'Agreement', 'isEditable': true, 'tooltip': 'Agreement', 'label': 'Agreement'},
@@ -448,6 +534,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
           attInspector.on("attribute-change", function(evt) {
             //store the updates to apply when the save button is clicked 
             updateFeature.attributes[evt.fieldName] = evt.fieldValue;
+
+
           });
 
 

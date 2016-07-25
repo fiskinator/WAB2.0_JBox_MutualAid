@@ -146,28 +146,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
     // Remove edit panel
     // *********************************************************************
    
-/*
-    afterCapabilityIsDeleted: function(){
-      
-      this.removeEditPanel();
-      topic.publish('DELETED_CAPABILITY');
-
-    },
-
-    afterCapabilityIsAdded: function(){
-
-      this.removeEditPanel();
-      topic.publish('ADDED_CAPABILITY');
-
-    },
-
-    afterCapabilityIsSaved: function(){
-      this.removeDijitBtns();
-      this.removeEditPanel();
-      this.refreshCapInfoId();
-      topic.publish('REFRESH_CAPINFO');
-    },
-*/
     afterAddEditDelete: function(clickedFrom){
       this.removeDijitBtns();
       this.refreshCapInfoId();
