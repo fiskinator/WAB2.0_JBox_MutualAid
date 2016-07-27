@@ -50,6 +50,7 @@
     color: #555;
     background: #fff;
     border-bottom: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c9;
 }
 
 .Settings-Group-Container {
@@ -105,7 +106,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .edit-partner-item-status60px{

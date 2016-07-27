@@ -324,7 +324,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
 
             // *********************************
-            // Insert Using This App Button - 
+            // Insert Splash Screen Button - 
             // *********************************
             var appSplashBtn = new Button({
                 label: "Show Spash Screen",
@@ -345,7 +345,21 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             }, "appBtn4").startup();
 
 
+            // *********************************
+            // Insert Using This App Button - 
+            // *********************************
+            var appNewLayerBtn = new Button({
+                label: "Create Planning Layer",
+                id:"appBtn5",
+                baseClass: "AboutThisAppBtn",
+                iconClass: "addPlusIcon",
+                style: "padding-bottom: 5px;",
+                onClick: lang.hitch(this,function(){
 
+                // Do something:
+                   
+            })
+            }, "appBtn5").startup();
     },
 
 // *****************************************************************************************************************
@@ -1872,20 +1886,27 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         //
         // Called by Function countPartnerResources_0 - after resource array is populated
         // ******************************************************************************
-        // ******************************************************************************
+
         createResourceListInPanel: function(){
 
                 console.log("Function: createResourceListInPanel")
                 this.ccPanelResEditNodes = [];// used for clickable buttons
                 this.ccPanelAddPartnerNodes=[];// used for add partner buttons
 
-                // ***************************************************
-                // list Resources at the bottom of the info panel
-                // ***************************************************
+                // ******************************************************************************************************
+                // This code will create the Required Resource Section of the left Panel
+                // Content Pane and dijits and listeners are created prior when Capability is clicked the first time
+                // Closing capability removes the title pane dijits.
+                // Clicking on a resource pane will always call a refresh that will update content in the title pane dijit
+                //    Single updates are triggerd by the onClick event for each title pane in this function.
+                //
+                // This insures the data is never obsolute when simultaneous edits occur.
+                // *******************************************************************************************************
                 array.forEach(this.capResourceArray, lang.hitch(this, function(item,i) {
 
                     // create linkable URL to an an online resource definition.  This can be an MRP definition if necessary.
                     var resID = item.ObjectID;
+                    var resGID = item.GlobalID;
                     var typeID = item.ResourceID;
                     var resTyp = item.RTLT_Type;
                     var urlBase="";
@@ -1917,8 +1938,10 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     //  Below ID's are used to create unique domNodes for controlling events.  These are removed and re-created with each Capability
                     var resClickId="resEditClickID-" + i; // used to capture click event
                     var addParClickId="addParClickID-" + i; // used to capture and event
-                    var resBalanceId="resBalanceID-" + resID;// This ID is used to update via dom after it is calculated
-                    var resCommittedId="resCommittedID-" + resID;// This ID is used to update via DOM after it is calculated
+
+                    var resBalanceId="resBalanceID-" + resGID;// This ID is used to update via dom after it is calculated
+                    var resCommittedId="resCommittedID-" + resGID;// This ID is used to update via DOM after it is calculated
+                    var resRequiredId = "resRequiredID-" + resGID;
 
                     var resPartnerArrowId="resPartnerArrow-" + i;// used to determine toggle status - up or down
 
@@ -1932,19 +1955,18 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         rContent+=    '<div tooltip="Edit Resource" class="node-box" style="float:right;">';
                         rContent+=        '<div id="' + resClickId + '" class="icon-pencil-edit-btn"></div>';
                         rContent+=     '</div>';
-                        rContent+=     '<table class="edit-resource-item-table">';
-                        rContent+=         '<tr><td class="edit-resource-item-status95px">' + item.NmbNeeded +'  Required</td><td id="'+ resCommittedId + '" class="edit-resource-item-status95px">' + item.NmbCommitted + ' secured</td>'
-                        
+                        rContent+=     '<table id="resItemTable-' + resGID + '" class="edit-resource-item-table">';
+                        rContent+=         '<tr><td id="' + resRequiredId + '" class="edit-resource-item-status95px">' + item.NmbNeeded +'  Required</td><td id="'+ resCommittedId + '" class="edit-resource-item-status95px">' + item.NmbCommitted + ' Committed</td>'
                         rContent+=              '<td id="' + resBalanceId + '" class="edit-resource-item-status40px">'+  item.Balance +'</td>';          
-                        
                         rContent+=          '</tr>';
-                        rContent+=    '</table>';                   
+                        rContent+=    '</table>';
                         rContent+='</div>';
 
-                        rContent+='<p><div class="cap-info-text">Resource Type:  '  + item.Type +'</div></p>';
-                        rContent+='<p><div class="cap-info-text">Category Type:  '  + item.Category +'</div></p>';
-                        rContent+='<p><div class="cap-info-text-bottom-border">FEMA RTLT:  '  + resDefLabel +'</div></p>';   
-
+                        rContent+='<div id="resItemSum-' + resGID + '">';
+                        rContent+=    '<p><div class="cap-info-text">Resource Type:  '  + item.Type +'</div></p>';
+                        rContent+=    '<p><div class="cap-info-text">Category Type:  '  + item.Category +'</div></p>';
+                        rContent+=    '<p><div class="cap-info-text-bottom-border">FEMA RTLT:  '  + resDefLabel +'</div></p>';
+                        rContent+='</div>'
 
                         rContent+='<div class="expand-partner-item-node">';
                         rContent+=    '<div tooltip="Add Partner" class="node-box" style="float:right;padding-right:5px;">';
@@ -1956,24 +1978,74 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     var tpId = "tpId_" + i; 
 
-                    var colorCode=""
+                    // var colorCode=""
 
-                    if(item.Gap=="red"){
-                      colorCode= ""
-                    }else if(item.Gap=="green"){
-                      colorCode
+                    // if(item.Gap=="red"){
+                    //   colorCode= ""
+                    // }else if(item.Gap=="green"){
+                    //   colorCode
+                    // }
+
+                    // tpOpenStatus is necessary to leave the panel open so user does not loose track of what they were doing after an update!
+                    var tpOpenStatus=false;
+                    if(tpId==this.clickedResTitlePane){
+                      tpOpenStatus = true;
+                    }
+                    else{
+                      tpOpenStatus = false;
                     }
 
                     // Create TilePane for each Resource Item
                     var tp = new TitlePane({
                         id: tpId,
-                        title: rTitle, 
+                        title: rTitle,
+                        open: tpOpenStatus, 
                         content:rContent,
-                        class: "TESTBACKGROUND"
-                      });
+                        onClick: lang.hitch(this,function(value){// OnClick allows seletive refresh of each content pane without re-creating the 
+
+                          //var clickedResTitlePane = dijit.byId(value.currentTarget.id);
+                          //var str = clickedResTitlePane.containerNode.innerHTML;
+                          this.clickedResTitlePane = value.currentTarget.id;
+
+
+                          // refresh content from the service every time it is clicked
+                          if(this.showingResTP){
+
+                              this.refreshClickedResTP(value.currentTarget.id, rTitle, resGID, this.config.selectedCap.GlobalID );
+                          }
+
+                          // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
+                          if(!this.ResshowingTP){
+
+                            //console.log("Title Pane is closing")
+                              
+                          }
+
+                        }),
+                        
+
+                        /* **********************************************************************************  
+                        /* This does not pass a click event to know which dijit was clicked! and is not used
+                        /* ***********************************************************************************/
+                        onShow: lang.hitch(this,function(event){
+                          this.showingResTP=true;
+                        }),
+
+                        onHide:lang.hitch(this,function(event){
+                          this.showingResTP=false;
+                        })
+                      });// end title Pane dijit
+
 
                         dom.byId("capInfo-resources").appendChild(tp.domNode);
-                        tp.attr('open', false);
+
+                        // if(tp.id==this.partnerResourceTileId){
+                        //   tp.attr('open', true);
+                        // }
+                        // else{
+                        //   tp.attr('open', false);
+                        // }
+
                         tp.startup();
 
                     // ***************************************************************************************
@@ -1990,8 +2062,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                               var img = document.getElementById(resPartnerArrowId).src;
                               if (img.indexOf('Down20x')!=-1) {
                                   document.getElementById(resPartnerArrowId).src  = './widgets/MutualAid/images/carratRight20x.png';
-                              
-                                this.removeSingleResPartnerList(resPartnerDivParent);
+                                  this.removeSingleResPartnerList(resPartnerDivParent);
 
                               }
                                else {
@@ -2004,9 +2075,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                                 //  partnerResourceTileId is used in  createSingleResPartnerList() 
                                 // *********************************************************************************
                                 this.partnerResourceTileId = i;
-
                                 this.getSingleResPartnerList(item.GlobalID)
-
                              }
 
                         }));
@@ -2017,14 +2086,14 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     // *******************************************************
                     var clickResNode = dom.byId(resClickId);
                         this.ccPanelResEditNodes.push(clickResNode);
-                        this._ccPanelEditResBtn(i, item.Name, item.ObjectID, item.GlobalID, "NO REFRESH");
+                        this._ccPanelEditResBtn(i, item.Name, item.ObjectID, item.GlobalID, "");
 
                     // *******************************************************
                     // Create listeners for an edit button for each resource
                     // *******************************************************
                     var clickAddParNode = dom.byId(addParClickId);
                         this.ccPanelAddPartnerNodes.push(clickAddParNode);
-                        this._ccPanelAddParBtn(i, item.Name, item.ObjectID, item.GlobalID, "NO REFRESH");
+                        this._ccPanelAddParBtn(i, item.Name, item.ObjectID, item.GlobalID, "");
 
                 }))
 
@@ -2088,7 +2157,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                 on(this.ccPanelAddPartnerNodes[i], 'click', lang.hitch(this, function(){
 
-                        this._panelAddParClicked(resName,resGID, clickedFrom);
+                    this._panelAddParClicked(resName,resGID, clickedFrom);
                    
                 }));
         },
@@ -2106,12 +2175,172 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // Call AttrFormManager to create AddResource Form
             // ************************************************
                 var createForm = new Add_Edit_Delete_PartnerDialog();
-
                 
                  createForm._createPartnerDomainFromPlan("addPar", this.config, resGID, this.config.selectedCap.GlobalID, null, clickedFrom);
 
-                // createForm._createParFormComponents("addPar", this.config, resGID, this.config.selectedCap.GlobalID, null, clickedFrom);
         },
+
+
+        // ************************************************************************************
+        // Individual RESOURCE TITLE PANE HAS BEEN CLICKED!
+        //
+        // Update clicked pane with new resource data
+        //    1) Query clicked resource by GUID
+        //    2) Query partnerCommittments Table to determine balance for that resource
+        //    3) Update HTML via domID
+        // ************************************************************************************
+
+        refreshClickedResTP: function(clickedTP_DijitId, tpTitle, resGID, selectedCAPID){
+
+           var resTable = this.config.relates.filter(function(item) { return item.queryTableName === 'Capabilities' && item.origin === 'Capability_Resources'; });   
+               resTableUrl = resTable[0].originURL;
+               relID = resTable[0].queryRelId;
+
+          // ***************************************************************************
+          // Query resource record + Update Summary via HTML, 
+          // Pass required resource value to balance calc function for clicked resource
+          // ***************************************************************************
+          var rContent="";
+
+          var whereQuery = "GlobalID='" + resGID + "'";
+          var queryTask = new QueryTask(resTableUrl);
+          var query = new esri.tasks.Query();
+              query.outFields = ['*'];
+              query.where = whereQuery;
+              query.returnGeometry = false;
+              queryTask.execute(query).then(lang.hitch(this, function(response){
+
+                    // Logic to display link to RTLT if it exists.
+                    // TODO: This is where we can insert link to MRP or other resource description url!
+                    var reqResNum = response.features[0].attributes.NbrRequired;
+                    var typeID = response.features[0].attributes.ResourceID;
+                    var resTyp = response.features[0].attributes.RTLT_Type;
+                    var urlBase="";
+                    var resDefUrl="";
+                    var resDefLabel="";
+
+                        if (resTyp == "Resource Typing Definition"){
+                            urlBase = 'https://rtlt.preptoolkit.org/Public/Resource/View/';
+                        }
+                        if (resTyp == "Position Qualification"){
+                            urlBase = 'https://rtlt.preptoolkit.org/Public/Position/View/';
+                        }
+                        if (typeof typeID !== 'undefined' || typeID !== null){
+                            //window.open(urlBase+resID, '_blank');
+                            resDefUrl=urlBase+typeID;
+                            resDefLabel='<a href="' + resDefUrl + '" target="_blank">Resource Definition</a>';
+                        }
+                        // **********************************************************************************
+                        // If this is a NON - FEMA typed resource is selected, then no definition is available.  
+                        // This will require a change to the data model!
+                        // ************************************************************************************
+                          if (typeof typeID == 'undefined' || typeID == null || typeID == ""){
+                            console.log('no resource ID for this resource..');
+                            resDefLabel="No Resource Definition";
+                        }
+                
+                        //console.log(response.features);
+
+                        var updateItem = "resItemSum-" + resGID;// create DOM ID to query
+                        var updateElem = dom.byId(updateItem);
+
+                        if(updateElem){
+                            rContent='<p><div class="cap-info-text">Resource Type:  '  + response.features[0].attributes.ResourceType +'</div></p>';
+                            rContent+='<p><div class="cap-info-text">Category Type:  '  + response.features[0].attributes.Category +'</div></p>';
+                            rContent+='<p><div class="cap-info-text-bottom-border">FEMA RTLT:  '  + resDefLabel +'</div></p>';
+                            updateElem.innerHTML=rContent;
+                        }
+
+                    // *******************************************************************
+                    //
+                    // Next, query all partners for the clicked resource to re-calc the balance
+                    //
+                    // *******************************************************************
+
+                    var pTabl = this.config.relates.filter(function(item) { return item.queryTableName === 'Capability_Resources' && item.origin === 'Mission_AssistingOrgs'; });   
+                        pTableUrl = pTabl[0].originURL;
+
+                    var whereQuery = "ResourceFK='" + resGID + "'";
+                    var queryTask = new QueryTask(pTableUrl);
+                    var query = new esri.tasks.Query();
+                        query.outFields = ['*'];
+                        query.orderByFields=['Organization'];
+                        query.where = whereQuery;
+                        query.returnGeometry = false;
+                        queryTask.execute(query).then(lang.hitch(this, function(response){
+
+                            var committedResources = this.sumCommittedRes(response.features) 
+                            var rBalance = committedResources-reqResNum;
+                            var updateItem = "resItemTable-" + resGID;// create DOM ID to query
+                            var updateElem = dom.byId(updateItem);
+
+                            var resBalanceId="resBalanceID-" + resGID;// This ID is used to update via dom after it is calculated
+                            var resCommittedId="resCommittedID-" + resGID;// This ID is used to update via DOM after it is calculated
+                            var resRequiredId = "resRequiredID-" + resGID;
+
+                            var rContent="";
+
+                                rContent= '<tr><td id="' +resRequiredId + '" class="edit-resource-item-status95px">' + reqResNum +'  Required</td><td id="' + resCommittedId + '" class="edit-resource-item-status95px">' + committedResources + ' Committed</td>'
+                                rContent+=    '<td id="' + resBalanceId + '" class="edit-resource-item-status40px">'+  rBalance +'</td>';          
+                                rContent+= '</tr>';
+
+                            if(updateElem){
+                              updateElem.innerHTML=rContent;
+                              this.colorBalanceRes(resBalanceId, rBalance, committedResources);
+                            }
+
+                        }));  // End committed resource
+
+                })); // End resoure query 
+
+
+        },
+
+          // ************************************************
+          // Update Resource count Values and Balance via DOM 
+          // ************************************************ 
+          colorBalanceRes:function(findBalanceElement, balance, rCount){
+
+                  var updateBalance = document.getElementById(findBalanceElement);
+                  if(updateBalance){
+
+                      if((balance)>=0 && rCount!=0){
+                          updateBalance.innerHTML="+" + balance;
+                          updateBalance.style.color="#009900";
+                          //this.capResourceArray[i].Gap = "Green"
+                      }
+
+                      if(balance<0 && rCount!=0){
+                          updateBalance.innerHTML=balance;
+                          updateBalance.style.color="red";
+                          //this.capResourceArray[i].Gap = "Red"
+                      }
+
+                      if(balance<0 && rCount==0){
+                          updateBalance.innerHTML= balance; // "N/A";
+                          updateBalance.style.color="red";
+                      }
+                  }
+         },
+
+        // Used above
+        sumCommittedRes:function(parArr){
+
+            var committedItems=0;
+
+            // ******************************************************************************************
+            // re-calc the committed resources
+            // ******************************************************************************************
+            array.forEach(parArr, lang.hitch(this, function(item, i) {
+
+                  committedItems = committedItems + item.attributes.NmbCommited;
+
+              }));
+            
+            return committedItems;
+
+        },
+
         // ************************************************************************************
         // resPartnerToggleDiv HAS BEEN CLICKED!
         //
@@ -2166,22 +2395,24 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
               for (var i = 0; i < results.features.length; i++) {
 
                   var parEditClickedId = "parEditClickedId-r" + this.partnerResourceTileId + "-p" + i;
+                  //var insertUpdateId = "partnerCommittment-tp" + this.partnerResourceTileId + "-" + i;
 
                     var pContent="";
-                        pContent+='<div class="edit-partner-item-node">';
+                        pContent+='<div id="UPDATE THIS IF IT EXISTS WITH ENTIRE PARTNER LIST" class="edit-partner-item-node">';
                         pContent+=    '<div tooltip="Edit Partner" class="node-box" style="float:right;padding-right:5px;">';
                         pContent+=        '<div id="' + parEditClickedId + '" class="icon-pencil-edit-btn"></div>';
                         pContent+=     '</div>';
                         
+                        //pContent+=   '<div id="partnerCommittment-tp'+this.partnerResourceTileId + '-' + i +'">';
                         pContent+=     '<table class="edit-partner-item-table">';
                         pContent+=         '<tr><td class="edit-partner-item-status60px"><b>' + results.features[i].attributes.NmbCommited +'</b></td><td class="edit-partner-item"><b>' + results.features[i].attributes.Organization + '</b></td></tr>';
-                        pContent+=     '</table>';                   
+                        pContent+=     '</table>';
 
-                        //pContent+=     '<p><div class="cap-info-text">Committed Resources: '  + results.features[i].attributes.NmbCommited + '</div></p>';
                         pContent+=     '<p><div class="cap-info-text">Agreement: '  + results.features[i].attributes.Agreement +'</div></p>';
                         pContent+=     '<p><div class="cap-info-text">Details: '  + results.features[i].attributes.AgreementDetails +'</div></p>';
                         pContent+=     '<p><div class="cap-info-text-bottom-border">Comments: '  + results.features[i].attributes.Comments +'</div></p>';
-                        
+                        //pContent+=   '<div>';
+
                         pContent+='</div>';
 
                     var newDIV = domConstruct.toDom(pContent);
@@ -2196,7 +2427,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     // *******************************************************
                     var clickPartnerNode = dom.byId(parEditClickedId);// made unique with ResourceCount + partnerCount
                         this.ccPanelPartnerEditNodes.push(clickPartnerNode);
-                        this._ccPanelPartnerEditBtn(i, editpGID, editpOrg, resGID, "NO REFRESH");
+                        this._ccPanelPartnerEditBtn(i, editpGID, editpOrg, resGID, "");
               }  
           
         },
@@ -2229,7 +2460,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // Call Add Edit Delete Partner Dialog
             // ************************************************
                 var createForm = new Add_Edit_Delete_PartnerDialog();
-                    //createForm._createParFormComponents("editPar", this.config, resGID, capID, parGID, clickedFrom);
                     createForm._createPartnerDomainFromPlan("editPar", this.config, resGID, this.config.selectedCap.GlobalID, parGID, clickedFrom);
         },
 
@@ -2264,8 +2494,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
                     fLayer.queryRelatedFeatures(relatedResourcesQry, lang.hitch(this, function(relatedRecords) {
 
-                       var findBalance = "resBalanceID-" + item.ObjectID;
-                       var findCommitted = "resCommittedID-" + item.ObjectID;
+                       var findBalance = "resBalanceID-" + item.GlobalID;
+                       var findCommitted = "resCommittedID-" + item.GlobalID;
 
                       // ***********************************************************************
                       // 
@@ -2330,13 +2560,12 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                                         this.capResourceArray[i].Gap = "Red"
                                     }
 
-                                    if(balance==0 && rCount==0){
-                                        updateBalance.innerHTML="N/A";
-                                        //updateBalance.style.color="#00b200";
+                                    if(balance<0 && rCount==0){
+                                        updateBalance.innerHTML=balance; //"N/A";
+                                        updateBalance.style.color="red";
                                         //updateBalance.innerHTML='<div class="icon-warning-orange"></div>';
                                     }
                                 }
-
 
               }))// end response function for related partner loop
 
@@ -2362,7 +2591,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
             }))
 
-            //var resourceCount = dom.byId("capInfo-rCount");
             var resourceHeading = dom.byId("reqResCountId");// update with resourceCount
 
                       if(this.capResourceArray.length==1){
@@ -2469,8 +2697,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         },
 
         // ********************************************************
+        //
         // This provides the summary of partners in the left panel 
-
+        //
         // ********************************************************
         qComplete_UniquePartners: function(results) {
                 // *****************************************************
@@ -2503,33 +2732,42 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     var tpTitle=item.attributes.Organization;
                     var tpCapFK=item.attributes.CapabilityFK;
                     var loadingContent='<div class="loadingElipsis">Refreshing Content</div>';
-                        //content='<div class="cap-info-text" status="NoRecord">No Specified Resource Committment</div>';
               
-                    var tpCapParId = "tpCapParId_" + i; 
+
+                    // this allows the last clicked title pane to open, showing the results of the previous edit.
+                    var tpPartners = "tpCapParId_" + i; 
+                    var tpOpenStatus=false;
+
+                    if(tpPartners==this.clickedParTitlePane){
+                      tpOpenStatus = true;
+                    }
+                    else{
+                      tpOpenStatus = false;
+                    }
+
 
                     // Create TilePane for each Resource Item
                     var tp = new TitlePane({
-                        id: tpCapParId,
-                        title:tpTitle, 
+                        id: tpPartners,
+                        title:tpTitle,
+                        open: tpOpenStatus,
                         content:loadingContent,
-                        //toggleable:true
                         
                         onClick: lang.hitch(this,function(value){
 
-                          var clickedParTitlePane = dijit.byId(value.currentTarget.id);
-                          var str = clickedParTitlePane.containerNode.innerHTML;
+                          this.clickedParTitlePane = value.currentTarget.id;
+
 
                           // refresh content from the service every time it is clicked
                           if(this.showingTP){
-                              //clickedParTitlePane.set("content", '<div class="loadingElipsis">Refreshing Content</div>');// reset the selected panel
-
+  
                               this.getResourcesForCap_AND_Partner(value.currentTarget.id, tpTitle, this.config.selectedCap.GlobalID);
                           }
 
                           // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
                           if(!this.showingTP){
 
-                            //clickedParTitlePane.set("content", "");
+
                               
                           }
 
@@ -2550,14 +2788,22 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                       });
 
                         dom.byId("capInfo-partners").appendChild(tp.domNode);
-                        tp.attr('open', false);
+                        //tp.attr('open', false);
                         tp.startup();
+
+                        // when refreshed, open the last clicked partner title pane
+                        if(tpPartners==this.clickedParTitlePane){
+                              this.getResourcesForCap_AND_Partner(this.clickedParTitlePane, tpTitle, this.config.selectedCap.GlobalID);
+                            
+                        }
 
                 }))
       },
 
       // **************************************************************************
       //  Get list of resources that a partner has committed for a given capability
+      //
+      //  Called by qComplete_UniquePartners()
       //  Requires current Capability ID and Name of Partner Organization, which must be unique.  
       //  Capabilty is set in onBookmarkClick
       //  Query Committments Table for partner that was clicked
@@ -2636,8 +2882,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                       }
               );      
       },
-
-
+      // *******************************************
+      // Called by getResourcesForCap_AND_Partner()
       getResourceNamesForSelectedPartner: function(resGlobalID_String, clickedTP_DijitId, pOrg){
         // returns list of resources
 
@@ -2676,7 +2922,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                         var updateParTitlePane = dijit.byId(clickedTP_DijitId);
                             updateParTitlePane.set("content", nonOrphanedResHTML);// reset the selected panel
 
-                            console.log("Inserting " + nonOrphanedResHTML);
+                            //console.log("Inserting " + nonOrphanedResHTML);
 
                             this.createListenersForPartnerReportEditBtns();
                     }
@@ -2710,6 +2956,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
 
       // *********************************************************************************************************************************************
       // Create HTML object of the resouce committment(with with Resource Name + Type) for the partner when resoureID is found in the resource Table
+      //
+      //  Callec by getResourceNamesForSelectedPartner()
       // *********************************************************************************************************************************************
       checkForOrphanResources: function(resFK, resName, resType){
 
@@ -2757,7 +3005,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       
       // *******************************************************
       // Create listeners for an edit button for each resource
-      //       - called by getResourceNamesForSelectedPartner()
+      // Called by getResourceNamesForSelectedPartner()
       // *******************************************************
       createListenersForPartnerReportEditBtns: function(){
               this.ccPartnerReportEditResNodes=[];
@@ -2771,7 +3019,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                           this._ccTP_EditParReportBtn(i, item.pGlobalID, item.pOrg, item.resFK, "NO REFRESH");
                       }
               }))
-
       },
 
       // **************************************************
@@ -2786,7 +3033,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
       },
 
 
-      // called by clicking the _onBackBtnClicked()
+      // called by clicking the _onBackBtnClicked() - NOT USED
       removeListenersForPartnerEditBtns: function(parBtn){
 
 
@@ -2902,28 +3149,26 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
         console.log("Begin adding Planning Layer");
 
         if(this.featureLayer){
-
             this.map.removeLayer(this.featureLayer);
         }
                 
-                if(typeof url == 'undefined'){
-                    console.log('url is undefined..');
-                    alert("this is a new layer!  Initiate new layer.")
+            if(typeof url == 'undefined'){
+                console.log('url is undefined..');
+                alert("this is a new layer!  Initiate new layer.")
 
-                    this.initCapabilityForm();
-                }
+                this.initCapabilityForm();
+            }
 
                 
-               var newurl='';
-               if (token){
-                 newurl=url.toString()+"?token="+token;
-                 this.url = newurl;
-
-               }
-               else{
+            var newurl='';
+            if (token){
+                newurl=url.toString()+"?token="+token;
+                this.url = newurl;
+            }
+            else{
                  newurl=url.toString();
                  this.url = newurl;
-               }
+            }
       
 
             // *******************************************************************
@@ -2947,7 +3192,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             // reset the hazards list based on the current plan
             this._createHazArray(newurl);
 
-
             this.map.infoWindow.resize(330, 300);
                
             var content = "<b>Capability</b>: ${Capability}" +
@@ -2962,9 +3206,8 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
           var json = {title: newTitle,content: content};
 
                 // default infoTemplate
-                 var infoTemplate = new InfoTemplate(json);
+               var infoTemplate = new InfoTemplate(json);
 
-               
                this.featureLayer = new FeatureLayer(newurl.toString(), {
                     id: this.id,
                     title: this.title,
@@ -2974,7 +3217,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                     infoTemplate: infoTemplate,
                     visible: this.visible,
                     maxRecordCount: "1"
-
                 });
             
                 this.featureLayer.setDefinitionExpression("1=1");
@@ -3001,10 +3243,6 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
             
             // add to map
             this.map.addLayer(this.featureLayer);
-
-            if(newTitle){ // changes name of selected Thira layer in Panel  
-//              this.updateThiraName(newTitle);
-            }
 
             console.log("finished adding")
 

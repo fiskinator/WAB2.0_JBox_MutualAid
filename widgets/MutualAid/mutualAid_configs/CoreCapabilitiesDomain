@@ -1,0 +1,127 @@
+
+        "codedValues" : [
+          {
+            "name" : " Access Control and Identity Verification", 
+            "code" : " Access Control and Identity Verification"
+          }, 
+          {
+            "name" : " Community Resilience", 
+            "code" : " Community Resilience"
+          }, 
+          {
+            "name" : " Critical Transportation", 
+            "code" : " Critical Transportation"
+          }, 
+          {
+            "name" : " Cybersecurity", 
+            "code" : " Cybersecurity"
+          }, 
+          {
+            "name" : " Economic Recovery", 
+            "code" : " Economic Recovery"
+          }, 
+          {
+            "name" : " Environmental Response/Health and Safety", 
+            "code" : " Environmental Response/Health and Safety"
+          }, 
+          {
+            "name" : " Fatality Management Services", 
+            "code" : " Fatality Management Services"
+          }, 
+          {
+            "name" : " Forensics and Attribution", 
+            "code" : " Forensics and Attribution"
+          }, 
+          {
+            "name" : " Health and Social Services", 
+            "code" : " Health and Social Services"
+          }, 
+          {
+            "name" : " Housing", 
+            "code" : " Housing"
+          }, 
+          {
+            "name" : " Infrastructure Systems", 
+            "code" : " Infrastructure Systems"
+          }, 
+          {
+            "name" : " Intelligence and Information Sharing", 
+            "code" : " Intelligence and Information Sharing"
+          }, 
+          {
+            "name" : " Interdiction and Disruption", 
+            "code" : " Interdiction and Disruption"
+          }, 
+          {
+            "name" : " Long-term Vulnerability Reduction", 
+            "code" : " Long-term Vulnerability Reduction"
+          }, 
+          {
+            "name" : " Mass Care Services", 
+            "code" : " Mass Care Services"
+          }, 
+          {
+            "name" : " Mass Search and Rescue Operations", 
+            "code" : " Mass Search and Rescue Operations"
+          }, 
+          {
+            "name" : " Natural and Cultural Resources", 
+            "code" : " Natural and Cultural Resources"
+          }, 
+          {
+            "name" : " On-scene Security and Protection", 
+            "code" : " On-scene Security and Protection"
+          }, 
+          {
+            "name" : " Operational Communications", 
+            "code" : " Operational Communications"
+          }, 
+          {
+            "name" : " Operational Coordination", 
+            "code" : " Operational Coordination"
+          }, 
+          {
+            "name" : " Physical Protective Measures", 
+            "code" : " Physical Protective Measures"
+          }, 
+          {
+            "name" : " Planning", 
+            "code" : " Planning"
+          }, 
+          {
+            "name" : " Public and Private Services and Resources", 
+            "code" : " Public and Private Services and Resources"
+          }, 
+          {
+            "name" : " Public Health and Medical Services", 
+            "code" : " Public Health and Medical Services"
+          }, 
+          {
+            "name" : " Public Information and Warning", 
+            "code" : " Public Information and Warning"
+          }, 
+          {
+            "name" : " Risk and Disaster Resilience Assessment", 
+            "code" : " Risk and Disaster Resilience Assessment"
+          }, 
+          {
+            "name" : " Risk Management for Protection Programs and Activities", 
+            "code" : " Risk Management for Protection Programs and Activities"
+          }, 
+          {
+            "name" : " Screening, Search, and Detection", 
+            "code" : " Screening, Search, and Detection"
+          }, 
+          {
+            "name" : " Situational Assessment", 
+            "code" : " Situational Assessment"
+          }, 
+          {
+            "name" : " Supply Chain Integrity and Security", 
+            "code" : " Supply Chain Integrity and Security"
+          }, 
+          {
+            "name" : " Threats and Hazard Identification", 
+            "code" : " Threats and Hazard Identification"
+          }
+        ]

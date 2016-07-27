@@ -368,13 +368,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                                       console.log(err);
                                   }
                               );
-
-
-
-
                       }
-
-
 
                       // **************************************************************
                       // 
@@ -548,12 +542,12 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
               lang.hitch(this, function(adds,updates,deletes) {
                 console.log('updated record: ' + updates[0].objectId);
 
-                  if(clickedFrom=="NO REFRESH"){
+                  //if(clickedFrom=="NO REFRESH"){
 
-                  }
-                  else{
+                 // }
+                  //else{
                     this.afterAddEditDelete();
-                  }
+                 // }
 
                    
 
@@ -602,12 +596,13 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             updateFeature.getLayer().applyEdits(null, null, [updateFeature],
               lang.hitch(this, function(adds,updates,deletes) {
 
-                  if(clickedFrom=="NO REFRESH"){
+                  // deleting a partner requres a full refresh
+                  //if(clickedFrom=="NO REFRESH"){
 
-                  }
-                  else{
+                  //}
+                  //else{
                     this.afterAddEditDelete();
-                  }
+                  //}
 
                    myDialog.hide;
                    myDialog.destroyRecursive();
@@ -645,6 +640,8 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
                             ok=false;  
                         }  
         }  
+
+
 
         if(!ok){  
             throw new Error();  

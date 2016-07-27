@@ -1411,6 +1411,17 @@ span.myButtons:hover{
     padding-left: 30px,
 }
 
+.addPlusIcon:before{
+    font-family: 'icomoon';
+    font-size: 24px;
+    color: #fff;
+    content: "\e617";
+    font-weight: normal;
+    vertical-align:middle;
+    padding-right: 30px;
+
+}
+
 .playScreenIconNoPadding:before{
     font-family: 'icomoon';
     font-size: 24px;
