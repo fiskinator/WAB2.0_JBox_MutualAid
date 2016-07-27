@@ -178,7 +178,7 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
 
         if(results.adds==undefined && results.updates==undefined && results.deletes!=undefined){
 
-              if(confirm("Delete this resource and its partnership commitments?")){ 
+              if(confirm("Discard this resource and its partnership commitments?")){ 
 
                   /** treatement for attributes **/  
 

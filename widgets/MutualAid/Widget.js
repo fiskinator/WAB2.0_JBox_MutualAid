@@ -2015,9 +2015,9 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                           }
 
                           // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
-                          if(!this.ResshowingTP){
+                          if(!this.showingResTP){
 
-                            //console.log("Title Pane is closing")
+                            this.clickedResTitlePane = "";// This prevents a recently closed pane from opening again on refresh
                               
                           }
 
@@ -2767,7 +2767,7 @@ function(declare, lang, array, html, connect, BaseWidget, on, aspect, string, do
                           // clear content when hidden.  May be necessary to remove button listeners - but do not do it currenlty.
                           if(!this.showingTP){
 
-
+                              this.clickedParTitlePane="";// this prevents a recently closed tile from opening again when refreshing;
                               
                           }
 
