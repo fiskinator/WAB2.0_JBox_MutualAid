@@ -229,7 +229,6 @@ function (declare, array, lang, html, on, domConstruct, mouse, query, dom, topic
             }
       topic.publish('ADDED_CAPABILITY');
 
-      alert("deleted")
     },
 
     afterExistingCapabilityIsEdited: function(){
